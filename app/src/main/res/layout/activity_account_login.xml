@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".AccountLoginActivity">
+
+    <TextView
+        android:id="@+id/core_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:text="1234567" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="text"
+        android:text="omnileads" />
+
+    <EditText
+        android:id="@+id/domain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Domain"
+        android:inputType="textUri"
+        android:text="192.168.14.209:6060"
+        tools:text="sip.linphone.org" />
+
+    <RadioGroup
+        android:id="@+id/transport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/udp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UDP" />
+
+        <RadioButton
+            android:id="@+id/tcp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TCP" />
+
+        <RadioButton
+            android:id="@+id/tls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="TLS" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect" />
+
+        <Button
+            android:id="@+id/disconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Disconnect" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Delete" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/goToInComing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="go To In Coming" />
+
+    <Button
+        android:id="@+id/goToOutGoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="go To Out Going" />
+
+    <TextView
+        android:id="@+id/registration_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

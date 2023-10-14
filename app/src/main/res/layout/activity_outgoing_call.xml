@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OutgoingCallActivity">
+
+    <TextView
+        android:id="@+id/registration_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_status"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="textEmailAddress"
+            android:text="ngoson" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="text"
+            android:text="123456" />
+
+        <EditText
+            android:id="@+id/domain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Domain"
+            android:inputType="textUri"
+            android:text="sip.linphone.org" />
+
+        <RadioGroup
+            android:id="@+id/transport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/udp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UDP" />
+
+            <RadioButton
+                android:id="@+id/tcp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TCP" />
+
+            <RadioButton
+                android:id="@+id/tls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="TLS" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/call_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/registration_status"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="Call" />
+
+        <EditText
+            android:id="@+id/remote_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/call"
+            android:hint="Remote SIP address"
+            android:text="sip:dotanphu@sip.linphone.org" />
+
+        <TextView
+            android:id="@+id/call_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/remote_address"
+            android:layout_alignParentRight="true"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/toggle_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/call_status"
+            android:layout_alignParentLeft="true"
+            android:text="Toggle video" />
+
+        <Button
+            android:id="@+id/toggle_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/call_status"
+            android:layout_alignParentRight="true"
+            android:text="Toggle camera" />
+
+        <Button
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="Pause" />
+
+        <Button
+            android:id="@+id/hang_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Hang up" />
+
+        <TextureView
+            android:id="@+id/remote_video_surface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/hang_up"
+            android:layout_below="@id/call" />
+
+        <org.linphone.mediastream.video.capture.CaptureTextureView
+            android:id="@+id/local_preview_video_surface"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@id/hang_up"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+</RelativeLayout>
