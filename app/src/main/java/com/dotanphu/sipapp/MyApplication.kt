@@ -1,5 +1,6 @@
 package com.dotanphu.sipapp
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.androidnetworking.AndroidNetworking
@@ -13,15 +14,14 @@ import java.util.concurrent.TimeUnit
 
 @HiltAndroidApp
 class MyApplication : Application() {
-    private var mInstance: MyApplication? = null
+    var mInstance: MyApplication? = null
 
-    @Synchronized
-    fun getInstance(): MyApplication? {
-        return mInstance
-    }
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var getInstance: MyApplication
 
-    fun getContext(): Context? {
-        return mInstance!!.applicationContext
+        @SuppressLint("StaticFieldLeak")
+        lateinit var getContext: Context
     }
 
     override fun onCreate() {

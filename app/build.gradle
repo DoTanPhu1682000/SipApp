@@ -34,9 +34,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = '17'
-    }
 }
 
 dependencies {
@@ -66,8 +63,8 @@ dependencies {
     implementation "com.polidea.rxandroidble3:rxandroidble:1.17.2"
 
     //Dagger hilt
-    implementation "com.google.dagger:hilt-android:2.48"
-    kapt "com.google.dagger:hilt-compiler:2.48"
+    implementation "com.google.dagger:hilt-android:2.48.1"
+    kapt "com.google.dagger:hilt-compiler:2.48.1"
 
     //Không nâng cấp phiên bản
     implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
