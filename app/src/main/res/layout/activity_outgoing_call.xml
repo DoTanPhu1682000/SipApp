@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OutgoingCallActivity">
+    tools:context=".ui.call.OutgoingCallActivity">
 
     <TextView
         android:id="@+id/registration_status"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:inputType="textEmailAddress"
-            android:text="ngoson" />
+            android:text="102" />
 
         <EditText
             android:id="@+id/password"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="text"
-            android:text="123456" />
+            android:text="Vega1234" />
 
         <EditText
             android:id="@+id/domain"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:hint="Domain"
             android:inputType="textUri"
-            android:text="sip.linphone.org" />
+            android:text="192.168.14.209" />
 
         <RadioGroup
             android:id="@+id/transport"
@@ -104,7 +104,7 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@id/call"
             android:hint="Remote SIP address"
-            android:text="sip:dotanphu@sip.linphone.org" />
+            android:text="sip:101@192.168.14.209" />
 
         <TextView
             android:id="@+id/call_status"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="path_font_bold" translatable="false">fonts/sfpro/SF-Pro-Display-Bold.otf</string>
+   <string name="path_font_italic" translatable="false">fonts/sfpro/Roboto-Italic.ttf</string>
+   <string name="path_font_normal" translatable="false">fonts/sfpro/SF-Pro-Display-Regular.otf</string>
+   <string name="path_font_medium" translatable="false">fonts/sfpro/SF-Pro-Display-Medium.otf</string>
+   <string name="path_font_black" translatable="false">fonts/sfpro/SF-Pro-Display-Black.otf</string>
+   <string name="path_font_light" translatable="false">fonts/sfpro/SF-Pro-Display-Light.otf</string>
+   <!--
+       <string name="path_font_bold" translatable="false">fonts/roboto/Roboto-Bold.ttf</string>
+       <string name="path_font_italic" translatable="false">fonts/roboto/Roboto-Italic.ttf</string>
+       <string name="path_font_normal" translatable="false">fonts/roboto/Roboto-Regular.ttf</string>
+       <string name="path_font_medium" translatable="false">fonts/roboto/Roboto-Medium.ttf</string>
+       <string name="path_font_black" translatable="false">fonts/roboto/Roboto-Black.ttf</string>
+       <string name="path_font_light" translatable="false">fonts/roboto/Roboto-Light.ttf</string>
+   -->
+
+   <!--    <string name="path_font_bold" translatable="false">fonts/lato/lato_bold.ttf</string>
+       <string name="path_font_italic" translatable="false">fonts/lato/lato_italic.ttf</string>
+       <string name="path_font_normal" translatable="false">fonts/lato/lato_regular.ttf</string>
+       <string name="path_font_medium" translatable="false">fonts/lato/lato_medium.ttf</string>
+       <string name="path_font_black" translatable="false">fonts/lato/lato_black.ttf</string>
+       <string name="path_font_heavy" translatable="false">fonts/lato/lato_heavy.ttf</string>-->
+
+   <string name="status_error_background_required" translatable="false">Bạn cần thiết lập màu nền (pl_background) cho ProgressLayout</string>
+</resources>

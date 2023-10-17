@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -38,7 +40,10 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
+    implementation project(':base')
+    implementation project(':rx3-android-networking')
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -47,6 +52,29 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //Network
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.9'
+    //implementation 'com.amitshekhar.android:rx2-android-networking:1.0.2'
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+//    implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking:v1.0.2'
+//    implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:rx2-android-networking:v1.0.2'
+
+    //RxAndroid
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.8'
+    implementation 'com.jakewharton.rx3:replaying-share:3.0.0'
+    implementation "com.polidea.rxandroidble3:rxandroidble:1.17.2"
+
+    //Dagger hilt
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-compiler:2.48"
+
+    //Không nâng cấp phiên bản
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    //Sdk linphone
     implementation 'org.linphone:linphone-sdk-android:5.3+'
 
     implementation 'androidx.media:media:1.6.0'

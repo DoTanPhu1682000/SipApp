@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brandA500">#F68E1E</color>
+    <color name="brandB500">#6498FF</color>
+
+    <color name="sBackground">#F2F4F9</color>
+    <color name="sLine">#EBEFFB</color>
+
+    <color name="primary500">#F68E1E</color>
+    <color name="primary400">#F6A349</color>
+    <color name="primary300">#FAB979</color>
+    <color name="primary200">#FBD1A5</color>
+    <color name="primary100">#FFF4E9</color>
+    <color name="primaryA500">#F68E1E</color>
+    <color name="primaryA400">#F6A349</color>
+    <color name="primaryA300">#FAB979</color>
+    <color name="primaryA200">#FBD1A5</color>
+    <color name="primaryA100">#FFF4E9</color>
+    <color name="primaryB500">#3D7EFF</color>
+    <color name="primaryB400">#6EA7F3</color>
+    <color name="primaryB300">#82B3F4</color>
+    <color name="primaryB200">#CDE3FF</color>
+    <color name="primaryB100">#EBF3FE</color>
+
+    <color name="ink500">#1F2D3D</color>
+    <color name="ink400">#5A6B81</color>
+    <color name="ink300">#A0B0C0</color>
+    <color name="ink200">#B3C3D4</color>
+    <color name="ink100">#ECEFF4</color>
+
+    <color name="blue500">#2F80ED</color>
+    <color name="blue400">#6EA7F3</color>
+    <color name="blue300">#82B3F4</color>
+    <color name="blue200">#97C0F6</color>
+    <color name="blue100">#EBF3FE</color>
+    <color name="orange500">#F68B1F</color>
+    <color name="orange400">#F8A24C</color>
+    <color name="orange300">#FAB979</color>
+    <color name="orange200">#FBD1A5</color>
+    <color name="orange100">#FFF4E9</color>
+    <color name="green500">#27AE60</color>
+    <color name="green400">#52BE80</color>
+    <color name="green300">#7DCEA0</color>
+    <color name="green200">#A9DFBF</color>
+    <color name="green100">#EAF7F0</color>
+    <color name="red500">#EB5757</color>
+    <color name="red400">#EF7979</color>
+    <color name="red300">#F39A9A</color>
+    <color name="red200">#F7BCBC</color>
+    <color name="red100">#FDEFEF</color>
+    <color name="purple500">#BB6BD9</color>
+    <color name="purple400">#C989E1</color>
+    <color name="purple300">#D6A6E8</color>
+    <color name="purple200">#E4C4F0</color>
+    <color name="purple100">#F9F1FC</color>
+</resources>

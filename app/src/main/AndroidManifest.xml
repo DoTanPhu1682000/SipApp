@@ -81,6 +81,7 @@
         android:required="true" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -99,19 +100,19 @@
             android:stopWithTask="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false" />
 
         <activity
-            android:name=".IncomingCallActivity"
+            android:name=".ui.call.IncomingCallActivity"
             android:exported="true" />
 
         <activity
-            android:name=".OutgoingCallActivity"
+            android:name=".ui.call.OutgoingCallActivity"
             android:exported="true" />
 
         <activity
-            android:name=".AccountLoginActivity"
+            android:name=".ui.login.AccountLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

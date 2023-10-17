@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transition" translatable="false">transition</string>
+    <string name="transition_1" translatable="false">transition_1</string>
+    <string name="transition_2" translatable="false">transition_2</string>
+    <string name="transition_3" translatable="false">transition_3</string>
+    <string name="transition_4" translatable="false">transition_4</string>
+    <string name="transition_5" translatable="false">transition_5</string>
+    <string name="transition_image_feature" translatable="false">transition_image_feature</string>
+</resources>

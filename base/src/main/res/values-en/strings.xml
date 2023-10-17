@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="agree">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="confirm">Confirm</string>
+    <string name="deny">Deny</string>
+    <string name="error_connection">Can not connect to server</string>
+    <string name="error_file_compress">Error compressing file</string>
+    <string name="error_parse">Error analyzing</string>
+    <string name="error_general">An error occurred</string>
+    <string name="error_parse_data">Error analyzing data</string>
+    <string name="error_timeout">Error timeout</string>
+    <string name="error_token_expired">Token expired</string>
+    <string name="error_valid">Invalid data</string>
+    <string name="error_unknown">An unknown error</string>
+    <string name="feature_not_allowed">"This feature is currently not available "</string>
+    <string name="install">Install</string>
+    <string name="no_data">No data</string>
+    <string name="not_connected_internet">No network connection</string>
+    <string name="not_now">Not now</string>
+    <string name="status_error_network_description">Please connect to the Internet and try again</string>
+    <string name="status_error_network">No network connection</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="permission_edit">Edit Permission</string>
+    <string name="permission_error">Error Permission</string>
+    <string name="please_login">Please log in again</string>
+    <string name="please_retry_later">Please try again later</string>
+    <string name="please_wait">Please wait a moment&#8230;</string>
+    <string name="require_permission_info">You need to allow permissions in setting (Permission)</string>
+    <string name="setting">Setting</string>
+    <string name="status_empty">No data</string>
+    <string name="status_empty_description">No records were found</string>
+    <string name="retry">Retry</string>
+    <string name="status_notice">Notice</string>
+    <string name="error_data_no_info">No information</string>
+    <string name="permission_success">Granted access permissions</string>
+</resources>

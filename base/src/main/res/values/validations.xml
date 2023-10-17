@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="valid_start_zero">%1$s phải bắt đầu với số 0</string>
+    <string name="valid_greater_than">%1$s phải &gt; %2$d</string>
+    <string name="valid_greater_than_equal_to">%1$s phải &gt;= %2$d</string>
+    <string name="valid_less_than">%1$s phải &lt; %2$d</string>
+    <string name="valid_less_than_equal_to">%1$s phải &lt;= %2$d</string>
+    <string name="valid_required">%1$s là bắt buộc</string>
+    <string name="valid_min_length">%1$s có độ dài tối thiểu %2$d</string>
+    <string name="valid_max_length">%1$s có độ dài tối đa %2$d</string>
+    <string name="valid_exact_length">%1$s có độ dài bằng %2$d</string>
+    <string name="valid_alpha_utf8_space">%1$s chỉ cho phép chữ cái và dấu cách</string>
+    <string name="valid_alpha_numeric">%1$s chỉ cho phép chữ cái và chữ số</string>
+    <string name="valid_numeric">%1$s chỉ cho phép số</string>
+    <string name="valid_integer">%1$s chỉ cho phép số nguyên</string>
+    <string name="valid_email">%1$s không đúng định dạng</string>
+    <string name="valid_natural">%1$s chỉ cho phép số &gt;= 0</string>
+    <string name="valid_natural_no_zero">%1$s chỉ cho phép số &gt; 0</string>
+</resources>

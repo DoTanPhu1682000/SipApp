@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customLayoutParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables,ContentDescription">
+
+    <Space
+        android:id="@+id/customPaddingLeft"
+        android:layout_width="@dimen/sizeMedium"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/customImgLeft"
+        android:layout_width="@dimen/_18"
+        android:layout_height="@dimen/_18"
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
+
+    <Space
+        android:id="@+id/customSpaceLeft"
+        android:layout_width="@dimen/sizeMedium"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/customTvLeft"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/textNormal"
+        android:visibility="visible" />
+
+    <Space
+        android:id="@+id/customSpace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/customTvRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/textNormal"
+        android:visibility="gone" />
+
+    <Space
+        android:id="@+id/customSpaceRight"
+        android:layout_width="@dimen/sizeMedium"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/customImgRight"
+        android:layout_width="@dimen/_18"
+        android:layout_height="@dimen/_18"
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
+
+    <Space
+        android:id="@+id/customPaddingRight"
+        android:layout_width="@dimen/sizeMedium"
+        android:layout_height="wrap_content" />
+</LinearLayout>

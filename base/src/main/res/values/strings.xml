@@ -1,0 +1,42 @@
+<resources>
+    <string name="please_wait">Xin chờ trong giây lát&#8230;</string>
+    <string name="please_retry_later">Vui lòng thử lại sau</string>
+    <string name="please_login">Vui lòng đăng nhập lại</string>
+    <string name="feature_not_allowed">Tính năng này hiện chưa sẵn sàng</string>
+    <string name="not_connected_internet">Không có kết nối mạng</string>
+
+    <string name="setting">Cài đặt</string>
+    <string name="install">Cài Đặt</string>
+    <string name="not_now">Để Sau</string>
+    <string name="deny">Từ chối</string>
+    <string name="close">Đóng</string>
+    <string name="cancel">Hủy</string>
+    <string name="agree">Đồng ý</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="retry">Thử lại</string>
+
+    <string name="permission_edit">Sửa quyền</string>
+    <string name="permission_denied">Quyền đã bị chặn</string>
+    <string name="permission_error">Lỗi cấp quyền</string>
+    <string name="permission_success">Cấp quyền thành công</string>
+    <string name="require_permission_info">Bạn cần cho phép các quyền truy cập trong cài đặt (Permission)</string>
+
+    <string name="error_parse">Lỗi phân tích</string>
+    <string name="error_valid">Dữ liệu không hợp lệ</string>
+    <string name="error_connection">Không thể kết nối đến máy chủ</string>
+    <string name="error_unknown">Lỗi không xác định</string>
+    <string name="error_data_no_info">Không có thông tin</string>
+    <string name="error_general">Có lỗi xảy ra</string>
+    <string name="error_file_compress">Lỗi nén tệp</string>
+    <string name="error_token_expired">Phiên làm việc hết hạn</string>
+    <string name="error_parse_data">Lỗi phân tích dữ liệu</string>
+    <string name="error_timeout">Lỗi quá thời gian</string>
+
+    <string name="status_empty">Không có dữ liệu</string>
+    <string name="status_empty_description">Không có dữ liệu nào được tìm thấy</string>
+    <string name="status_error_network">Không có kết nối mạng</string>
+    <string name="status_error_network_description">Vui lòng kết nối mạng Internet và thử lại</string>
+    <string name="status_notice">Đã có lỗi xảy ra</string>
+
+</resources>

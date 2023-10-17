@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:fillViewport="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_30"
+        android:paddingBottom="@dimen/_30">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/_360"
+            android:layout_height="@dimen/_210"
+            android:layout_marginBottom="@dimen/sizeShort"
+            android:contentDescription="@null"
+            android:visibility="gone"
+            tools:background="@color/black"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/textStyleBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32"
+            android:layout_marginTop="@dimen/sizeStandard"
+            android:layout_marginEnd="@dimen/_32"
+            android:layout_marginBottom="@dimen/sizeShort"
+            android:gravity="center"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/_28"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="Nothing Here"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32"
+            android:layout_marginTop="@dimen/sizeExtraShort"
+            android:layout_marginEnd="@dimen/_32"
+            android:layout_marginBottom="@dimen/sizeShort"
+            android:gravity="center"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/_24"
+            android:visibility="gone"
+            tools:text="We couldn\'t find anything. Tap the button to take your first image"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/bRetry"
+            style="@style/textStyleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sizeMedium"
+            android:background="@drawable/btn_primary"
+            android:paddingStart="@dimen/_24"
+            android:paddingTop="@dimen/_16"
+            android:paddingEnd="@dimen/_24"
+            android:paddingBottom="@dimen/_16"
+            android:stateListAnimator="@null"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_24"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <item name="android:windowBackground">@color/background</item>
+        <!--MaterialDatePicker-->
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">
+            @style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen
+        </item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar
+        </item>
+    </style>
+
+    <style name="LightStatusBar" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:statusBarColor">@color/transparent25</item>
+    </style>
+
+    <!--Font Style-->
+    <style name="textStyleBlack" parent="fontBold">
+        <item name="fontPath">@string/path_font_black</item>
+    </style>
+
+    <style name="textStyleBold" parent="fontBold">
+        <item name="fontPath">@string/path_font_bold</item>
+    </style>
+
+    <style name="textStyleMedium" parent="fontMedium">
+        <item name="fontPath">@string/path_font_medium</item>
+    </style>
+
+    <style name="textStyleNormal" parent="fontNormal">
+        <item name="fontPath">@string/path_font_normal</item>
+    </style>
+
+    <style name="textStyleLight">
+        <item name="fontPath">@string/path_font_light</item>
+    </style>
+
+    <style name="textStyleItalic" parent="fontItalic">
+        <item name="fontPath">@string/path_font_italic</item>
+    </style>
+
+
+    <style name="fontNormal">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="fontBold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="fontItalic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <!--AlertDialogTheme-->
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontPath">@string/path_font_bold</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="fontPath">@string/path_font_bold</item>
+    </style>
+    <!--TAB-->
+    <style name="tabNormal" parent="TextAppearance.Design.Tab">
+        <item name="fontPath">@string/path_font_bold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/textNormal</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <!-- Dialog -->
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_up</item>
+    </style>
+
+    <style name="DialogAnimationFade">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <!-- ProgressBar -->
+    <style name="ProgressBarPrimary" parent="AppTheme">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="ProgressBarAccent" parent="AppTheme">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ProgressBarWhite" parent="AppTheme">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <!--Tablet Limit Width-->
+    <style name="TabletLimitMatchWidthStyle" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!--BottomSheet-->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_white_round_top</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+    <!--End BottomSheet-->
+
+    <!--DatePicker-->
+    <style name="MySpinnerDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerStyle">@style/MySpinnerDatePicker</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="MySpinnerDatePicker" parent="android:Widget.Material.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <!--TimePicker-->
+    <style name="MySpinnerTimePickerStyle" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:timePickerStyle">@style/MySpinnerTimePicker</item>
+    </style>
+
+    <style name="MySpinnerTimePicker" parent="android:Widget.Material.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
+</resources>

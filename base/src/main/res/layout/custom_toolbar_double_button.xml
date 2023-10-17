@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/heightToolbar"
+    android:background="@color/colorPrimary"
+    android:padding="0dp"
+    app:contentInsetEnd="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetStart="0dp"
+    app:layout_collapseMode="pin"
+    app:layout_scrollFlags="scroll|enterAlways">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Space
+            android:id="@+id/customPaddingLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <com.widget.ButtonImageView
+            android:id="@+id/customBiLeft"
+            android:layout_width="@dimen/_40"
+            android:layout_height="@dimen/_40"
+            android:background="@drawable/bg_effect_transparent"
+            android:visibility="invisible"
+            app:bi_iconSize="@dimen/_24" />
+
+        <TextView
+            android:id="@+id/customTvTitle"
+            style="@style/textStyleMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textXXLarge" />
+
+        <ProgressBar
+            android:id="@+id/customProgressBar"
+            android:layout_width="@dimen/_40"
+            android:layout_height="@dimen/_40"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:padding="@dimen/_8"
+            android:theme="@style/ProgressBarWhite"
+            android:visibility="gone" />
+
+        <com.widget.ButtonImageView
+            android:id="@+id/customBiRight"
+            android:layout_width="@dimen/_40"
+            android:layout_height="@dimen/_40"
+            android:background="@drawable/bg_effect_transparent"
+            android:visibility="invisible"
+            app:bi_iconSize="@dimen/_24" />
+
+        <Space
+            android:id="@+id/customPaddingRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.appcompat.widget.Toolbar>

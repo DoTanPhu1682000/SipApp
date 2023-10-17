@@ -25,3 +25,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "SipApp"
 include ':app'
+include ':base'
+include ':rx3-android-networking'

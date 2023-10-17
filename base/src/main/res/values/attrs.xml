@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconTextView">
+        <attr name="itv_textLeft" format="string" />
+        <attr name="itv_textLeftLines" format="integer" />
+        <attr name="itv_textLeftColor" format="color" />
+        <attr name="itv_textLeftSize" format="dimension" />
+        <attr name="itv_textLeftStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="itv_textLeftGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+        <attr name="itv_textLeftWidth" format="dimension" />
+        <attr name="itv_textLeftMaxWidth" format="dimension" />
+        <attr name="itv_textRight" format="string" />
+        <attr name="itv_textRightColor" format="color" />
+        <attr name="itv_textRightLines" format="integer" />
+        <attr name="itv_textRightSize" format="dimension" />
+        <attr name="itv_textRightGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+        <attr name="itv_textRightStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="itv_iconLeft" format="reference" />
+        <attr name="itv_iconLeftSize" format="dimension" />
+        <attr name="itv_iconRight" format="reference" />
+        <attr name="itv_iconRightSize" format="dimension" />
+        <attr name="itv_space" format="dimension" />
+        <attr name="itv_spaceLeft" format="dimension" />
+        <attr name="itv_spaceRight" format="dimension" />
+        <attr name="itv_paddingLeft" format="dimension" />
+        <attr name="itv_paddingRight" format="dimension" />
+        <attr name="itv_iconRightColor" format="color" />
+        <attr name="itv_iconLeftColor" format="color" />
+        <attr name="itv_gravity" format="enum">
+            <enum name="top" value="0" />
+            <enum name="center_vertical" value="1" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="IconEditTextView">
+        <attr name="iev_text" format="string" />
+        <attr name="iev_textSize" format="dimension" />
+        <attr name="iev_textColor" format="color" />
+        <attr name="iev_inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="phone" value="1" />
+            <enum name="textCapSentences" value="2" />
+            <enum name="textPassword" value="3" />
+            <enum name="email" value="4" />
+            <enum name="textCapWords" value="5" />
+            <enum name="number" value="6" />
+        </attr>
+        <attr name="iev_hint" format="string" />
+        <attr name="iev_textColorHint" format="color" />
+        <attr name="iev_iconLeft" format="reference" />
+        <attr name="iev_iconLeftSize" format="dimension" />
+        <attr name="iev_iconRight" format="reference" />
+        <attr name="iev_iconRightSize" format="dimension" />
+        <attr name="iev_spaceLeft" format="dimension" />
+        <attr name="iev_spaceRight" format="dimension" />
+        <attr name="iev_paddingLeft" format="dimension" />
+        <attr name="iev_paddingRight" format="dimension" />
+        <attr name="iev_iconRightColor" format="color" />
+        <attr name="iev_iconLeftColor" format="color" />
+
+    </declare-styleable>
+    <declare-styleable name="IconBoxView">
+        <attr name="ibv_title" format="string" />
+        <attr name="ibv_titleColor" format="color" />
+        <attr name="ibv_titleSize" format="dimension" />
+        <attr name="ibv_descriptionSize" format="dimension" />
+        <attr name="ibv_description" format="string" />
+        <attr name="ibv_descriptionColor" format="color" />
+        <attr name="ibv_icon" format="reference" />
+        <attr name="ibv_iconColor" format="color" />
+        <attr name="ibv_iconSize" format="dimension" />
+        <attr name="ibv_descriptionStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="ibv_titleStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ButtonImageView">
+        <attr name="bi_icon" format="reference" />
+        <attr name="bi_iconSize" format="dimension" />
+        <attr name="bi_iconColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ToolbarView">
+        <attr name="toolbar_iconLeft" format="integer" />
+        <attr name="toolbar_iconLeftSize" format="dimension" />
+        <attr name="toolbar_iconRight" format="integer" />
+        <attr name="toolbar_iconRightSize" format="dimension" />
+        <attr name="toolbar_textSize" format="dimension" />
+        <attr name="toolbar_text" format="string" />
+        <attr name="toolbar_textColor" format="color" />
+        <attr name="toolbar_iconLeftColor" format="color" />
+        <attr name="toolbar_iconRightColor" format="color" />
+        <attr name="toolbar_background" format="reference" />
+        <attr name="toolbar_progressbarColor" format="color" />
+        <attr name="toolbar_type" format="enum">
+            <enum name="singleButton" value="0" />
+            <enum name="doubleButton" value="1" />
+            <enum name="doubleText" value="2" />
+            <enum name="singleBack" value="3" />
+        </attr>
+        <attr name="toolbar_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="toolbar_textRight" format="string" />
+        <attr name="toolbar_textRightSize" format="dimension" />
+        <attr name="toolbar_textRightColor" format="color" />
+        <attr name="toolbar_paddingLeft" format="dimension" />
+        <attr name="toolbar_paddingRight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="ButtonIconView">
+        <attr name="biv_text" format="string" />
+        <attr name="biv_textColor" format="color" />
+        <attr name="biv_textSize" format="dimension" />
+        <attr name="biv_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="biv_textGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+        <attr name="biv_iconLeft" format="reference" />
+        <attr name="biv_textAllCaps" format="boolean" />
+        <attr name="biv_iconLeftSize" format="dimension" />
+        <attr name="biv_iconRight" format="reference" />
+        <attr name="biv_iconRightSize" format="dimension" />
+        <attr name="biv_spaceLeft" format="dimension" />
+        <attr name="biv_spaceRight" format="dimension" />
+        <attr name="biv_paddingLeft" format="dimension" />
+        <attr name="biv_paddingRight" format="dimension" />
+        <attr name="biv_iconLeftColor" format="color" />
+        <attr name="biv_iconRightColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="IconText">
+        <attr name="it_text" format="string" />
+        <attr name="it_textColor" format="color" />
+        <attr name="it_textSize" format="dimension" />
+        <attr name="it_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="it_textGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+        <attr name="it_iconLeft" format="reference" />
+        <attr name="it_textAllCaps" format="boolean" />
+        <attr name="it_iconLeftSize" format="dimension" />
+        <attr name="it_iconRight" format="reference" />
+        <attr name="it_iconRightSize" format="dimension" />
+        <attr name="it_spaceLeft" format="dimension" />
+        <attr name="it_spaceRight" format="dimension" />
+        <attr name="it_paddingLeft" format="dimension" />
+        <attr name="it_paddingRight" format="dimension" />
+        <attr name="it_iconLeftColor" format="color" />
+        <attr name="it_iconRightColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="TitleView">
+        <attr name="tv_title" format="string" />
+        <attr name="tv_titleColor" format="color" />
+        <attr name="tv_titleStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="tv_description" format="string" />
+        <attr name="tv_descriptionColor" format="color" />
+        <attr name="tv_descriptionSize" format="dimension" />
+        <attr name="tv_descriptionStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="tv_help" format="string" />
+        <attr name="tv_required" format="boolean" />
+        <attr name="tv_titleSize" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="InputEditText">
+        <attr name="android:inputType" />
+        <attr name="android:gravity" />
+        <attr name="android:minLines" />
+        <attr name="android:maxLength" />
+        <attr name="iet_title" format="string" />
+        <attr name="iet_titleColor" format="color" />
+        <attr name="iet_titleStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="iet_error" format="string" />
+        <attr name="iet_titleSize" format="dimension" />
+        <attr name="iet_background" format="reference" />
+        <attr name="iet_backgroundTint" format="color" />
+        <attr name="iet_description" format="string" />
+        <attr name="iet_descriptionColor" format="color" />
+        <attr name="iet_help" format="string" />
+        <attr name="iet_required" format="boolean" />
+        <attr name="iet_text" format="string" />
+        <attr name="iet_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="iet_textSize" format="dimension" />
+        <attr name="iet_textColor" format="color" />
+        <attr name="iet_inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="phone" value="1" />
+            <enum name="textCapSentences" value="2" />
+            <enum name="textPassword" value="3" />
+            <enum name="email" value="4" />
+            <enum name="textCapWords" value="5" />
+            <enum name="number" value="6" />
+            <enum name="numberDecimal" value="7" />
+        </attr>
+        <attr name="iet_hint" format="string" />
+        <attr name="iet_textColorHint" format="color" />
+        <attr name="iet_maxLength" format="integer" />
+        <attr name="iet_enable" format="boolean" />
+        <attr name="iet_enableClearIcon" format="boolean" />
+        <attr name="iet_paddingLeft" format="dimension" />
+        <attr name="iet_paddingRight" format="dimension" />
+        <attr name="iet_inputHeight" format="dimension" />
+        <attr name="iet_minLines" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="DateView">
+        <attr name="dv_title" format="string" />
+        <attr name="dv_titleColor" format="color" />
+        <attr name="dv_titleStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="dv_inputHeight" format="dimension" />
+        <attr name="dv_titleSize" format="dimension" />
+        <attr name="dv_dateFormat" format="string" />
+        <attr name="dv_description" format="string" />
+        <attr name="dv_descriptionColor" format="color" />
+        <attr name="dv_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="dv_textSize" format="dimension" />
+        <attr name="dv_textColor" format="color" />
+        <attr name="dv_background" format="integer" />
+        <attr name="dv_help" format="string" />
+        <attr name="dv_required" format="boolean" />
+        <attr name="dv_iconLeft" format="reference" />
+        <attr name="dv_iconLeftSize" format="dimension" />
+        <attr name="dv_iconRightSize" format="dimension" />
+        <attr name="dv_iconRight" format="reference" />
+        <attr name="dv_spaceLeft" format="dimension" />
+        <attr name="dv_spaceRight" format="dimension" />
+        <attr name="dv_hint" format="string" />
+        <attr name="dv_paddingLeft" format="dimension" />
+        <attr name="dv_paddingRight" format="dimension" />
+        <attr name="dv_textGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ExpandableControlView">
+        <attr name="ecv_title" format="string" />
+        <attr name="ecv_titleStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="medium" value="3" />
+        </attr>
+        <attr name="ecv_titleColor" format="string" />
+        <attr name="ecv_titleSize" format="dimension" />
+        <attr name="ecv_description" format="string" />
+        <attr name="ecv_descriptionColor" format="color" />
+        <attr name="ecv_background" format="integer" />
+        <attr name="ecv_control" format="integer" />
+        <attr name="ecv_iconLeft" format="reference" />
+        <attr name="ecv_iconLeftSize" format="dimension" />
+        <attr name="ecv_iconUp" format="integer" />
+        <attr name="ecv_iconDown" format="integer" />
+        <attr name="ecv_isExpanded" format="boolean" />
+        <attr name="ecv_spaceLeft" format="dimension" />
+        <attr name="ecv_paddingLeft" format="dimension" />
+        <attr name="ecv_paddingRight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomAutoCompleteTextView">
+        <attr name="limit_item" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="StatusLayout">
+
+        <attr name="sl_loadingSize" format="dimension" />
+        <attr name="sl_loadingColor" format="color" />
+
+        <attr name="sl_imageWidth" format="dimension" />
+        <attr name="sl_imageHeight" format="dimension" />
+
+        <attr name="sl_titleSize" format="dimension" />
+        <attr name="sl_titleColor" format="color" />
+
+        <attr name="sl_descriptionSize" format="dimension" />
+        <attr name="sl_descriptionColor" format="color" />
+
+        <attr name="sl_buttonTextSize" format="dimension" />
+        <attr name="sl_buttonTextColor" format="color" />
+        <attr name="sl_buttonBackground" format="color" />
+
+        <attr name="sl_background" format="color" />
+        <attr name="sl_backgroundDrawable" format="reference" />
+        <attr name="sl_fillViewport" format="boolean" />
+    </declare-styleable>
+</resources>

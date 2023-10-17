@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:ignore="ContentDescription,UseCompoundDrawables">
+
+    <LinearLayout
+        android:id="@+id/customLayoutTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/customTvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/textNormal"/>
+
+            <ImageView
+                android:id="@+id/customImgRequired"
+                android:layout_gravity="center_vertical"
+                android:layout_width="@dimen/_8"
+                android:layout_height="@dimen/_8"
+                android:layout_marginLeft="@dimen/sizeExtraShort"
+                android:layout_marginStart="@dimen/sizeExtraShort"
+                android:background="@drawable/ic_asterisk_red_bold"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/customImgMultilineRequired"
+            android:layout_width="@dimen/_8"
+            android:layout_height="@dimen/_8"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/sizeExtraShort"
+            android:background="@drawable/ic_asterisk_red_bold"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/sizeExtraShort"/>
+
+        <com.widget.ButtonImageView
+            android:id="@+id/customBiHelp"
+            android:layout_width="@dimen/_14"
+            android:layout_height="@dimen/_14"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_effect_transparent"
+            android:visibility="gone"
+            app:bi_icon="@drawable/ic_question_brown"
+            app:bi_iconSize="@dimen/_12"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/customTvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/textSmall"
+        android:visibility="gone"/>
+</LinearLayout>

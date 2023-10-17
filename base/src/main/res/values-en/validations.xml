@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="valid_alpha_numeric">%1$s only allow letters and numbers</string>
+    <string name="valid_alpha_utf8_space">%1$s only allow letters and spaces</string>
+    <string name="valid_email">%1$s is not properly formatted</string>
+    <string name="valid_exact_length">%1$s length must be equal to %2$d</string>
+    <string name="valid_greater_than">%1$s must &gt; %2$d</string>
+    <string name="valid_greater_than_equal_to">%1$s must &gt;= %2$d</string>
+    <string name="valid_integer">%1$s only allows integers</string>
+    <string name="valid_less_than">%1$s must &lt; %2$d</string>
+    <string name="valid_less_than_equal_to">%1$s must &lt;= %2$d</string>
+    <string name="valid_max_length">%1$s has maximum length %2$d</string>
+    <string name="valid_min_length">%1$s has a minimum length %2$d</string>
+    <string name="valid_natural">%1$s only allow numbers &gt;= 0</string>
+    <string name="valid_natural_no_zero">%1$s only allow numbers &gt; 0</string>
+    <string name="valid_numeric">%1$s only allow numbers</string>
+    <string name="valid_required">%1$s is required</string>
+    <string name="valid_start_zero">%1$s must start with 0</string>
+</resources>
