@@ -1,4 +1,4 @@
-package com.dotanphu.sipapp.data.event
+package com.dotanphu.sipapp.data.model.event
 
 import java.io.Serializable
 

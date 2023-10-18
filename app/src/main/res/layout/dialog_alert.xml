@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/sizeShort">
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="@dimen/_64"
+        android:layout_height="@dimen/_64"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_8"
+        android:layout_marginBottom="@dimen/_8"
+        android:contentDescription="@null"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/H3Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/sizeShort"
+        android:gravity="center"
+        android:textColor="@color/ink500"
+        android:visibility="gone"
+        tools:text="Cập nhật thông tin"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        style="@style/H5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_4"
+        android:layout_marginTop="@dimen/sizeExtraShort"
+        android:layout_marginEnd="@dimen/_4"
+        android:autoLink="all"
+        android:gravity="center"
+        android:textColor="@color/colorTextSecondary"
+        android:visibility="gone"
+        tools:text="Bạn vui lòng cung cấp thông tin của bạn để chúng tôi phục vụ tốt hơn"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/bPositive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sizeLarge"
+        android:background="@drawable/btn_primary"
+        android:text="@string/close"
+        android:textColor="@color/white" />
+</LinearLayout>

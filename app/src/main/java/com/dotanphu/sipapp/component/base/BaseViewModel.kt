@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModel
 import com.androidnetworking.error.ANError
 import com.dotanphu.sipapp.MyApplication
 import com.dotanphu.sipapp.data.DataManager
-import com.dotanphu.sipapp.data.event.AlertEvent
-import com.dotanphu.sipapp.data.event.LoadingEvent
-import com.dotanphu.sipapp.data.event.ProgressEvent
-import com.dotanphu.sipapp.data.event.StatusEvent
+import com.dotanphu.sipapp.data.model.event.AlertEvent
+import com.dotanphu.sipapp.data.model.event.LoadingEvent
+import com.dotanphu.sipapp.data.model.event.ProgressEvent
+import com.dotanphu.sipapp.data.model.event.StatusEvent
 import com.dotanphu.sipapp.utils.ErrorHandlerUtil
 import com.dotanphu.sipapp.utils.rx.AppRxHelper
 import com.dotanphu.sipapp.utils.rx.AppSchedulerProvider

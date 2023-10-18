@@ -1,14 +1,49 @@
 package com.dotanphu.sipapp.component.base
 
-import androidx.appcompat.app.AlertDialog
+import android.content.Context
+import android.os.SystemClock
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
 
-class BaseDialog : DialogFragment(), BaseContract.View {
+open class BaseDialog : DialogFragment(), BaseContract.View {
     private val mActivity: BaseActivity? = null
-    private val mProgressDialog: AlertDialog? = null
-    private val requestKeyForResult: String? = null
 
+    private var isCanceledOnTouchOutside = true
+
+    fun isLiveDataReady(lifecycleOwner: LifecycleOwner): Boolean {
+        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
+    }
+
+    /*-----------------------------[ METHOD]------------------------------------------------------*/
+    fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean) {
+        this.isCanceledOnTouchOutside = isCanceledOnTouchOutside
+    }
+
+    open fun getBaseActivity(): BaseActivity? {
+        return mActivity
+    }
+
+    open fun getBaseContext(): Context? {
+        return if (context != null) context else mActivity!!.applicationContext
+    }
+
+    open fun checkLiveDataState(lifecycleOwner: LifecycleOwner): Boolean {
+        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
+    }
+
+    /*--------------------------------------[SINGLE CLICK]----------------------------------------*/
+    private var mLastClickTime: Long = 0
+
+    open fun isClickable(): Boolean {
+        val currentClickTime = SystemClock.uptimeMillis()
+        val elapsedTime = currentClickTime - mLastClickTime
+        mLastClickTime = currentClickTime
+        return elapsedTime > MIN_CLICK_INTERVAL
+    }
+
+    /*-----------------------------[ OVERRIDE ]---------------------------------------------------*/
     override fun showLoginDialog() {
         mActivity?.showLoginDialog()
     }

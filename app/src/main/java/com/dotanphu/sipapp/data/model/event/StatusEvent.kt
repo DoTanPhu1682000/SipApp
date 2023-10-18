@@ -1,4 +1,4 @@
-package com.dotanphu.sipapp.data.event
+package com.dotanphu.sipapp.data.model.event
 
 import androidx.annotation.StringRes
 import java.io.Serializable

@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class DataManager @Inject constructor() {
     @Inject
-    lateinit var mAppApiHelper: AppApiHelper
+    lateinit var mApiHelper: AppApiHelper
 
     @Inject
-    lateinit var mAppPreferenceHelper: AppPreferenceHelper
+    lateinit var mPreferenceHelper: AppPreferenceHelper
 }
