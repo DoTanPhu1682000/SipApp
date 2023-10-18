@@ -1,17 +1,24 @@
 package com.dotanphu.sipapp.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.databinding.ActivityAccountLoginBinding
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
-import org.linphone.core.*
+import dagger.hilt.android.AndroidEntryPoint
+import org.linphone.core.Account
+import org.linphone.core.Core
+import org.linphone.core.CoreListenerStub
+import org.linphone.core.Factory
+import org.linphone.core.RegistrationState
+import org.linphone.core.TransportType
 import org.linphone.core.tools.Log
 
+@AndroidEntryPoint
 class AccountLoginActivity : AppCompatActivity() {
     private lateinit var core: Core
     private lateinit var binding: ActivityAccountLoginBinding
