@@ -8,7 +8,8 @@ object AppConfig {
     var BASE_URL: String? = null
 
     init {
-        BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "https://sandboxapi.365medihome.com.vn"
+//        BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "https://sandboxapi.365medihome.com.vn"
+        BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "http://192.168.14.209:8080/admin/api/api"
     }
 
     /*----------------------------------[CONFIG]--------------------------------------------------*/

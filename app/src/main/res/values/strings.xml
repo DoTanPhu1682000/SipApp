@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SipApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialer_address_bar_hint">Enter a number or an address</string>
 </resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.dialer.DialerFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/address_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60"
+            android:layout_alignParentTop="true"
+            android:background="@color/grey">
+
+            <ImageView
+                android:id="@+id/erase"
+                android:layout_width="@dimen/_40"
+                android:layout_height="@dimen/_40"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/ink400" />
+
+            <EditText
+                android:id="@+id/sip_uri_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/erase"
+                android:background="@color/transparent"
+                android:backgroundTint="@color/transparent"
+                android:ellipsize="start"
+                android:hint="@string/dialer_address_bar_hint"
+                android:inputType="textEmailAddress|textUri|textNoSuggestions"
+                android:paddingStart="20dp"
+                android:paddingEnd="5dp"
+                android:textColorHint="@color/ink300" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/controls"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/grey"
+                android:padding="5dp"
+                android:src="@drawable/voip_conference" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/blue500"
+                android:padding="15dp"
+                android:src="@drawable/contact_add_default"
+                android:visibility="gone" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:src="@drawable/call_audio_start" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:src="@drawable/call_add"
+                android:visibility="gone" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:src="@drawable/call_transfer"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/numpad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/controls"
+            android:layout_below="@id/address_bar" />
+
+    </RelativeLayout>
+</LinearLayout>

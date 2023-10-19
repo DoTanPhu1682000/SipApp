@@ -90,15 +90,11 @@
             android:stopWithTask="false" />
 
         <activity
-            android:name=".ui.login.TestActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:name=".ui.TestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.dialer.DialerActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true" />
@@ -111,11 +107,11 @@
         <activity
             android:name=".ui.login.AccountLoginActivity"
             android:exported="true">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

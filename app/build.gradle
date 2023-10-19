@@ -58,12 +58,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // https://github.com/google/flexbox-layout/blob/main/LICENSE Apache v2.0
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
     //Network
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.9'
     //implementation 'com.amitshekhar.android:rx2-android-networking:1.0.2'
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
-//    implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking:v1.0.2'
-//    implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:rx2-android-networking:v1.0.2'
+    //implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking:v1.0.2'
+    //implementation 'com.github.amitshekhariitbhu.Fast-Android-Networking:rx2-android-networking:v1.0.2'
 
     //RxAndroid
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'

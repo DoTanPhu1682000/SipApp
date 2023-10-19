@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @HiltViewModel
-class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewModel {
+open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewModel {
     protected val compositeDisposable: CompositeDisposable
 
     @Inject

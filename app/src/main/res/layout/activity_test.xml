@@ -5,35 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.login.TestActivity">
+    tools:context=".ui.TestActivity">
 
     <EditText
         android:id="@+id/edtPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0356709237" />
+        android:text="phu" />
 
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="123456" />
+        android:text="Vega1234" />
 
-    <Button
-        android:id="@+id/bLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/bRefreshToken"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RefreshToken" />
+        <Button
+            android:id="@+id/bLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login" />
 
-    <Button
-        android:id="@+id/bApi"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/bRefreshToken"
+            android:layout_marginHorizontal="@dimen/_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RefreshToken" />
+
+        <Button
+            android:id="@+id/bApi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Info" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Api" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/goToInComing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="InComing" />
+
+        <Button
+            android:id="@+id/goToOutGoing"
+            android:layout_marginHorizontal="@dimen/_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OutGoing" />
+    </LinearLayout>
 </LinearLayout>

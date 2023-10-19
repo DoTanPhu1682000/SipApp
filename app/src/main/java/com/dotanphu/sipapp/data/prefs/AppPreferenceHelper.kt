@@ -26,7 +26,7 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
     //Mã hóa thông tin với secret key
     private val isEncrypt = true
 
-    /*----------------------------------[APP]-----------------------------------------------------*//*----------------------------------[APP]-----------------------------------------------------*/
+    /*----------------------------------[APP]-----------------------------------------------------*/
     override fun logout() {
         //Xóa UserId FirebaseAnalytics
         //FirebaseAnalyticsHelper.logEvent(mContext, EventAnalytic.eve_logout)

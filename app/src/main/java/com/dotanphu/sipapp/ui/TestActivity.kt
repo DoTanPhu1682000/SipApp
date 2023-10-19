@@ -1,11 +1,14 @@
-package com.dotanphu.sipapp.ui.login
+package com.dotanphu.sipapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.data.model.response.Login
 import com.dotanphu.sipapp.databinding.ActivityTestBinding
+import com.dotanphu.sipapp.ui.call.IncomingCallActivity
+import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -19,6 +22,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class TestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestBinding
+    private var phone: String = ""
+    private var password: String = ""
 
     @Inject
     lateinit var dataManager: DataManager
@@ -27,13 +32,13 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getData()
+        listener()
     }
 
-    private fun getData() {
-        val phone = binding.edtPhone.text.toString()
-        val password = binding.edtPassword.text.toString()
+    private fun listener() {
         binding.bLogin.setOnClickListener {
+            phone = binding.edtPhone.text.toString()
+            password = binding.edtPassword.text.toString()
             dataManager.mApiHelper.login(phone, password)
                 .doOnSuccess {
                     dataManager.mPreferenceHelper.saveLoginInfo(it)
@@ -80,6 +85,14 @@ class TestActivity : AppCompatActivity() {
                         e.printStackTrace()
                     }
                 })
+        }
+        binding.goToInComing.setOnClickListener {
+            val intent = Intent(this, IncomingCallActivity::class.java)
+            startActivity(intent)
+        }
+        binding.goToOutGoing.setOnClickListener {
+            val intent = Intent(this, OutgoingCallActivity::class.java)
+            startActivity(intent)
         }
     }
 }

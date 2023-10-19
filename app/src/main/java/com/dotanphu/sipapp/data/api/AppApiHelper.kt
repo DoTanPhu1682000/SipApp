@@ -30,8 +30,8 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
 
     private fun getKeyAuthorization(): String {
         //for test with password
-        return "Basic bWVkaWhvbWU6bWVkaWhvbWVAMTIzNEAjJA=="
-//        return "Basic ZmY1NmI3Yzg3YzRiOGY1Nzk0ZjhjZmU4NjYwYzcxM2ZjMWY1YWVlZjQzNWIxZTAzNzZhYjMxYzBkM2RkZjQ4MjphODMzZGU1MmIzNjIzM2ZkMDAxODkzMjQxNzJlMTYyOQ=="
+        //return "Basic bWVkaWhvbWU6bWVkaWhvbWVAMTIzNEAjJA==" //Medihome
+        return "Basic ZmY1NmI3Yzg3YzRiOGY1Nzk0ZjhjZmU4NjYwYzcxM2ZjMWY1YWVlZjQzNWIxZTAzNzZhYjMxYzBkM2RkZjQ4MjphODMzZGU1MmIzNjIzM2ZkMDAxODkzMjQxNzJlMTYyOQ=="
     }
 
     override fun getUserInfo(): Single<Login> {

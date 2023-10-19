@@ -11,7 +11,7 @@ import com.dotanphu.sipapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BaseFragment : Fragment(), BaseContract.View {
+open class BaseFragment : Fragment(), BaseContract.View {
     private val mActivity: BaseActivity? = null
     private val mProgressDialog: AlertDialog? = null
     private val requestKeyForResult: String? = null

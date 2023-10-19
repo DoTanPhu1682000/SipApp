@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.login.AccountLoginActivity">
+    tools:context=".ui.login.AccountLoginFragment">
 
     <TextView
         android:id="@+id/core_version"
