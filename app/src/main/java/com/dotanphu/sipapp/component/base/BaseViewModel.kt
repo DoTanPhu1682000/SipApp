@@ -135,7 +135,7 @@ open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewM
 
     private fun handleTokenRefreshException() {
         //Xóa dữ liệu trong Share Preference
-        //getDataManager().getPreference().logout()
+        dataManager.mPreferenceHelper.logout()
 
         //Show  restart app dialog
         postShowTokenExpiredDialog()
