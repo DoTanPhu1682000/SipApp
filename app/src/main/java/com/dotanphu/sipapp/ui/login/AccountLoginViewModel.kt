@@ -23,7 +23,7 @@ class AccountLoginViewModel @Inject constructor() : BaseViewModel() {
     val loginEnabled: MediatorLiveData<Boolean> = MediatorLiveData()
     val waitForServerAnswer = MutableLiveData<Boolean>()
 
-    private val accountCreator: AccountCreator? = null
+    var accountCreator: AccountCreator? = null
     private var accountToCheck: Account? = null
     private var core: Core? = null
 
@@ -80,15 +80,17 @@ class AccountLoginViewModel @Inject constructor() : BaseViewModel() {
         }
     }
 
-    fun createAccountAndAuthInfo() {
+    fun createAccountAndAuthInfo(username: String, password: String, domain: String, displayName: String, transport: TransportType) {
         waitForServerAnswer.value = true
         core?.addListener(coreListener)
 
-        accountCreator?.username = username.value
-        accountCreator?.password = password.value
-        accountCreator?.domain = domain.value
-        accountCreator?.displayName = displayName.value
-        accountCreator?.transport = transport.value
+        accountCreator?.username = username
+        accountCreator?.password = password
+        accountCreator?.domain = domain
+        accountCreator?.displayName = displayName
+        accountCreator?.transport = transport
+
+        LogUtil.wtf(accountCreator?.username)
 
         val account = accountCreator?.createAccountInCore()
         accountToCheck = account

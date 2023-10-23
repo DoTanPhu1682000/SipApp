@@ -93,6 +93,9 @@
             android:name=".ui.TestActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.call.OutgoingCallActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.dialer.DialerActivity"
             android:exported="true" />
         <activity
@@ -102,7 +105,7 @@
             android:name=".ui.call.IncomingCallActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.call.OutgoingCallActivity"
+            android:name=".ui.call.OutgoingCallActivityBK"
             android:exported="true" />
         <activity
             android:name=".ui.login.AccountLoginActivity"

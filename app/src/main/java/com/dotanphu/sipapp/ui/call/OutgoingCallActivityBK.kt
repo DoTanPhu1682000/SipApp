@@ -1,21 +1,13 @@
-package com.dotanphu.sipapp.ui.dialer
+package com.dotanphu.sipapp.ui.call
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.dotanphu.sipapp.R
-import com.dotanphu.sipapp.component.base.BaseFragment
-import com.dotanphu.sipapp.data.DataManager
-import com.dotanphu.sipapp.databinding.FragmentDialerBinding
-import com.utils.LogUtil
-import dagger.hilt.android.AndroidEntryPoint
+import com.dotanphu.sipapp.databinding.ActivityOutgoingCallBkBinding
 import org.linphone.core.Account
 import org.linphone.core.Call
 import org.linphone.core.Core
@@ -24,44 +16,27 @@ import org.linphone.core.Factory
 import org.linphone.core.MediaEncryption
 import org.linphone.core.RegistrationState
 import org.linphone.core.TransportType
-import javax.inject.Inject
 
-@AndroidEntryPoint
-class DialerFragment : BaseFragment() {
-    companion object {
-        fun newInstance(): DialerFragment {
-            val args = Bundle()
-            val fragment = DialerFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
-    @Inject
-    lateinit var dataManager: DataManager
-
-    private val RECORD_AUDIO_PERMISSION_CODE = 1
+class OutgoingCallActivityBK : AppCompatActivity() {
     private lateinit var core: Core
-    private lateinit var binding: FragmentDialerBinding
+    private lateinit var binding: ActivityOutgoingCallBkBinding
 
     private val coreListener = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
-//            binding.registrationStatus.text = message
+            binding.registrationStatus.text = message
 
             if (state == RegistrationState.Failed) {
-                LogUtil.wtf("Failed")
-//                binding.connect.isEnabled = true
+                binding.connect.isEnabled = true
             } else if (state == RegistrationState.Ok) {
-                LogUtil.wtf("Ok")
-//                binding.registerLayout.visibility = View.GONE
-//                binding.callLayout.visibility = View.VISIBLE
+                binding.registerLayout.visibility = View.GONE
+                binding.callLayout.visibility = View.VISIBLE
             }
         }
 
         override fun onCallStateChanged(core: Core, call: Call, state: Call.State?, message: String) {
             // This function will be called each time a call state changes,
             // which includes new incoming/outgoing calls
-//            binding.callStatus.text = message
+            binding.callStatus.text = message
 
             when (state) {
                 Call.State.OutgoingInit -> {
@@ -85,19 +60,19 @@ class DialerFragment : BaseFragment() {
                     // You may reach this state multiple times, for example after a pause/resume
                     // or after the ICE negotiation completes
                     // Wait for the call to be connected before allowing a call update
-//                    binding.pause.isEnabled = true
-//                    binding.pause.text = "Pause"
-//                    binding.toggleVideo.isEnabled = true
+                    binding.pause.isEnabled = true
+                    binding.pause.text = "Pause"
+                    binding.toggleVideo.isEnabled = true
 
                     // Only enable toggle camera button if there is more than 1 camera and the video is enabled
                     // We check if core.videoDevicesList.size > 2 because of the fake camera with static image created by our SDK (see below)
-//                    binding.toggleCamera.isEnabled = core.videoDevicesList.size > 2 && call.currentParams.isVideoEnabled
+                    binding.toggleCamera.isEnabled = core.videoDevicesList.size > 2 && call.currentParams.isVideoEnabled
                 }
 
                 Call.State.Paused -> {
                     // When you put a call in pause, it will became Paused
-//                    binding.pause.text = "Resume"
-//                    binding.toggleVideo.isEnabled = false
+                    binding.pause.text = "Resume"
+                    binding.toggleVideo.isEnabled = false
                 }
 
                 Call.State.PausedByRemote -> {
@@ -114,13 +89,13 @@ class DialerFragment : BaseFragment() {
 
                 Call.State.Released -> {
                     // Call state will be released shortly after the End state
-//                    binding.remoteAddress.isEnabled = true
-//                    binding.call.isEnabled = true
-//                    binding.pause.isEnabled = false
-//                    binding.pause.text = "Pause"
-//                    binding.toggleVideo.isEnabled = false
-//                    binding.hangUp.isEnabled = false
-//                    binding.toggleCamera.isEnabled = false
+                    binding.remoteAddress.isEnabled = true
+                    binding.call.isEnabled = true
+                    binding.pause.isEnabled = false
+                    binding.pause.text = "Pause"
+                    binding.toggleVideo.isEnabled = false
+                    binding.hangUp.isEnabled = false
+                    binding.toggleCamera.isEnabled = false
                 }
 
                 Call.State.Error -> {
@@ -132,77 +107,84 @@ class DialerFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentDialerBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityOutgoingCallBkBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initData()
-        listener()
-        return binding.root
     }
 
     private fun initData() {
         val factory = Factory.instance()
-        core = factory.createCore(null, null, requireContext())
+        factory.setDebugMode(true, "Hello Linphone")
+        core = factory.createCore(null, null, this)
+
+        binding.connect.setOnClickListener {
+            login()
+            it.isEnabled = false
+        }
 
         // For video to work, we need two TextureViews:
         // one for the remote video and one for the local preview
-//        core.nativeVideoWindowId = findViewById(R.id.remote_video_surface)
+        core.nativeVideoWindowId = findViewById(R.id.remote_video_surface)
         // The local preview is a org.linphone.mediastream.video.capture.CaptureTextureView
         // which inherits from TextureView and contains code to keep the ratio of the capture video
-//        core.nativePreviewWindowId = findViewById(R.id.local_preview_video_surface)
+        core.nativePreviewWindowId = findViewById(R.id.local_preview_video_surface)
 
         // Here we enable the video capture & display at Core level
         // It doesn't mean calls will be made with video automatically,
         // But it allows to use it later
-//        core.isVideoCaptureEnabled = true
-//        core.isVideoDisplayEnabled = true
+        core.isVideoCaptureEnabled = true
+        core.isVideoDisplayEnabled = true
 
         // When enabling the video, the remote will either automatically answer the update request
         // or it will ask it's user depending on it's policy.
         // Here we have configured the policy to always automatically accept video requests
-//        core.videoActivationPolicy.automaticallyAccept = true
+        core.videoActivationPolicy.automaticallyAccept = true
         // If you don't want to automatically accept,
         // you'll have to use a code similar to the one in toggleVideo to answer a received request
 
         // If the following property is enabled, it will automatically configure created call params with video enabled
         //core.videoActivationPolicy.automaticallyInitiate = true
 
-//        binding.pause.isEnabled = false
-//        binding.toggleVideo.isEnabled = false
-//        binding.toggleCamera.isEnabled = false
-//        binding.hangUp.isEnabled = false
-    }
-
-    private fun listener() {
-        binding.numpad.number0.setOnClickListener { appendToEditText("0") }
-        binding.numpad.number1.setOnClickListener { appendToEditText("1") }
-        binding.numpad.number2.setOnClickListener { appendToEditText("2") }
-        binding.numpad.number3.setOnClickListener { appendToEditText("3") }
-        binding.numpad.number4.setOnClickListener { appendToEditText("4") }
-        binding.numpad.number5.setOnClickListener { appendToEditText("5") }
-        binding.numpad.number6.setOnClickListener { appendToEditText("6") }
-        binding.numpad.number7.setOnClickListener { appendToEditText("7") }
-        binding.numpad.number8.setOnClickListener { appendToEditText("8") }
-        binding.numpad.number9.setOnClickListener { appendToEditText("9") }
-
-        binding.bConnect.setOnClickListener {
-            login()
-        }
-        binding.bCall.setOnClickListener {
+        binding.call.setOnClickListener {
             outgoingCall()
+            binding.remoteAddress.isEnabled = false
+            it.isEnabled = false
+            binding.hangUp.isEnabled = true
         }
-    }
 
-    @SuppressLint("SetTextI18n")
-    private fun appendToEditText(text: String) {
-        val currentText = binding.sipUriInput.text.toString()
-        binding.sipUriInput.setText(currentText + text)
+        binding.hangUp.setOnClickListener {
+            hangUp()
+        }
+
+        binding.pause.setOnClickListener {
+            pauseOrResume()
+        }
+
+        binding.toggleVideo.setOnClickListener {
+            toggleVideo()
+        }
+
+        binding.toggleCamera.setOnClickListener {
+            toggleCamera()
+        }
+
+        binding.pause.isEnabled = false
+        binding.toggleVideo.isEnabled = false
+        binding.toggleCamera.isEnabled = false
+        binding.hangUp.isEnabled = false
     }
 
     private fun login() {
-        val username = dataManager.mPreferenceHelper.username.toString()
-        val password = dataManager.mPreferenceHelper.password
-        val domain = dataManager.mPreferenceHelper.domain
-        val transportType = dataManager.mPreferenceHelper.transportType
+        val username = binding.username.text.toString()
+        val password = binding.password.text.toString()
+        val domain = binding.domain.text.toString()
+        val transportType = when (findViewById<RadioGroup>(R.id.transport).checkedRadioButtonId) {
+            R.id.udp -> TransportType.Udp
+            R.id.tcp -> TransportType.Tcp
+            else -> TransportType.Tls
+        }
         val authInfo = Factory.instance()
             .createAuthInfo(username, null, password, null, null, domain, null)
 
@@ -227,29 +209,15 @@ class DialerFragment : BaseFragment() {
         core.start()
 
         // We will need the RECORD_AUDIO permission for video call
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_AUDIO_PERMISSION_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            RECORD_AUDIO_PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Quyền RECORD_AUDIO đã được cấp
-                    LogUtil.wtf("Quyền RECORD_AUDIO đã được cấp")
-                } else {
-                    // Quyền RECORD_AUDIO đã bị từ chối, bạn có thể xử lý tại đây
-                    LogUtil.wtf("Quyền RECORD_AUDIO đã bị từ chối")
-                }
-            }
+        if (packageManager.checkPermission(Manifest.permission.RECORD_AUDIO, packageName) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(android.Manifest.permission.RECORD_AUDIO), 0)
+            return
         }
     }
 
     private fun outgoingCall() {
         // As for everything we need to get the SIP URI of the remote and convert it to an Address
-        //        val remoteSipUri = binding.remoteAddress.text.toString()
-        val remoteSipUri = "sip:101@192.168.14.209"
+        val remoteSipUri = binding.remoteAddress.text.toString()
         val remoteAddress = Factory.instance().createAddress(remoteSipUri)
         remoteAddress ?: return // If address parsing fails, we can't continue with outgoing call process
 
@@ -267,5 +235,69 @@ class DialerFragment : BaseFragment() {
         // Finally we start the call
         core.inviteAddressWithParams(remoteAddress, params)
         // Call process can be followed in onCallStateChanged callback from core listener
+    }
+
+    private fun hangUp() {
+        if (core.callsNb == 0) return
+
+        // If the call state isn't paused, we can get it using core.currentCall
+        val call = if (core.currentCall != null) core.currentCall else core.calls[0]
+        call ?: return
+
+        // Terminating a call is quite simple
+        call.terminate()
+    }
+
+    private fun toggleVideo() {
+//        if (core.callsNb == 0) return
+//        val call = if (core.currentCall != null) core.currentCall else core.calls[0]
+//        call ?: return
+//
+//        // We will need the CAMERA permission for video call
+//        if (packageManager.checkPermission(android.Manifest.permission.CAMERA, packageName) != PackageManager.PERMISSION_GRANTED) {
+//            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 0)
+//            return
+//        }
+//
+//        // To update the call, we need to create a new call params, from the call object this time
+//        val params = core.createCallParams(call)
+//        // Here we toggle the video state (disable it if enabled, enable it if disabled)
+//        // Note that we are using currentParams and not params or remoteParams
+//        // params is the object you configured when the call was started
+//        // remote params is the same but for the remote
+//        // current params is the real params of the call, resulting of the mix of local & remote params
+//        params?.enableVideo(!call.currentParams.videoEnabled())
+//        // Finally we request the call update
+//        call.update(params)
+//
+//        // Note that when toggling off the video, TextureViews will keep showing the latest frame displayed
+    }
+
+    private fun toggleCamera() {
+        // Currently used camera
+        val currentDevice = core.videoDevice
+
+        // Let's iterate over all camera available and choose another one
+        for (camera in core.videoDevicesList) {
+            // All devices will have a "Static picture" fake camera, and we don't want to use it
+            if (camera != currentDevice && camera != "StaticImage: Static picture") {
+                core.videoDevice = camera
+                break
+            }
+        }
+    }
+
+    private fun pauseOrResume() {
+        if (core.callsNb == 0) return
+        val call = if (core.currentCall != null) core.currentCall else core.calls[0]
+        call ?: return
+
+        if (call.state != Call.State.Paused && call.state != Call.State.Pausing) {
+            // If our call isn't paused, let's pause it
+            call.pause()
+        } else if (call.state != Call.State.Resuming) {
+            // Otherwise let's resume it
+            call.resume()
+        }
     }
 }

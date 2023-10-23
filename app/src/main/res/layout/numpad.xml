@@ -8,6 +8,7 @@
     app:justifyContent="space_around">
 
     <ImageView
+        android:id="@+id/number1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_1"
@@ -15,6 +16,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_2"
@@ -22,6 +24,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_3"
@@ -29,6 +32,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_4"
@@ -37,6 +41,7 @@
         app:layout_wrapBefore="true" />
 
     <ImageView
+        android:id="@+id/number5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_5"
@@ -44,6 +49,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_6"
@@ -51,6 +57,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_7"
@@ -59,6 +66,7 @@
         app:layout_wrapBefore="true" />
 
     <ImageView
+        android:id="@+id/number8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_8"
@@ -66,6 +74,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/number9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_9"
@@ -73,6 +82,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/numberStar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_star"
@@ -81,6 +91,7 @@
         app:layout_wrapBefore="true" />
 
     <ImageView
+        android:id="@+id/number0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_0"
@@ -88,6 +99,7 @@
         app:layout_maxWidth="@dimen/_50" />
 
     <ImageView
+        android:id="@+id/numberHash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/numpad_hash"

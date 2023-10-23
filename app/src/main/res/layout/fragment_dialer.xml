@@ -53,6 +53,7 @@
             android:layout_alignParentBottom="true">
 
             <ImageView
+                android:id="@+id/bConnect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -70,6 +71,7 @@
                 android:visibility="gone" />
 
             <ImageView
+                android:id="@+id/bCall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -97,6 +99,7 @@
         </LinearLayout>
 
         <include
+            android:id="@+id/numpad"
             layout="@layout/numpad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

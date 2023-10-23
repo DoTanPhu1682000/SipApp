@@ -6,6 +6,7 @@ import android.text.TextUtils
 import com.dotanphu.sipapp.AppConfig
 import com.dotanphu.sipapp.data.model.response.Login
 import com.dotanphu.sipapp.utils.constant.StringConstant
+import org.linphone.core.TransportType
 import javax.inject.Inject
 
 class AppPreferenceHelper @Inject constructor(private val mContext: Context) : PreferenceHelper {
@@ -19,6 +20,10 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
         private const val KEY_LOGIN_TYPE = "login_type"
         private const val KEY_IS_STRINGEE_TOKEN_REGISTERED = "is_stringee_token_registered"
         private const val KEY_COMMON_SETTING = "common_setting"
+        private const val KEY_USERNAME = "username"
+        private const val KEY_PASSWORD = "password"
+        private const val KEY_DOMAIN = "domain"
+        private const val KEY_TRANSPORT_TYPE = "transport_type"
     }
 
     private val mPref: SharedPreferences = mContext.getSharedPreferences(AppConfig.PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -73,5 +78,30 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
         get() = mPref.getString(KEY_LOGIN_PHONE, null)
         set(value) {
             mPref.edit().putString(KEY_LOGIN_PHONE, value).commit()
+        }
+
+    /*-----------------------------------[LOGIN]--------------------------------------------------*/
+    override var username: String?
+        get() = mPref.getString(KEY_USERNAME, "")
+        set(value) {
+            mPref.edit().putString(KEY_USERNAME, value).commit()
+        }
+    override var password: String?
+        get() = mPref.getString(KEY_PASSWORD, "")
+        set(value) {
+            mPref.edit().putString(KEY_PASSWORD, value).commit()
+        }
+    override var domain: String?
+        get() = mPref.getString(KEY_DOMAIN, "")
+        set(value) {
+            mPref.edit().putString(KEY_DOMAIN, value).commit()
+        }
+    override var transportType: TransportType
+        get() {
+            val transportTypeString = mPref.getString(KEY_TRANSPORT_TYPE, "")
+            return TransportType.valueOf((transportTypeString ?: TransportType.Udp).toString())
+        }
+        set(value) {
+            mPref.edit().putString(KEY_TRANSPORT_TYPE, value.name).commit()
         }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.component.base.BaseFragment
+import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentAccountLoginBinding
 import com.dotanphu.sipapp.ui.dialer.DialerActivity
 import com.utils.LogUtil
@@ -17,6 +18,7 @@ import org.linphone.core.CoreListenerStub
 import org.linphone.core.Factory
 import org.linphone.core.RegistrationState
 import org.linphone.core.TransportType
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AccountLoginFragment : BaseFragment() {
@@ -28,6 +30,9 @@ class AccountLoginFragment : BaseFragment() {
             return fragment
         }
     }
+
+    @Inject
+    lateinit var dataManager: DataManager
 
     private lateinit var core: Core
     private lateinit var binding: FragmentAccountLoginBinding
@@ -78,8 +83,6 @@ class AccountLoginFragment : BaseFragment() {
                 else -> TransportType.Tls
             }
             LogUtil.wtf("%s - %s - %s - %s - %s", username, password, domain, displayName, transportType)
-            //viewModel.createAccountAndAuthInfo(username, password, domain, displayName, transportType)
-            //requireActivity().startActivity(DialerActivity.newIntent(requireContext()))
 
             val authInfo = Factory.instance()
                 .createAuthInfo(username, null, password, null, null, domain, null)
@@ -109,6 +112,13 @@ class AccountLoginFragment : BaseFragment() {
             // To be notified of the connection status of our account, we need to add the listener to the Core
             core.addListener(coreListener)
             core.start()
+
+            dataManager.mPreferenceHelper.username = username
+            dataManager.mPreferenceHelper.password = password
+            dataManager.mPreferenceHelper.domain = domain
+            dataManager.mPreferenceHelper.transportType = transportType
+            //viewModel.createAccountAndAuthInfo(username, password, domain, displayName, transportType)
+            requireActivity().startActivity(DialerActivity.newIntent(requireContext()))
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.dotanphu.sipapp.data.prefs
 
 import com.dotanphu.sipapp.data.model.response.Login
+import org.linphone.core.TransportType
 
 interface PreferenceHelper {
 
@@ -23,4 +24,10 @@ interface PreferenceHelper {
     /*----------------------------------[COMMON]--------------------------------------------------*/
 //    fun setCommonSetting(list: List<News>)
 //    fun getCommonSetting(key: String)
+
+    /*-----------------------------------[LOGIN]--------------------------------------------------*/
+    var username: String?
+    var password: String?
+    var domain: String?
+    var transportType: TransportType
 }

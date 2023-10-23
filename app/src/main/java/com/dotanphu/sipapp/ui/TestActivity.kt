@@ -3,20 +3,17 @@ package com.dotanphu.sipapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.data.model.response.Login
 import com.dotanphu.sipapp.databinding.ActivityTestBinding
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
-import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
+import com.dotanphu.sipapp.ui.call.OutgoingCallActivityBK
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.linphone.core.tools.Log
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -91,7 +88,7 @@ class TestActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.goToOutGoing.setOnClickListener {
-            val intent = Intent(this, OutgoingCallActivity::class.java)
+            val intent = Intent(this, OutgoingCallActivityBK::class.java)
             startActivity(intent)
         }
     }
