@@ -42,7 +42,7 @@
         android:layout_height="@dimen/_120"
         android:layout_gravity="center"
         android:layout_margin="50dp"
-        android:background="@drawable/ic_launcher_background"
+        android:background="@mipmap/ic_launcher_round"
         android:contentDescription="@null" />
 
     <TextView

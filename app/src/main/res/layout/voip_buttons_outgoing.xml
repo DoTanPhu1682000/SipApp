@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/hangup"
+        android:id="@+id/bHangup"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -15,17 +15,17 @@
         android:src="@drawable/icon_call_hangup" />
 
     <ImageView
-        android:id="@+id/microphone"
-        android:layout_marginHorizontal="@dimen/_10"
+        android:id="@+id/bMicrophone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10"
         android:layout_weight="1"
         android:background="#4B5964"
         android:padding="5dp"
         android:src="@drawable/icon_toggle_mic" />
 
     <ImageView
-        android:id="@+id/speaker"
+        android:id="@+id/bSpeaker"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

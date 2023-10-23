@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="Username"
         android:inputType="textEmailAddress"
-        android:text="101" />
+        android:text="102" />
 
     <EditText
         android:id="@+id/password"

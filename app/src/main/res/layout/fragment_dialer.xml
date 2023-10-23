@@ -40,7 +40,7 @@
                 android:backgroundTint="@color/transparent"
                 android:ellipsize="start"
                 android:hint="@string/dialer_address_bar_hint"
-                android:inputType="textEmailAddress|textUri|textNoSuggestions"
+                android:inputType="phone"
                 android:paddingStart="20dp"
                 android:paddingEnd="5dp"
                 android:textColorHint="@color/ink300" />
