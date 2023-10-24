@@ -96,13 +96,16 @@
             android:name=".ui.call.OutgoingCallActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.call.IncomingCallActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.dialer.DialerActivity"
             android:exported="true" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.call.IncomingCallActivity"
+            android:name=".ui.call.IncomingCallBKActivity"
             android:exported="true" />
         <activity
             android:name=".ui.call.OutgoingCallActivityBK"

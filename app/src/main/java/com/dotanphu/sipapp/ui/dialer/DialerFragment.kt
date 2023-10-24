@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentDialerBinding
+import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +81,8 @@ class DialerFragment : BaseFragment() {
         binding.numpad.number9.setOnClickListener { appendToEditText("9") }
 
         binding.bConnect.setOnClickListener {
-            login()
+            //login()
+            requireActivity().startActivity(IncomingCallActivity.newIntent(requireContext()))
         }
         binding.bCall.setOnClickListener {
             val phone = binding.sipUriInput.text.toString()

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#798791"
+    android:orientation="vertical"
+    tools:context=".ui.call.IncomingCallFragment">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/icon_spinner_rotating" />
+
+    <TextView
+        android:id="@+id/outgoing_call_title"
+        style="@style/H5Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/call_outgoing_title"
+        android:textColor="@color/white" />
+
+    <Chronometer
+        android:id="@+id/outgoing_call_timer"
+        style="@style/H5Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/_120"
+        android:layout_height="@dimen/_120"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:background="@mipmap/ic_launcher_round"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/callee_name"
+        style="@style/H5Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        tools:text="Phú Đỗ" />
+
+    <TextView
+        android:id="@+id/callee_address"
+        style="@style/H5Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textIsSelectable="true"
+        tools:text="sip:dotanphu@sip.linphone.org" />
+
+    <include
+        android:id="@+id/buttons"
+        layout="@layout/voip_buttons_incoming"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60"
+        android:layout_margin="10dp" />
+
+</LinearLayout>

@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.data.model.response.Login
 import com.dotanphu.sipapp.databinding.ActivityTestBinding
-import com.dotanphu.sipapp.ui.call.IncomingCallActivity
+import com.dotanphu.sipapp.ui.call.IncomingCallBKActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivityBK
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,7 +84,7 @@ class TestActivity : AppCompatActivity() {
                 })
         }
         binding.goToInComing.setOnClickListener {
-            val intent = Intent(this, IncomingCallActivity::class.java)
+            val intent = Intent(this, IncomingCallBKActivity::class.java)
             startActivity(intent)
         }
         binding.goToOutGoing.setOnClickListener {
