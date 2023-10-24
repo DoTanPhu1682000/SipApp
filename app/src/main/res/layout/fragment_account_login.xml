@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="Username"
         android:inputType="textEmailAddress"
-        android:text="102" />
+        android:text="104" />
 
     <EditText
         android:id="@+id/password"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:hint="Display name"
         android:inputType="textUri"
-        android:text="phu do" />
+        android:text="phu" />
 
     <RadioGroup
         android:id="@+id/transport"
@@ -90,6 +90,7 @@
             android:id="@+id/disconnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10"
             android:enabled="false"
             android:text="Disconnect" />
 

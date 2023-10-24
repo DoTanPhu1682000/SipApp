@@ -68,6 +68,9 @@ class AccountLoginFragment : BaseFragment() {
 
     private fun observe() {
         registerObserverBaseEvent(viewModel, viewLifecycleOwner)
+        viewModel.onLoginSuccess.observe(viewLifecycleOwner) {
+            requireActivity().startActivity(DialerActivity.newIntent(requireContext()))
+        }
     }
 
     private fun listener() {
@@ -117,8 +120,8 @@ class AccountLoginFragment : BaseFragment() {
             dataManager.mPreferenceHelper.password = password
             dataManager.mPreferenceHelper.domain = domain
             dataManager.mPreferenceHelper.transportType = transportType
-            //viewModel.createAccountAndAuthInfo(username, password, domain, displayName, transportType)
-            requireActivity().startActivity(DialerActivity.newIntent(requireContext()))
+
+            viewModel.doLogin(requireContext(), username, password)
         }
     }
 }

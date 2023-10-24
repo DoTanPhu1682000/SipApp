@@ -65,7 +65,7 @@ class IncomingCallFragment : BaseFragment() {
                 }
 
                 Call.State.Released -> {
-
+                    requireActivity().finish()
                 }
 
                 else -> {}
@@ -78,6 +78,11 @@ class IncomingCallFragment : BaseFragment() {
         initData()
         listener()
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtil.wtf("onDestroy - in")
     }
 
     private fun initData() {

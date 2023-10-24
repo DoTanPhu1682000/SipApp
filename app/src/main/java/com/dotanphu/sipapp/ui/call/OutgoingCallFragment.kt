@@ -1,14 +1,10 @@
 package com.dotanphu.sipapp.ui.call
 
-import android.Manifest
-import android.content.pm.PackageManager
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentOutgoingCallBinding
@@ -39,7 +35,6 @@ class OutgoingCallFragment : BaseFragment() {
     @Inject
     lateinit var dataManager: DataManager
 
-    private val RECORD_AUDIO_PERMISSION_CODE = 1
     private lateinit var core: Core
     private lateinit var binding: FragmentOutgoingCallBinding
 
@@ -99,6 +94,7 @@ class OutgoingCallFragment : BaseFragment() {
 
                 Call.State.Released -> {
                     // Call state will be released shortly after the End state
+                    requireActivity().finish()
                 }
 
                 Call.State.Error -> {
@@ -125,10 +121,14 @@ class OutgoingCallFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initData() {
         val factory = Factory.instance()
         factory.setDebugMode(true, "Hello Linphone")
         core = factory.createCore(null, null, requireContext())
+
+        binding.calleeName.text = phone
+        binding.calleeAddress.text = "sip:$phone@192.168.14.209"
 
         login()
     }
@@ -170,11 +170,6 @@ class OutgoingCallFragment : BaseFragment() {
         core.addListener(coreListener)
         core.start()
 
-        // We will need the RECORD_AUDIO permission for video call
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_AUDIO_PERMISSION_CODE)
-        }
-
         outgoingCall()
     }
 
@@ -211,7 +206,5 @@ class OutgoingCallFragment : BaseFragment() {
         call.terminate()
     }
 
-    private fun toggleMuteMicrophone() {
-        
-    }
+    private fun toggleMuteMicrophone() {}
 }
