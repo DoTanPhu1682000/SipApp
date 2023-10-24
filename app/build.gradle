@@ -85,6 +85,8 @@ dependencies {
 
     //Sdk linphone
     implementation 'org.linphone:linphone-sdk-android:5.3+'
-
     implementation 'androidx.media:media:1.6.0'
+
+    //Other
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
 }

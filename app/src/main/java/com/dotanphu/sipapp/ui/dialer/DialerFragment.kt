@@ -1,20 +1,18 @@
 package com.dotanphu.sipapp.ui.dialer
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentDialerBinding
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
+import com.dotanphu.sipapp.utils.PermissionsHelper
 import com.utils.LogUtil
+import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
 import org.linphone.core.Account
 import org.linphone.core.Core
@@ -37,7 +35,6 @@ class DialerFragment : BaseFragment() {
     @Inject
     lateinit var dataManager: DataManager
 
-    private val RECORD_AUDIO_PERMISSION_CODE = 1
     private lateinit var core: Core
     private lateinit var binding: FragmentDialerBinding
 
@@ -63,9 +60,15 @@ class DialerFragment : BaseFragment() {
         core = factory.createCore(null, null, requireContext())
 
         // We will need the RECORD_AUDIO permission for video call
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_AUDIO_PERMISSION_CODE)
-        }
+        val permissionsHelper = PermissionsHelper(this)
+
+        permissionsHelper.requestAllPermissions(onPermissionGranted = {
+            // Xử lý khi tất cả quyền đã được cấp
+            ToastColor.success(requireContext(), "tất cả quyền đã được cấp")
+        }, onPermissionDenied = {
+            // Xử lý khi một hoặc nhiều quyền đã bị từ chối
+            ToastColor.error(requireContext(), "một hoặc nhiều quyền đã bị từ chối")
+        })
     }
 
     private fun listener() {
