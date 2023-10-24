@@ -3,7 +3,11 @@ package com.dotanphu.sipapp
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.androidnetworking.AndroidNetworking
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.utils.LogUtil
@@ -28,11 +32,29 @@ class MyApplication : Application() {
         super.onCreate()
         mInstance = this
         init()
+        initFirebase()
         test()
     }
 
     private fun test() {
         //code for test
+    }
+
+    private fun initFirebase() {
+        //FireBase
+        FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("FirebaseMessaging", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            Log.e("FirebaseMessaging", token)
+        })
     }
 
     private fun init() {
