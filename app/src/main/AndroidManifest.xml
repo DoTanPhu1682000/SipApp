@@ -111,6 +111,10 @@
             android:foregroundServiceType="phoneCall|camera|microphone"
             android:stopWithTask="false" />
 
+        <service
+            android:name=".component.service.PrepareCallService"
+            android:exported="false" />
+
         <activity
             android:name=".ui.TestActivity"
             android:exported="true" />

@@ -54,8 +54,11 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
     override val refreshTokenExpiresTime: Long
         get() = mPref.getLong(KEY_REFRESH_TOKEN_EXPIRES_TIME, 0)
 
+//    override val isLogin: Boolean
+//        get() = !TextUtils.isEmpty(userKey) && !TextUtils.isEmpty(token) && !TextUtils.isEmpty(refreshToken)
+
     override val isLogin: Boolean
-        get() = !TextUtils.isEmpty(userKey) && !TextUtils.isEmpty(token) && !TextUtils.isEmpty(refreshToken)
+        get() = !TextUtils.isEmpty(token) && !TextUtils.isEmpty(refreshToken)
 
     /*----------------------------------[MEDIHOME]------------------------------------------------*/
     override fun saveLoginInfo(login: Login) {

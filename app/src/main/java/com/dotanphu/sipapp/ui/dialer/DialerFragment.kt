@@ -35,18 +35,18 @@ class DialerFragment : BaseFragment() {
     @Inject
     lateinit var dataManager: DataManager
 
-    private lateinit var core: Core
+//    private lateinit var core: Core
     private lateinit var binding: FragmentDialerBinding
 
-    private val coreListener = object : CoreListenerStub() {
-        override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
-            if (state == RegistrationState.Failed) {
-                LogUtil.wtf("Failed")
-            } else if (state == RegistrationState.Ok) {
-                LogUtil.wtf("Ok")
-            }
-        }
-    }
+//    private val coreListener = object : CoreListenerStub() {
+//        override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
+//            if (state == RegistrationState.Failed) {
+//                LogUtil.wtf("Failed")
+//            } else if (state == RegistrationState.Ok) {
+//                LogUtil.wtf("Ok")
+//            }
+//        }
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDialerBinding.inflate(inflater, container, false)
@@ -56,8 +56,8 @@ class DialerFragment : BaseFragment() {
     }
 
     private fun initData() {
-        val factory = Factory.instance()
-        core = factory.createCore(null, null, requireContext())
+//        val factory = Factory.instance()
+//        core = factory.createCore(null, null, requireContext())
 
         // We will need the RECORD_AUDIO permission for video call
         val permissionsHelper = PermissionsHelper(this)
@@ -91,6 +91,14 @@ class DialerFragment : BaseFragment() {
             val phone = binding.sipUriInput.text.toString()
             requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), phone))
         }
+        binding.imgDelete.setOnClickListener {
+            val currentText = binding.sipUriInput.text.toString()
+            if (currentText.isNotEmpty()) {
+                val newText = currentText.substring(0, currentText.length - 1)
+                binding.sipUriInput.setText(newText)
+                binding.sipUriInput.setSelection(newText.length) // Đặt con trỏ ở cuối văn bản
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -99,29 +107,29 @@ class DialerFragment : BaseFragment() {
         binding.sipUriInput.setText(currentText + text)
     }
 
-    private fun login() {
-        val username = dataManager.mPreferenceHelper.username.toString()
-        val password = dataManager.mPreferenceHelper.password
-        val domain = dataManager.mPreferenceHelper.domain
-        val transportType = dataManager.mPreferenceHelper.transportType
-        val authInfo = Factory.instance()
-            .createAuthInfo(username, null, password, null, null, domain, null)
-
-        val params = core.createAccountParams()
-        val identity = Factory.instance().createAddress("sip:$username@$domain")
-        params.identityAddress = identity
-
-        val address = Factory.instance().createAddress("sip:$domain")
-        address?.transport = transportType
-        params.serverAddress = address
-        params.isRegisterEnabled = true
-        val account = core.createAccount(params)
-
-        core.addAuthInfo(authInfo)
-        core.addAccount(account)
-
-        core.defaultAccount = account
-        core.addListener(coreListener)
-        core.start()
-    }
+//    private fun login() {
+//        val username = dataManager.mPreferenceHelper.username.toString()
+//        val password = dataManager.mPreferenceHelper.password
+//        val domain = dataManager.mPreferenceHelper.domain
+//        val transportType = dataManager.mPreferenceHelper.transportType
+//        val authInfo = Factory.instance()
+//            .createAuthInfo(username, null, password, null, null, domain, null)
+//
+//        val params = core.createAccountParams()
+//        val identity = Factory.instance().createAddress("sip:$username@$domain")
+//        params.identityAddress = identity
+//
+//        val address = Factory.instance().createAddress("sip:$domain")
+//        address?.transport = transportType
+//        params.serverAddress = address
+//        params.isRegisterEnabled = true
+//        val account = core.createAccount(params)
+//
+//        core.addAuthInfo(authInfo)
+//        core.addAccount(account)
+//
+//        core.defaultAccount = account
+//        core.addListener(coreListener)
+//        core.start()
+//    }
 }

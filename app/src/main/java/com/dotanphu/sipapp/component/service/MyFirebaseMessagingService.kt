@@ -10,11 +10,19 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.dotanphu.sipapp.R
+import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.utils.LogUtil
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MyFirebaseMessagingService : FirebaseMessagingService() {
+    @Inject
+    lateinit var dataManager: DataManager
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.e("MyFirebaseMessagingService", "onNewToken")
@@ -22,10 +30,30 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.e("MyFirebaseMessagingService", "From: ${remoteMessage.from}")
+
+        var payload: Map<String, String>? = null
+        // Check if message contains a data payload.
+        if (remoteMessage.data.size > 0) {
+            payload = remoteMessage.data
+            LogUtil.`object`(payload)
+
+            payLoadNotification(payload)
+        }
+
         remoteMessage.notification?.body?.let { messageBody ->
             Log.e("MyFirebaseMessagingService", "Message Notification Body: $messageBody")
             sendNotification(messageBody)
         }
+    }
+
+    private fun startPrepareCallService() {
+        if (dataManager.mPreferenceHelper.isLogin) {
+            PrepareCallService.start(applicationContext)
+        }
+    }
+
+    private fun payLoadNotification(payload: Map<String, String>) {
+        startPrepareCallService()
     }
 
     private fun sendNotification(messageBody: String) {

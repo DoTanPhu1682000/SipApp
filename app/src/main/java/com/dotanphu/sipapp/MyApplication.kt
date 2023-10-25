@@ -53,7 +53,7 @@ class MyApplication : Application() {
             val token = task.result
 
             // Log and toast
-            Log.e("FirebaseMessaging", token)
+            LogUtil.wtf(token)
         })
     }
 

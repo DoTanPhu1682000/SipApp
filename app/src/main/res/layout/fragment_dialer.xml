@@ -19,9 +19,9 @@
             android:background="@color/grey">
 
             <ImageView
-                android:id="@+id/erase"
+                android:id="@+id/imgDelete"
                 android:layout_width="@dimen/_40"
-                android:layout_height="@dimen/_40"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:focusableInTouchMode="true"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/erase"
+                android:layout_toStartOf="@id/imgDelete"
                 android:background="@color/transparent"
                 android:backgroundTint="@color/transparent"
                 android:ellipsize="start"
