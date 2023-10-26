@@ -11,14 +11,8 @@ import com.dotanphu.sipapp.databinding.FragmentDialerBinding
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
 import com.dotanphu.sipapp.utils.PermissionsHelper
-import com.utils.LogUtil
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
-import org.linphone.core.Account
-import org.linphone.core.Core
-import org.linphone.core.CoreListenerStub
-import org.linphone.core.Factory
-import org.linphone.core.RegistrationState
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,18 +29,7 @@ class DialerFragment : BaseFragment() {
     @Inject
     lateinit var dataManager: DataManager
 
-//    private lateinit var core: Core
     private lateinit var binding: FragmentDialerBinding
-
-//    private val coreListener = object : CoreListenerStub() {
-//        override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
-//            if (state == RegistrationState.Failed) {
-//                LogUtil.wtf("Failed")
-//            } else if (state == RegistrationState.Ok) {
-//                LogUtil.wtf("Ok")
-//            }
-//        }
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDialerBinding.inflate(inflater, container, false)
@@ -56,9 +39,6 @@ class DialerFragment : BaseFragment() {
     }
 
     private fun initData() {
-//        val factory = Factory.instance()
-//        core = factory.createCore(null, null, requireContext())
-
         // We will need the RECORD_AUDIO permission for video call
         val permissionsHelper = PermissionsHelper(this)
 
@@ -84,7 +64,6 @@ class DialerFragment : BaseFragment() {
         binding.numpad.number9.setOnClickListener { appendToEditText("9") }
 
         binding.bConnect.setOnClickListener {
-            //login()
             requireActivity().startActivity(IncomingCallActivity.newIntent(requireContext()))
         }
         binding.bCall.setOnClickListener {
@@ -106,30 +85,4 @@ class DialerFragment : BaseFragment() {
         val currentText = binding.sipUriInput.text.toString()
         binding.sipUriInput.setText(currentText + text)
     }
-
-//    private fun login() {
-//        val username = dataManager.mPreferenceHelper.username.toString()
-//        val password = dataManager.mPreferenceHelper.password
-//        val domain = dataManager.mPreferenceHelper.domain
-//        val transportType = dataManager.mPreferenceHelper.transportType
-//        val authInfo = Factory.instance()
-//            .createAuthInfo(username, null, password, null, null, domain, null)
-//
-//        val params = core.createAccountParams()
-//        val identity = Factory.instance().createAddress("sip:$username@$domain")
-//        params.identityAddress = identity
-//
-//        val address = Factory.instance().createAddress("sip:$domain")
-//        address?.transport = transportType
-//        params.serverAddress = address
-//        params.isRegisterEnabled = true
-//        val account = core.createAccount(params)
-//
-//        core.addAuthInfo(authInfo)
-//        core.addAccount(account)
-//
-//        core.defaultAccount = account
-//        core.addListener(coreListener)
-//        core.start()
-//    }
 }
