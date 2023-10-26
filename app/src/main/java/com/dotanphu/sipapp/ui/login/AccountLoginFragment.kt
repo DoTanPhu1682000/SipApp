@@ -54,11 +54,10 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             dataManager.mPreferenceHelper.username = username
             dataManager.mPreferenceHelper.password = password
 
-            val coreHelper = CoreHelper(requireContext())
-            coreHelper.start()
-            coreHelper.login(username, password)
+            //CoreHelper.getInstance(requireContext())?.start()
+            CoreHelper.getInstance(requireContext())?.login()
 
-            coreHelper.listener = this
+            CoreHelper.getInstance(requireContext())?.listener = this
         }
     }
 
