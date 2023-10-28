@@ -1,5 +1,6 @@
 package com.dotanphu.sipapp.component.base
 
+import android.content.Context
 import android.os.SystemClock
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -8,13 +9,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
 import com.dotanphu.sipapp.R
+import com.dotanphu.sipapp.data.DataManager
+import com.dotanphu.sipapp.utils.Tool
+import com.utils.ProgressDialogUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 open class BaseFragment : Fragment(), BaseContract.View {
+    @Inject
+    lateinit var mDataManager: DataManager
+
     private val mActivity: BaseActivity? = null
-    private val mProgressDialog: AlertDialog? = null
-    private val requestKeyForResult: String? = null
+    private var mProgressDialog: AlertDialog? = null
+    private var requestKeyForResult: String? = null
 
     /*-----------------------------[ REPLACE FRAGMENT]--------------------------------------------*/
     fun replace(manager: FragmentManager, layout: Int, fragment: Fragment) {
@@ -67,24 +75,43 @@ open class BaseFragment : Fragment(), BaseContract.View {
         return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
     }
 
+    /*-----------------------------[ METHOD]------------------------------------------------------*/
+    fun getBaseActivity(): BaseActivity? {
+        return mActivity
+    }
+
+    fun getBaseContext(): Context? {
+        return if (context != null) context else mActivity?.applicationContext
+    }
+
+    fun setRequestKeyForResult(requestKeyForResult: String) {
+        this.requestKeyForResult = requestKeyForResult
+    }
+
+    fun getRequestKeyForResult(): String? {
+        return requestKeyForResult
+    }
+
     override fun showLoginDialog() {
         mActivity?.showLoginDialog()
     }
 
     override fun showProgress() {
-        //ignore
+        ProgressDialogUtil.hideProgressDialog(mProgressDialog)
+        mProgressDialog = ProgressDialogUtil.showProgressDialog(mActivity)
     }
 
     override fun showProgress(text: String, setCancelable: Boolean, setCanceledOnTouchOutside: Boolean) {
-        //ignore
+        ProgressDialogUtil.hideProgressDialog(mProgressDialog)
+        mProgressDialog = ProgressDialogUtil.showProgressDialog(mActivity, text, setCancelable, setCanceledOnTouchOutside)
     }
 
     override fun updateProgress(text: String) {
-        //ignore
+        ProgressDialogUtil.updateProgressDialog(mProgressDialog, text)
     }
 
     override fun hideProgress() {
-        //ignore
+        ProgressDialogUtil.hideProgressDialog(mProgressDialog)
     }
 
     override fun toastError(message: String) {
@@ -112,10 +139,10 @@ open class BaseFragment : Fragment(), BaseContract.View {
     }
 
     override val isNetworkConnected: Boolean
-        get() = mActivity!!.isNetworkConnected
+        get() = Tool.isNetworkAvailable(requireContext())
 
     override val isLogin: Boolean
-        get() = mActivity!!.isLogin
+        get() = mDataManager.mPreferenceHelper.isLogin
 
     override fun registerObserverBaseEvent(viewModel: BaseViewModel, viewLifecycleOwner: LifecycleOwner) {
         mActivity?.registerObserverBaseEvent(viewModel, viewLifecycleOwner)

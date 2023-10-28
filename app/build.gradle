@@ -67,6 +67,7 @@ dependencies {
 
     // https://github.com/google/flexbox-layout/blob/main/LICENSE Apache v2.0
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     //Network
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.9'

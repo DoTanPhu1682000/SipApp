@@ -10,6 +10,7 @@ import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentDialerBinding
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
+import com.dotanphu.sipapp.ui.contact.ContactActivity
 import com.dotanphu.sipapp.utils.PermissionsHelper
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,6 +66,9 @@ class DialerFragment : BaseFragment() {
 
         binding.bConnect.setOnClickListener {
             requireActivity().startActivity(IncomingCallActivity.newIntent(requireContext()))
+        }
+        binding.bUsers.setOnClickListener {
+            requireActivity().startActivity(ContactActivity.newIntent(requireContext()))
         }
         binding.bCall.setOnClickListener {
             val phone = binding.sipUriInput.text.toString()

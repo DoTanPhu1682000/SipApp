@@ -2,6 +2,7 @@ package com.dotanphu.sipapp.data.api
 
 import com.androidnetworking.error.ANError
 import com.dotanphu.sipapp.data.model.response.Login
+import com.dotanphu.sipapp.data.model.response.User
 import com.dotanphu.sipapp.data.prefs.AppPreferenceHelper
 import com.exception.TokenRefreshException
 import com.rx3androidnetworking.Rx3AndroidNetworking
@@ -41,6 +42,16 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
                 .addHeaders(KEY_AUTHORIZATION, appPreferenceHelper.token)
                 .build()
                 .getObjectSingle(Login::class.java)
+        }).compose(autoRefreshTokenOnce())
+    }
+
+    override fun getListUsers(): Single<List<User>> {
+        return Single.defer(Supplier<SingleSource<List<User>>> {
+            Rx3AndroidNetworking.get(ApiEndPoint.USERS)
+                .addHeaders(KEY_CONTENT_TYPE, APPLICATION_JSON)
+                .addHeaders(KEY_AUTHORIZATION, appPreferenceHelper.token)
+                .build()
+                .getObjectListSingle(User::class.java)
         }).compose(autoRefreshTokenOnce())
     }
 

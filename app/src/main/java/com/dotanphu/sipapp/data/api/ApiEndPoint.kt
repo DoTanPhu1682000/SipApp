@@ -7,6 +7,7 @@ object ApiEndPoint {
     val REGISTER = URL + "auth/user/register/{phone_number}/{lang}"
     //val LOGIN = URL + "auth/oauth/token"
     val LOGIN = URL + "token"
+    val USERS = URL + "rest/userman/users"
     val CHECK_OTP = URL + "auth/user/check-otp"
     val GET_OTP = URL + "auth/user/get-otp/{phone_number}/{lang}"
     val USER_INFO = URL + "auth/user/get-user-info"

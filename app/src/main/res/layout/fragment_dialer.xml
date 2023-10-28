@@ -62,13 +62,14 @@
                 android:src="@drawable/voip_conference" />
 
             <ImageView
+                android:id="@+id/bUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@color/blue500"
+                android:background="@color/green500"
                 android:padding="15dp"
-                android:src="@drawable/contact_add_default"
-                android:visibility="gone" />
+                android:src="@drawable/call_transfer"
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/bCall"

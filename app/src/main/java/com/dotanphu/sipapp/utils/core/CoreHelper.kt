@@ -92,11 +92,13 @@ class CoreHelper(val context: Context) {
                 }
 
                 Call.State.IncomingReceived -> {
-
+                    LogUtil.wtf("IncomingReceived")
+                    //showIncomingCallNotification()
                 }
 
                 Call.State.Released -> {
                     // Call state will be released shortly after the End state
+                    LogUtil.wtf("Released")
                 }
 
                 Call.State.Error -> {
