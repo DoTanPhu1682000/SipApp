@@ -3,7 +3,9 @@ package com.dotanphu.sipapp.utils
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.AudioAttributes
 import android.media.RingtoneManager
@@ -11,6 +13,9 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.dotanphu.sipapp.R
+import com.dotanphu.sipapp.component.receiver.RejectCallActionReceiver
+import com.dotanphu.sipapp.ui.call.IncomingCallActivity
+import com.dotanphu.sipapp.utils.constant.KeyConstant.KEY_CALL_REJECT
 
 object NotificationUtil {
     const val NOTIFY_ID_PREPARE_CALL = 50500
@@ -88,6 +93,48 @@ object NotificationUtil {
     }
 
     /*----------------------------------[CALL]----------------------------------------------------*/
+    fun createIncomingCallNotification(context: Context) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager ?: return
+
+        //Tạo kênh thông báo và return channelId;
+        val channelId = createChannelIncomingCallNotification(context, notificationManager)
+
+        //Click thông báo
+        val intent: Intent = IncomingCallActivity.newIntent(context)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val pendingIntent = PendingIntent.getActivity(context, Helper.randInt(1000, 50000), intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val acceptIntent: Intent = IncomingCallActivity.newIntent(context, true)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val acceptPendingIntent = PendingIntent.getActivity(context, Helper.randInt(1000, 50000), acceptIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val rejectIntent = Intent(context, RejectCallActionReceiver::class.java)
+        rejectIntent.action = KEY_CALL_REJECT
+        val rejectPendingIntent = PendingIntent.getBroadcast(context, Helper.randInt(1000, 50000), rejectIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
+            .setColor(ContextCompat.getColor(context, R.color.colorPrimary)) //.setCustomContentView(notificationView)
+            //.setContentIntent(pendingIntent)
+            //.setFullScreenIntent(pendingIntent, true)
+            .addAction(0, context.getString(R.string.accept), acceptPendingIntent)
+            .addAction(0, context.getString(R.string.reject), rejectPendingIntent)
+            //.setContentTitle(alias)
+            .setContentText(context.getString(R.string.text_incoming_video_call))
+            .setOngoing(true)
+            .setTimeoutAfter((5 * 60 * 1000).toLong()) //timeout 10 min
+            .setSound(SOUND_RINGTONE)
+            .setVibrate(VIBRATION_RINGTONE)
+            .setAutoCancel(true)
+            .setCategory(NotificationCompat.CATEGORY_CALL)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+        //Android 5 không hỗ trợ click setFullScreenIntent
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) builder.setFullScreenIntent(pendingIntent, true) else builder.setContentIntent(pendingIntent)
+        notificationManager.notify(NOTIFY_ID_INCOMING_CALL, builder.build())
+    }
+
     fun createPrepareIncomingCallNotification(context: Context): Notification {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

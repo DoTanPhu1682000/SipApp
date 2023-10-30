@@ -20,15 +20,15 @@
 
             <ImageView
                 android:id="@+id/imgDelete"
-                android:layout_width="@dimen/_40"
+                android:layout_width="@dimen/_60"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:focusableInTouchMode="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:src="@drawable/ic_back"
-                app:tint="@color/ink400" />
+                android:src="@drawable/ic_backspace"
+                app:tint="@color/ink500" />
 
             <EditText
                 android:id="@+id/sip_uri_input"
@@ -53,7 +53,7 @@
             android:layout_alignParentBottom="true">
 
             <ImageView
-                android:id="@+id/bConnect"
+                android:id="@+id/bUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -62,7 +62,7 @@
                 android:src="@drawable/voip_conference" />
 
             <ImageView
-                android:id="@+id/bUsers"
+                android:id="@+id/bConnect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

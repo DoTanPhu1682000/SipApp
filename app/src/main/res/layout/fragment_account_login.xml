@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:hint="Display name"
         android:inputType="textUri"
-        android:text="phu" />
+        android:visibility="gone"
+        tools:text="phu" />
 
     <RadioGroup
         android:id="@+id/transport"
@@ -56,6 +57,7 @@
             android:id="@+id/udp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="UDP" />
 
         <RadioButton
@@ -68,7 +70,6 @@
             android:id="@+id/tls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="TLS" />
 
     </RadioGroup>
@@ -92,14 +93,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10"
             android:enabled="false"
-            android:text="Disconnect" />
+            android:text="Disconnect"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="Delete" />
+            android:text="Delete"
+            android:visibility="gone" />
     </LinearLayout>
 
     <TextView

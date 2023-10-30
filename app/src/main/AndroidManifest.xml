@@ -125,6 +125,10 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".component.receiver.RejectCallActionReceiver"
+            android:exported="false" />
+
         <activity
             android:name=".ui.TestActivity"
             android:exported="true" />

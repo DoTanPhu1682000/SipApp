@@ -67,13 +67,12 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
             val domain = binding.domain.text.toString()
-            val displayName = binding.displayName.text.toString()
             val transportType = when (binding.transport.checkedRadioButtonId) {
                 R.id.udp -> TransportType.Udp
                 R.id.tcp -> TransportType.Tcp
                 else -> TransportType.Tls
             }
-            LogUtil.wtf("%s - %s - %s - %s - %s", username, password, domain, displayName, transportType)
+            LogUtil.wtf("%s - %s - %s - %s", username, password, domain, transportType)
 
             viewModel.doLogin(requireContext(), username, password)
         }

@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.androidnetworking.AndroidNetworking
+import com.dotanphu.sipapp.utils.ActivityLifecycle
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
@@ -59,6 +60,9 @@ class MyApplication : Application() {
 
     private fun init() {
         initOkHttpClient()
+
+        //Detector Foreground or Background
+        ActivityLifecycle.init(this)
 
         //Log
         LogUtil.init("APP", true)

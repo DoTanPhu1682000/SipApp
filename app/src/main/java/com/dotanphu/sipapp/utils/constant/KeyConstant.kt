@@ -41,6 +41,7 @@ object KeyConstant {
     const val KEY_OPEN_SCREEN = "KEY_OPEN_SCREEN"
     const val KEY_SCREEN_HOME = "KEY_SCREEN_HOME"
     const val KEY_SCREEN_APPOINTMENT = "KEY_SCREEN_APPOINTMENT"
+    const val KEY_CALL = "KEY_CALL"
     const val KEY_CALL_ID = "KEY_CALL_ID"
     const val KEY_CALL_REJECT = "KEY_CALL_REJECT"
     const val KEY_CALL_ACCEPT = "KEY_CALL_ACCEPT"

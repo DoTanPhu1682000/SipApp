@@ -2,9 +2,14 @@ package com.dotanphu.sipapp.utils.core
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.util.Log
 import com.dotanphu.sipapp.AppConfig.TAG
 import com.dotanphu.sipapp.data.prefs.AppPreferenceHelper
+import com.dotanphu.sipapp.ui.call.IncomingCallActivity
+import com.dotanphu.sipapp.utils.ActivityLifecycle
+import com.dotanphu.sipapp.utils.NotificationUtil
 import com.utils.LogUtil
 import org.linphone.core.Account
 import org.linphone.core.Call
@@ -92,8 +97,15 @@ class CoreHelper(val context: Context) {
                 }
 
                 Call.State.IncomingReceived -> {
-                    LogUtil.wtf("IncomingReceived")
-                    //showIncomingCallNotification()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ActivityLifecycle.instance!!.isBackground) {
+                        LogUtil.wtf("start IncomingCallNotification")
+                        NotificationUtil.createIncomingCallNotification(context)
+                    } else {
+                        LogUtil.wtf("start IncomingCallActivity")
+                        val intent: Intent = IncomingCallActivity.newIntent(context)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        context.startActivity(intent)
+                    }
                 }
 
                 Call.State.Released -> {
