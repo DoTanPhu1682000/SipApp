@@ -2,15 +2,22 @@ package com.dotanphu.sipapp.ui.call
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
+import com.dotanphu.sipapp.data.model.event.NotifyEvent
 import com.dotanphu.sipapp.databinding.FragmentOutgoingCallBinding
 import com.dotanphu.sipapp.utils.constant.KeyConstant.KEY_PHONE
 import com.dotanphu.sipapp.utils.core.CoreHelper
+import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,6 +45,24 @@ class OutgoingCallFragment : BaseFragment() {
         initData()
         listener()
         return binding.root
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: NotifyEvent) {
+        LogUtil.wtf("OutgoingCall")
+        Handler(Looper.getMainLooper()).postDelayed({
+            requireActivity().finish()
+        }, 700)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun receiver() {

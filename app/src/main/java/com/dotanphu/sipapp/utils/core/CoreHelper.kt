@@ -6,11 +6,13 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import com.dotanphu.sipapp.AppConfig.TAG
+import com.dotanphu.sipapp.data.model.event.NotifyEvent
 import com.dotanphu.sipapp.data.prefs.AppPreferenceHelper
 import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.utils.ActivityLifecycle
 import com.dotanphu.sipapp.utils.NotificationUtil
 import com.utils.LogUtil
+import org.greenrobot.eventbus.EventBus
 import org.linphone.core.Account
 import org.linphone.core.Call
 import org.linphone.core.Core
@@ -111,6 +113,12 @@ class CoreHelper(val context: Context) {
                 Call.State.Released -> {
                     // Call state will be released shortly after the End state
                     LogUtil.wtf("Released")
+                    EventBus.getDefault().post(NotifyEvent(NotifyEvent.Type.DEFAULT))
+
+                    //Dừng dịch vụ và xóa thông báo
+                    //PrepareCallService.stop(context)
+                    NotificationUtil.cancelPrepareNotification(context)
+                    NotificationUtil.cancelIncomingNotification(context)
                 }
 
                 Call.State.Error -> {
@@ -129,12 +137,11 @@ class CoreHelper(val context: Context) {
     }
 
     fun start() {
+        if (isCoreRunning()) return
+
         LogUtil.wtf("core.start")
         core.addListener(coreListener)
         core.start()
-
-        if (isCoreRunning()) return
-        LogUtil.wtf("core.isRunning")
 
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()

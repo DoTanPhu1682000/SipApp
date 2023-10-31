@@ -1,16 +1,23 @@
 package com.dotanphu.sipapp.ui.call
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
+import com.dotanphu.sipapp.data.model.event.NotifyEvent
 import com.dotanphu.sipapp.databinding.FragmentIncomingCallBinding
 import com.dotanphu.sipapp.utils.NotificationUtil
 import com.dotanphu.sipapp.utils.constant.KeyConstant.KEY_CALL
 import com.dotanphu.sipapp.utils.core.CoreHelper
+import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -45,6 +52,24 @@ class IncomingCallFragment : BaseFragment() {
         listener()
         checkAcceptCall()
         return binding.root
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: NotifyEvent) {
+        LogUtil.wtf("IncomingCall")
+        Handler(Looper.getMainLooper()).postDelayed({
+            requireActivity().finish()
+        }, 700)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun receiver() {

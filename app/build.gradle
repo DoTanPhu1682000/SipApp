@@ -97,4 +97,5 @@ dependencies {
 
     //Other
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'
+    implementation 'org.greenrobot:eventbus:3.3.1'
 }
