@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scrollViewLoading"
+    android:id="@+id/layoutParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -19,12 +19,10 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/pbLoading"
-            android:layout_width="@dimen/_72"
-            android:layout_height="@dimen/_72"
+            android:layout_width="@dimen/_56"
+            android:layout_height="@dimen/_56"
             android:layout_gravity="center"
             android:indeterminate="true"
-            app:indicatorColor="@color/colorPrimary"
-            app:indicatorSize="@dimen/_72"
-            app:trackThickness="@dimen/_4" />
+            app:indicatorColor="@color/colorPrimary" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

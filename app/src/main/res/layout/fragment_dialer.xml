@@ -31,6 +31,7 @@
                 app:tint="@color/ink500" />
 
             <EditText
+                style="@style/H5"
                 android:id="@+id/sip_uri_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

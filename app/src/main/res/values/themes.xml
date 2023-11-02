@@ -1,8 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SipApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SipApp" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textSize">@dimen/_14</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <!--MaterialDatePicker-->
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">
+            @style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen
+        </item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar
+        </item>
+    </style>
+
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="CardViewShadowBlue">
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/shadow</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/shadow</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardElevation">@dimen/_4</item>
+        <item name="cardCornerRadius">@dimen/corner</item>
+        <item name="cardBackgroundColor">@color/white</item>
     </style>
 
     <style name="Theme.SipApp" parent="Base.Theme.SipApp" />

@@ -8,7 +8,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
 
 open class BaseDialog : DialogFragment(), BaseContract.View {
-    private val mActivity: BaseActivity? = null
+    private var mActivity: BaseActivity? = null
 
     private var isCanceledOnTouchOutside = true
 
@@ -26,7 +26,7 @@ open class BaseDialog : DialogFragment(), BaseContract.View {
     }
 
     open fun getBaseContext(): Context? {
-        return if (context != null) context else mActivity!!.applicationContext
+        return if (context != null) context else mActivity?.applicationContext
     }
 
     open fun checkLiveDataState(lifecycleOwner: LifecycleOwner): Boolean {
@@ -48,20 +48,44 @@ open class BaseDialog : DialogFragment(), BaseContract.View {
         mActivity?.showLoginDialog()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is BaseActivity) {
+            mActivity = context
+        }
+    }
+
+    override fun onDetach() {
+        mActivity = null
+        super.onDetach()
+    }
+
     override fun showProgress() {
-        //ignore
+        if (mActivity != null) {
+            mActivity?.showProgress()
+        }
     }
 
     override fun showProgress(text: String, setCancelable: Boolean, setCanceledOnTouchOutside: Boolean) {
-        //ignore
+        if (mActivity != null) {
+            mActivity?.showProgress(text, setCancelable, setCanceledOnTouchOutside)
+        }
     }
 
     override fun updateProgress(text: String) {
-        //ignore
+        if (mActivity != null) {
+            mActivity?.updateProgress(text)
+        }
     }
 
     override fun hideProgress() {
-        //ignore
+        if (mActivity != null) {
+            mActivity?.hideProgress()
+        }
+    }
+
+    override fun showTokenExpiredDialog() {
+        mActivity?.showTokenExpiredDialog()
     }
 
     override fun toastError(message: String) {
@@ -80,19 +104,15 @@ open class BaseDialog : DialogFragment(), BaseContract.View {
         mActivity?.toastSuccess(resId)
     }
 
-    override fun showTokenExpiredDialog() {
-        mActivity?.showTokenExpiredDialog()
-    }
-
     override fun alert(title: String, content: String) {
         mActivity?.alert(title, content)
     }
 
     override val isNetworkConnected: Boolean
-        get() = true
+        get() = mActivity?.isNetworkConnected ?: false
 
     override val isLogin: Boolean
-        get() = true
+        get() = mActivity?.isLogin ?: false
 
     override fun registerObserverBaseEvent(viewModel: BaseViewModel, viewLifecycleOwner: LifecycleOwner) {
         mActivity?.registerObserverBaseEvent(viewModel, viewLifecycleOwner)

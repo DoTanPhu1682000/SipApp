@@ -16,11 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-open class BaseFragment : Fragment(), BaseContract.View {
-    @Inject
-    lateinit var mDataManager: DataManager
-
-    private val mActivity: BaseActivity? = null
+abstract class BaseFragment : Fragment(), BaseContract.View {
+    private var mActivity: BaseActivity? = null
     private var mProgressDialog: AlertDialog? = null
     private var requestKeyForResult: String? = null
 
@@ -67,14 +64,6 @@ open class BaseFragment : Fragment(), BaseContract.View {
         return elapsedTime > MIN_CLICK_INTERVAL
     }
 
-    fun checkLiveDataState(lifecycleOwner: LifecycleOwner): Boolean {
-        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
-    }
-
-    fun isLiveDataReady(lifecycleOwner: LifecycleOwner): Boolean {
-        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
-    }
-
     /*-----------------------------[ METHOD]------------------------------------------------------*/
     fun getBaseActivity(): BaseActivity? {
         return mActivity
@@ -90,6 +79,26 @@ open class BaseFragment : Fragment(), BaseContract.View {
 
     fun getRequestKeyForResult(): String? {
         return requestKeyForResult
+    }
+
+    fun checkLiveDataState(lifecycleOwner: LifecycleOwner): Boolean {
+        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
+    }
+
+    fun isLiveDataReady(lifecycleOwner: LifecycleOwner): Boolean {
+        return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is BaseActivity) {
+            mActivity = context
+        }
+    }
+
+    override fun onDetach() {
+        mActivity = null
+        super.onDetach()
     }
 
     override fun showLoginDialog() {
@@ -139,10 +148,10 @@ open class BaseFragment : Fragment(), BaseContract.View {
     }
 
     override val isNetworkConnected: Boolean
-        get() = Tool.isNetworkAvailable(requireContext())
+        get() = mActivity?.isNetworkConnected ?: false
 
     override val isLogin: Boolean
-        get() = mDataManager.mPreferenceHelper.isLogin
+        get() = mActivity?.isLogin ?: false
 
     override fun registerObserverBaseEvent(viewModel: BaseViewModel, viewLifecycleOwner: LifecycleOwner) {
         mActivity?.registerObserverBaseEvent(viewModel, viewLifecycleOwner)

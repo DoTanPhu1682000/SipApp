@@ -18,16 +18,14 @@
         android:paddingBottom="@dimen/sizeShort">
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="@dimen/_82"
-            android:layout_height="@dimen/_82"
+            android:layout_width="@dimen/_56"
+            android:layout_height="@dimen/_56"
             android:layout_marginStart="@dimen/sizeLarge"
             android:layout_marginTop="@dimen/sizeLarge"
             android:layout_marginEnd="@dimen/sizeLarge"
             android:layout_marginBottom="@dimen/sizeMedium"
             android:indeterminate="true"
-            app:indicatorColor="@color/colorPrimary"
-            app:indicatorSize="@dimen/_72"
-            app:trackThickness="@dimen/_4" />
+            app:indicatorColor="@color/colorPrimary"/>
 
         <TextView
             android:id="@+id/tvDialogTitle"

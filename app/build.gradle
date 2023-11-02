@@ -69,6 +69,10 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    //Font
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.1.1'
+
     //Network
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.9'
     //implementation 'com.amitshekhar.android:rx2-android-networking:1.0.2'

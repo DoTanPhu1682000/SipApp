@@ -161,10 +161,9 @@ public class ViewUtil {
     }
 
     public static void initSwipeRefreshLayout(Activity activity, SwipeRefreshLayout swipeRefreshLayout) {
-        swipeRefreshLayout.setSize(CircularProgressDrawable.LARGE);
-        TypedValue typedValue = new TypedValue();
-        activity.getTheme().resolveAttribute(androidx.appcompat.R.attr.actionBarSize, typedValue, true);
-        swipeRefreshLayout.setProgressViewOffset(false, 0, activity.getApplicationContext().getResources().getDimensionPixelSize(typedValue.resourceId));
+        TypedValue typed_value = new TypedValue();
+        activity.getTheme().resolveAttribute(R.attr.actionBarSize, typed_value, true);
+        swipeRefreshLayout.setProgressViewOffset(false, 0, activity.getApplicationContext().getResources().getDimensionPixelSize(typed_value.resourceId));
         swipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(activity.getApplicationContext(), R.color.swipeRefresh_1),
                 ContextCompat.getColor(activity.getApplicationContext(), R.color.swipeRefresh_2),

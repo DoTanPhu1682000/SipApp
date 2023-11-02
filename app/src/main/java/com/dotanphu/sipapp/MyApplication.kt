@@ -13,6 +13,9 @@ import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.utils.LogUtil
 import dagger.hilt.android.HiltAndroidApp
+import io.github.inflationx.calligraphy3.CalligraphyConfig
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor
+import io.github.inflationx.viewpump.ViewPump
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import java.util.concurrent.TimeUnit
@@ -59,13 +62,14 @@ class MyApplication : Application() {
     }
 
     private fun init() {
+        initFont()
         initOkHttpClient()
 
         //Detector Foreground or Background
         ActivityLifecycle.init(this)
 
         //Log
-        LogUtil.init("APP", true)
+        LogUtil.init(AppConfig.TAG, true)
     }
 
     private fun initOkHttpClient() {
@@ -94,5 +98,14 @@ class MyApplication : Application() {
             .addInterceptor(httpLoggingBeauty) //.addInterceptor(httpLoggingNormal)
             .build()
         AndroidNetworking.initialize(applicationContext, client)
+    }
+
+    private fun initFont() {
+        //Font
+        ViewPump.builder()
+            .addInterceptor(CalligraphyInterceptor(CalligraphyConfig.Builder()
+                .setDefaultFontPath(getString(R.string.path_font_normal))
+                .setFontAttrId(io.github.inflationx.calligraphy3.R.attr.fontPath)
+                .build()))
     }
 }

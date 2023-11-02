@@ -6,18 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dotanphu.sipapp.R
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.dotanphu.sipapp.component.adapter.ItemUserAdapter
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.component.listener.OnItemClickListener
 import com.dotanphu.sipapp.data.model.response.User
 import com.dotanphu.sipapp.databinding.FragmentContactBinding
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
-import com.utils.LogUtil
+import com.utils.ViewUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ContactFragment : BaseFragment() {
+class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     companion object {
         fun newInstance(): ContactFragment {
             val args = Bundle()
@@ -37,6 +37,7 @@ class ContactFragment : BaseFragment() {
         binding = FragmentContactBinding.inflate(inflater, container, false)
         initData()
         observe()
+        listener()
         getData()
         return binding.root
     }
@@ -53,21 +54,23 @@ class ContactFragment : BaseFragment() {
         })
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvContent.adapter = mAdapter
+
+        //Refresh
+        ViewUtil.initSwipeRefreshLayout(getBaseActivity(), binding.swipeRefreshLayout)
     }
 
     private fun observe() {
         registerObserverBaseEvent(viewModel, viewLifecycleOwner)
         viewModel.loadingEvent.observe(viewLifecycleOwner) { loadingEvent ->
             if (loadingEvent.isShow) {
-                LogUtil.wtf("1")
-                binding.statusLayout.visibility = View.VISIBLE
-                binding.rvContent.visibility = View.GONE
+                if (!binding.swipeRefreshLayout.isRefreshing)
+                    binding.statusLayout.showLoading()
             } else {
-                LogUtil.wtf("2")
-                binding.rvContent.visibility = View.VISIBLE
-                binding.statusLayout.visibility = View.GONE
+                binding.swipeRefreshLayout.isRefreshing = false
+                binding.statusLayout.showContent()
             }
         }
+
         viewModel.onUsersSuccess.observe(viewLifecycleOwner) { listUser ->
             if (!checkLiveDataState(viewLifecycleOwner)) return@observe
             mList.clear()
@@ -76,12 +79,22 @@ class ContactFragment : BaseFragment() {
         }
     }
 
+    private fun listener() {
+        binding.swipeRefreshLayout.setOnRefreshListener(this)
+    }
+
     private fun getData() {
         if (!isNetworkConnected) {
-            toastError(R.string.not_connected_internet)
+            binding.swipeRefreshLayout.isRefreshing = false
+            binding.statusLayout.showErrorNetwork { getData() }
             return
         }
 
         viewModel.getListUsers()
+    }
+
+    override fun onRefresh() {
+        binding.swipeRefreshLayout.isRefreshing = true
+        getData()
     }
 }

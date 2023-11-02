@@ -14,7 +14,7 @@ class ContactViewModel @Inject constructor() : BaseViewModel() {
 
     fun getListUsers() {
         val d: Disposable = dataManager.mApiHelper.getListUsers()
-            .compose(schedulerProvider.ioToMainSingle())
+            .compose(schedulerProvider.ioToMainLoadingSingle(this))
             .subscribeWith(object : DisposableSingleObserver<List<User>>() {
                 override fun onSuccess(user: List<User>) {
                     onUsersSuccess.postValue(user)

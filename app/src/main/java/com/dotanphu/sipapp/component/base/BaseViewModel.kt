@@ -24,8 +24,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewModel {
-    protected val compositeDisposable: CompositeDisposable
-
     @Inject
     lateinit var appRxHelper: AppRxHelper
 
@@ -41,22 +39,18 @@ open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewM
     @Inject
     lateinit var gson: Gson
 
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
+
     //LiveData
-    val progressEvent: MutableLiveData<ProgressEvent>
-    val loadingEvent: MutableLiveData<LoadingEvent>
-    val alertEvent: MutableLiveData<AlertEvent>
-    val statusEvent: MutableLiveData<StatusEvent>
-    val tokenExpiredEvent: MutableLiveData<Boolean>
+    val progressEvent: MutableLiveData<ProgressEvent> = MutableLiveData<ProgressEvent>()
+    val loadingEvent: MutableLiveData<LoadingEvent> = MutableLiveData<LoadingEvent>()
+    val alertEvent: MutableLiveData<AlertEvent> = MutableLiveData<AlertEvent>()
+    val statusEvent: MutableLiveData<StatusEvent> = MutableLiveData<StatusEvent>()
+    val tokenExpiredEvent: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
-        compositeDisposable = CompositeDisposable()
-
-        //LiveData
-        loadingEvent = MutableLiveData<LoadingEvent>()
-        progressEvent = MutableLiveData<ProgressEvent>()
-        alertEvent = MutableLiveData<AlertEvent>()
-        statusEvent = MutableLiveData<StatusEvent>()
-        tokenExpiredEvent = MutableLiveData()
+        // LiveData
+        loadingEvent.value = LoadingEvent.create(0, false)
     }
 
     override fun onCleared() {
@@ -113,19 +107,23 @@ open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewM
     override fun handleError(e: Throwable, vararg args: String) {
         e.printStackTrace()
         val error = getErrorString(e, *args)
-        if (!TextUtils.isEmpty(error)) postToastError(error)
+        if (!TextUtils.isEmpty(error)) {
+            postToastError(error)
+        }
     }
 
     override fun getErrorString(e: Throwable, vararg args: String): String {
         if (e is TokenRefreshException) {
             printErrorLog("TokenRefreshException")
-            handleTokenRefreshException()
+            handleTokenRefreshException(e)
             return ""
         }
+
         if (e is ANError) {
             printErrorLog("ANError")
-            return errorHandlerUtil.getApiErrorString(e, args.toString())
+            return errorHandlerUtil.getApiErrorString(e, *args)
         }
+
         return errorHandlerUtil.getOtherExceptionString(e)
     }
 
@@ -137,7 +135,7 @@ open class BaseViewModel @Inject constructor() : ViewModel(), BaseContract.ViewM
         //Xóa dữ liệu trong Share Preference
         dataManager.mPreferenceHelper.logout()
 
-        //Show  restart app dialog
+        //Show restart app dialog
         postShowTokenExpiredDialog()
     }
 

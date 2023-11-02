@@ -3,7 +3,6 @@ package com.widget;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -33,7 +32,6 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
     private TextView tvDescription;
     private Button bRetry;
     private NestedScrollView scrollView;
-    private NestedScrollView scrollViewLoading;
 
     private View viewStatus;
     private View viewLoading;
@@ -50,7 +48,6 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
     private ColorStateList buttonTextColor;
     private int buttonBackground;
     private int background;
-    private Drawable backgroundDrawable;
     private boolean fillViewport = true;
 
     public StatusRelativeLayout(Context context) throws MyException {
@@ -92,9 +89,8 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
                 buttonTextColor = ta.getColorStateList(R.styleable.StatusLayout_sl_buttonTextColor);
                 buttonBackground = ta.getColor(R.styleable.StatusLayout_sl_buttonBackground, 0);
 
+                //background = ta.getColor(R.styleable.StatusLayout_sl_background, ContextCompat.getColor(mContext, R.color.white));
                 background = ta.getColor(R.styleable.StatusLayout_sl_background, 0);
-                backgroundDrawable = ta.getDrawable(R.styleable.StatusLayout_sl_backgroundDrawable);
-
                 fillViewport = ta.getBoolean(R.styleable.StatusLayout_sl_fillViewport, true);
 
             } catch (Exception e) {
@@ -104,10 +100,10 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
             }
 
         }
-        if (backgroundDrawable != null)
-            setLayoutBackgroundDrawable(backgroundDrawable);
-        else if (background == 0)
+
+        if (background == 0)
             setLayoutBackground(ContextCompat.getColor(context, R.color.white));
+
     }
 
     @Override
@@ -227,9 +223,8 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
             viewLoading = inflater.inflate(R.layout.layout_loading, null);
             pbLoading = viewLoading.findViewById(R.id.pbLoading);
 
-            scrollViewLoading = viewLoading.findViewById(R.id.scrollViewLoading);
+            scrollView = viewLoading.findViewById(R.id.layoutParent);
             setLayoutBackground(background);
-            setLayoutBackgroundDrawable(backgroundDrawable);
 
             setFillViewport(fillViewport);
 
@@ -252,9 +247,8 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
             tvDescription = viewStatus.findViewById(R.id.tvDescription);
             bRetry = viewStatus.findViewById(R.id.bRetry);
 
-            scrollView = viewStatus.findViewById(R.id.scrollView);
+            scrollView = viewStatus.findViewById(R.id.layoutParent);
             setLayoutBackground(background);
-            setLayoutBackgroundDrawable(backgroundDrawable);
 
             setImageWidth(imageWidth);
             setImageHeight(imageHeight);
@@ -294,8 +288,6 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
         this.fillViewport = fillViewport;
         if (scrollView != null)
             scrollView.setFillViewport(fillViewport);
-        if (scrollViewLoading != null)
-            scrollViewLoading.setFillViewport(fillViewport);
     }
 
     /*----------------------------------[PUBLIC]--------------------------------------------------*/
@@ -303,16 +295,6 @@ public class StatusRelativeLayout extends RelativeLayout implements StatusLayout
         this.background = color;
         if (background != 0 && scrollView != null)
             scrollView.setBackgroundColor(background);
-        if (background != 0 && scrollViewLoading != null)
-            scrollViewLoading.setBackgroundColor(background);
-    }
-
-    public void setLayoutBackgroundDrawable(Drawable drawable) {
-        this.backgroundDrawable = drawable;
-        if (backgroundDrawable != null && scrollView != null)
-            scrollView.setBackground(backgroundDrawable);
-        if (backgroundDrawable != null && scrollViewLoading != null)
-            scrollViewLoading.setBackground(backgroundDrawable);
     }
 
     public void setButtonBackground(int buttonBackground) {
