@@ -17,4 +17,7 @@
     <string name="text_incoming_video_call">Cuộc gọi video đến</string>
     <string name="accept">Chấp nhận</string>
     <string name="reject">Từ chối</string>
+    <string name="ung_dung_lien_lac_noi_bo">ỨNG DỤNG LIÊN LẠC NỘI BỘ</string>
+    <string name="user_name">Nhập tên đăng nhập</string>
+    <string name="password">Nhập mật khẩu</string>
 </resources>

@@ -2,130 +2,229 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.login.AccountLoginFragment">
-
-    <TextView
-        android:id="@+id/core_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/username"
-        style="@style/H5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        android:inputType="textEmailAddress"
-        android:text="104" />
-
-    <EditText
-        android:id="@+id/password"
-        style="@style/H5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="text"
-        android:text="Vega1234" />
-
-    <EditText
-        android:id="@+id/domain"
-        style="@style/H5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Domain"
-        android:inputType="textUri"
-        android:text="192.168.14.209"
-        tools:text="sip.linphone.org" />
-
-    <EditText
-        android:id="@+id/displayName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Display name"
-        android:inputType="textUri"
-        android:visibility="gone"
-        tools:text="phu" />
-
-    <RadioGroup
-        android:id="@+id/transport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/udp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="UDP" />
-
-        <RadioButton
-            android:id="@+id/tcp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TCP" />
-
-        <RadioButton
-            android:id="@+id/tls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TLS" />
-
-    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
+        android:layout_marginTop="@dimen/_30"
+        android:layout_marginBottom="@dimen/_38"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_117"
+            android:layout_height="@dimen/_80"
+            android:contentDescription="@null"
+            android:src="@drawable/img_logo_vega_white"
+            app:tint="@color/colorAccent" />
+
+        <TextView
+            style="@style/P1Strong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ung_dung_lien_lac_noi_bo"
+            android:textColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16"
+        android:elevation="0dp"
+        app:cardCornerRadius="@dimen/_12"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="horizontal"
+            android:padding="@dimen/_12">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                app:cardCornerRadius="@dimen/_8"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false">
+
+                <ImageView
+                    android:layout_width="@dimen/_48"
+                    android:layout_height="@dimen/_48"
+                    android:background="@color/white"
+                    android:padding="@dimen/_9"
+                    android:src="@drawable/ic_person" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/P1Strong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_name"
+                    android:textColor="@color/ink500" />
+
+                <EditText
+                    android:id="@+id/username"
+                    style="@style/H5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
+                    android:hint="Đỗ Tấn Phú"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="104"
+                    android:textColor="@color/ink500"
+                    android:textColorHint="@color/ink400" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16"
+        android:layout_marginTop="@dimen/_16"
+        android:elevation="0dp"
+        app:cardCornerRadius="@dimen/_12"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="horizontal"
+            android:padding="@dimen/_12">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                app:cardCornerRadius="@dimen/_8"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false">
+
+                <ImageView
+                    android:layout_width="@dimen/_48"
+                    android:layout_height="@dimen/_48"
+                    android:background="@color/white"
+                    android:padding="@dimen/_9"
+                    android:src="@drawable/ic_lock" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/P1Strong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/password"
+                        android:textColor="@color/ink500" />
+
+                    <EditText
+                        android:id="@+id/password"
+                        style="@style/H5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/transparent"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:text="Vega1234"
+                        android:textColor="@color/ink500"
+                        android:textColorHint="@color/ink400" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgShowPassword"
+                    android:layout_width="@dimen/_24"
+                    android:layout_height="@dimen/_24"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_pw_eye_block" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16"
+        android:layout_marginTop="@dimen/_50"
+        android:background="@drawable/btn_color_accent"
+        android:text="Đăng nhập"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imgFingerprint"
+        android:layout_width="@dimen/_48"
+        android:layout_height="@dimen/_48"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_fingerprint_large" />
+
+    <View
+        android:layout_width="@dimen/_1"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_36"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <androidx.cardview.widget.CardView
+        <TextView
+            style="@style/P1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_8"
-            app:cardElevation="0dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="false">
+            android:text="Liên hệ tổng đài: "
+            android:textColor="@color/ink500" />
 
-            <Button
-                android:id="@+id/connect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:text="Connect"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/disconnect"
+        <TextView
+            style="@style/P1Strong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10"
-            android:enabled="false"
-            android:text="Disconnect"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Delete"
-            android:visibility="gone" />
+            android:text="19009004"
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/registration_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

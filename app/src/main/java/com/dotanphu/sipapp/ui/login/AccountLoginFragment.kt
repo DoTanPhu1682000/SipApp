@@ -1,9 +1,11 @@
 package com.dotanphu.sipapp.ui.login
 
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.component.base.BaseFragment
@@ -62,16 +64,22 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
     }
 
     private fun listener() {
+        binding.imgShowPassword.setOnClickListener {
+            if (binding.password.transformationMethod is PasswordTransformationMethod) {
+                binding.password.transformationMethod = null
+                binding.imgShowPassword.setImageDrawable(ContextCompat.getDrawable(getBaseContext()!!, R.drawable.ic_pw_eye))
+            } else {
+                binding.password.transformationMethod = PasswordTransformationMethod()
+                binding.imgShowPassword.setImageDrawable(ContextCompat.getDrawable(getBaseContext()!!, R.drawable.ic_pw_eye_block))
+            }
+        }
+
         binding.connect.setOnClickListener {
             it.isEnabled = true
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
-            val domain = binding.domain.text.toString()
-            val transportType = when (binding.transport.checkedRadioButtonId) {
-                R.id.udp -> TransportType.Udp
-                R.id.tcp -> TransportType.Tcp
-                else -> TransportType.Tls
-            }
+            val domain = "192.168.14.209"
+            val transportType = TransportType.Udp
             LogUtil.wtf("%s - %s - %s - %s", username, password, domain, transportType)
 
             viewModel.doLogin(requireContext(), username, password)

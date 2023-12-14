@@ -21,10 +21,10 @@
             android:src="@drawable/img_logo_vega_white" />
 
         <TextView
-            style="@style/P1"
+            style="@style/P1Strong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ỨNG DỤNG LIÊN LẠC NỘI BỘ"
+            android:text="@string/ung_dung_lien_lac_noi_bo"
             android:textColor="@color/white" />
 
     </LinearLayout>
