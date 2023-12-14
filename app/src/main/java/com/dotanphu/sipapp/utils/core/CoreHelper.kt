@@ -171,9 +171,6 @@ class CoreHelper(val context: Context) {
     }
 
     fun login() {
-        core.addListener(coreListener)
-        core.start()
-
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()
         val password = appPreferenceHelper.password.toString()
@@ -194,6 +191,9 @@ class CoreHelper(val context: Context) {
         core.addAuthInfo(authInfo)
         core.addAccount(account)
         core.defaultAccount = account
+
+        core.addListener(coreListener)
+        core.start()
     }
 
     fun isCoreRunning(): Boolean {
