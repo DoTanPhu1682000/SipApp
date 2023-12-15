@@ -5,6 +5,7 @@ import android.os.SystemClock
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
+import com.dotanphu.sipapp.utils.Tool
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BaseBottomSheet : BottomSheetDialogFragment(), BaseContract.View {
@@ -98,7 +99,7 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment(), BaseContract.View 
     }
 
     override val isNetworkConnected: Boolean
-        get() = mActivity?.isNetworkConnected ?: false
+        get() = Tool.isNetworkAvailable(requireContext())
 
     override val isLogin: Boolean
         get() = mActivity?.isLogin ?: false

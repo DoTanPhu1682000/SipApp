@@ -56,7 +56,7 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         binding.rvContent.adapter = mAdapter
 
         //Refresh
-        ViewUtil.initSwipeRefreshLayout(getBaseActivity(), binding.swipeRefreshLayout)
+        ViewUtil.initSwipeRefreshLayout(requireActivity(), binding.swipeRefreshLayout)
     }
 
     private fun observe() {

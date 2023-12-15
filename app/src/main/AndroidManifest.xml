@@ -153,7 +153,7 @@
             android:name=".ui.dialer.DialerActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="true" />
         <activity
             android:name=".ui.call.IncomingCallBKActivity"

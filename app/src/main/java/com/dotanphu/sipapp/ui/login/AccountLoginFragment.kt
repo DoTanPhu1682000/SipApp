@@ -11,7 +11,7 @@ import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentAccountLoginBinding
-import com.dotanphu.sipapp.ui.dialer.DialerActivity
+import com.dotanphu.sipapp.ui.home.MainActivity
 import com.dotanphu.sipapp.utils.core.CoreHelper
 import com.dotanphu.sipapp.utils.core.CoreHelperListener
 import com.utils.LogUtil
@@ -88,7 +88,7 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
 
     override fun onRegistrationStateChanged(isSuccessful: Boolean) {
         if (isSuccessful) {
-            requireActivity().startActivity(DialerActivity.newIntent(requireContext()))
+            requireActivity().startActivity(MainActivity.newIntent(requireContext()))
         }
     }
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+<!--    <style name="CallTheme" parent="AppTheme">-->
+<!--        <item name="android:keepScreenOn">true</item>-->
+<!--    </style>-->
+
+<!--    <style name="InputStyle2">-->
+<!--        <item name="android:layout_marginBottom">@dimen/sizeLarge</item>-->
+<!--        <item name="android:background">@drawable/bg_input_round</item>-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--        <item name="android:paddingStart">@dimen/sizeStandard</item>-->
+<!--        <item name="android:paddingTop">@dimen/sizeMedium</item>-->
+<!--        <item name="android:paddingBottom">@dimen/sizeMedium</item>-->
+<!--        <item name="android:paddingEnd">@dimen/sizeStandard</item>-->
+<!--    </style>-->
+
+<!--    <style name="InputStyle">-->
+<!--        <item name="android:background">@color/white</item>-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--        <item name="android:paddingStart">@dimen/sizeStandard</item>-->
+<!--        <item name="android:paddingTop">@dimen/sizeMedium</item>-->
+<!--        <item name="android:paddingBottom">@dimen/sizeMedium</item>-->
+<!--        <item name="android:paddingEnd">@dimen/sizeStandard</item>-->
+<!--    </style>-->
+
+<!--    <style name="FullScreenTheme" parent="AppTheme">-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:windowContentOverlay">@null</item>-->
+<!--    </style>-->
+
+<!--    <style name="SplashTheme" parent="FullScreenTheme">-->
+<!--        <item name="android:windowBackground">@drawable/bg_splash</item>-->
+<!--    </style>-->
+
+    <style name="BottomNavigationView">
+        <item name="android:textSize">@dimen/textXSmall</item>
+    </style>
+
+<!--    <style name="ButtonMatchWidth" parent="Button">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">@dimen/heightLarge</item>-->
+<!--    </style>-->
+
+<!--    <style name="CardViewShadowBlue">-->
+<!--        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/shadow</item>-->
+<!--        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/shadow</item>-->
+<!--        <item name="cardPreventCornerOverlap">true</item>-->
+<!--        <item name="cardUseCompatPadding">false</item>-->
+<!--        <item name="cardElevation">@dimen/sizeExtraShort</item>-->
+<!--        <item name="cardCornerRadius">@dimen/corner</item>-->
+<!--        <item name="cardBackgroundColor">@color/white</item>-->
+<!--    </style>-->
+
+<!--    <style name="CardViewShadowBlueTabletLimitMatchWidth" parent="TabletLimitMatchWidthStyle">-->
+<!--        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/shadow</item>-->
+<!--        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/shadow</item>-->
+<!--        <item name="cardPreventCornerOverlap">true</item>-->
+<!--        <item name="cardUseCompatPadding">false</item>-->
+<!--        <item name="cardElevation">@dimen/sizeExtraShort</item>-->
+<!--        <item name="cardCornerRadius">@dimen/corner</item>-->
+<!--        <item name="cardBackgroundColor">@color/white</item>-->
+<!--    </style>-->
+
+<!--    <style name="PreferenceScreen" parent="AppTheme">-->
+<!--        <item name="colorAccent">@color/colorPrimary</item>-->
+<!--        <item name="android:textColor">@color/colorTextPrimary</item>-->
+<!--        <item name="android:windowBackground">@color/white</item>-->
+<!--    </style>-->
+
+<!--    <style name="BottomSheetDialogThemeNoFloating" parent="BottomSheetDialogTheme">-->
+<!--        <item name="android:windowIsFloating">false</item>-->
+<!--        <item name="android:windowSoftInputMode">adjustResize</item>-->
+<!--    </style>-->
+
+<!--    <style name="AppTheme.DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Bridge">-->
+<!--        &lt;!&ndash; removing the dialog's action bar &ndash;&gt;-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="android:windowBackground">#F5F5F5</item>-->
+<!--        <item name="background">#F5F5F5</item>-->
+<!--    </style>-->
+</resources>

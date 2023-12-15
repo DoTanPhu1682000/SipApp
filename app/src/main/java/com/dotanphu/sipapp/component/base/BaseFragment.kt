@@ -65,10 +65,6 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     }
 
     /*-----------------------------[ METHOD]------------------------------------------------------*/
-    fun getBaseActivity(): BaseActivity? {
-        return mActivity
-    }
-
     fun getBaseContext(): Context? {
         return if (context != null) context else mActivity?.applicationContext
     }
@@ -148,7 +144,7 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     }
 
     override val isNetworkConnected: Boolean
-        get() = mActivity?.isNetworkConnected ?: false
+        get() = Tool.isNetworkAvailable(requireContext())
 
     override val isLogin: Boolean
         get() = mActivity?.isLogin ?: false

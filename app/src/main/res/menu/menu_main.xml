@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navRecently"
+        android:icon="@drawable/state_clock"
+        android:title="@string/recently"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/navPhonebook"
+        android:icon="@drawable/state_contact"
+        android:title="@string/phonebook"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/navKeyboard"
+        android:icon="@drawable/state_number"
+        android:title="@string/keyboard"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/navFavourite"
+        android:icon="@drawable/state_star"
+        android:title="@string/favourite"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>

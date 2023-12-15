@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
+import com.dotanphu.sipapp.utils.Tool
 
 open class BaseDialog : DialogFragment(), BaseContract.View {
     private var mActivity: BaseActivity? = null
@@ -109,7 +110,7 @@ open class BaseDialog : DialogFragment(), BaseContract.View {
     }
 
     override val isNetworkConnected: Boolean
-        get() = mActivity?.isNetworkConnected ?: false
+        get() = Tool.isNetworkAvailable(requireContext())
 
     override val isLogin: Boolean
         get() = mActivity?.isLogin ?: false
