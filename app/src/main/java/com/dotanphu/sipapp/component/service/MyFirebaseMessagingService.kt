@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.text.TextUtils
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.dotanphu.sipapp.R
@@ -26,6 +27,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.e("MyFirebaseMessagingService", "onNewToken")
+
+        if (!TextUtils.isEmpty(token)) {
+            dataManager.mPreferenceHelper.fcmToken = token
+        }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

@@ -77,6 +77,12 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
         mPref.edit().putLong(KEY_REFRESH_TOKEN_EXPIRES_TIME, 0).commit()
     }
 
+    override var fcmToken: String?
+        get() = mPref.getString(KEY_FCM_TOKEN, "")
+        set(value) {
+            mPref.edit().putString(KEY_FCM_TOKEN, value ?: "").apply()
+        }
+
     override var loginPhone: String?
         get() = mPref.getString(KEY_LOGIN_PHONE, null)
         set(value) {

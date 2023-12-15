@@ -17,6 +17,7 @@ interface PreferenceHelper {
     /*----------------------------------[MEDIHOME]------------------------------------------------*/
     fun saveLoginInfo(login: Login)
     fun clearUserData()
+    var fcmToken: String?
     var loginPhone: String?
 //    val loginType: String?
 //    var isStringeeTokenRegistered: Boolean

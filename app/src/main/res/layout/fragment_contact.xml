@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,69 @@
     android:orientation="vertical"
     tools:context=".ui.contact.ContactFragment">
 
-    <TextView
-        style="@style/H4Strong"
-        android:layout_width="wrap_content"
+    <View
+        android:id="@+id/vStatusBarPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_25"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/_12"
-        android:text="Danh Bạ"
-        android:textColor="@color/ink500" />
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/H4Strong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16"
+            android:text="Danh Bạ"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/layoutSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38"
+            android:layout_marginHorizontal="@dimen/_16"
+            android:layout_marginVertical="@dimen/_8"
+            android:background="@drawable/bg_blue100_round_12"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_12">
+
+            <ImageView
+                android:layout_width="@dimen/_16"
+                android:layout_height="@dimen/_16"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/etKeyword"
+                style="@style/P1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/sizeMedium"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Tìm kiếm danh bạ"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:lines="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="#8FD3FF" />
+
+            <com.widget.ButtonImageView
+                android:id="@+id/biClear"
+                android:layout_width="@dimen/_30"
+                android:layout_height="@dimen/_30"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_effect_transparent"
+                android:visibility="gone"
+                app:bi_icon="@drawable/ic_remove_circle"
+                app:bi_iconSize="@dimen/_20"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -31,10 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingStart="@dimen/sizeStandard"
-                android:paddingTop="@dimen/sizeShort"
-                android:paddingEnd="@dimen/sizeStandard"
-                android:paddingBottom="@dimen/sizeStandard"
+                android:paddingHorizontal="@dimen/_16"
+                android:paddingVertical="@dimen/_8"
                 tools:itemCount="6"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/row_item_users" />

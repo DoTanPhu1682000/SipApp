@@ -1,6 +1,5 @@
 package com.dotanphu.sipapp.component.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,10 +28,9 @@ class ItemUserAdapter(private val mList: List<User>) : RecyclerView.Adapter<Item
     }
 
     inner class ItemViewHolder(val binding: RowItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
         fun bindData(user: User) {
-            binding.tvUserName.text = "username: ${user.username}"
-            binding.tvDescription.text = "description: ${user.description}"
+            binding.tvUserName.text = "${user.username}"
+            binding.tvDescription.text = "${user.description}"
 
             binding.root.setOnClickListener {
                 mOnItemClickListener?.onItemClick(adapterPosition)
