@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.core.SingleTransformer
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.functions.Supplier
+import org.json.JSONObject
 import java.net.HttpURLConnection
 import javax.inject.Inject
 
@@ -53,6 +54,25 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
                 .build()
                 .getObjectListSingle(User::class.java)
         }).compose(autoRefreshTokenOnce())
+    }
+
+    override fun sendNotificationFcmDirect(tokenFCM: String, title: String, body: String): Single<JSONObject> {
+        return Single.defer {
+            val notification = JSONObject()
+            notification.put("title", title)
+            notification.put("body", body)
+
+            val requestData = JSONObject()
+            requestData.put("to", tokenFCM)
+            requestData.put("notification", notification)
+
+            Rx3AndroidNetworking.post("https://fcm.googleapis.com/fcm/send")
+                .addHeaders(KEY_CONTENT_TYPE, APPLICATION_JSON)
+                .addHeaders(KEY_AUTHORIZATION, "key=AAAAdn4v0QA:APA91bEhkIeNdRVH3Cy7anUgLos0soJtGk_WP_wOdjYIx5Rv2FkYlT6MEUg_Gng6ic8y7qB7sa-9Wj0zSHov5W4sQKEqupTdPM1EZ0W5x7ceS5U-NpnC62dEjnRsG2-HcbFyEncEsTAz")
+                .addJSONObjectBody(requestData)
+                .build()
+                .jsonObjectSingle
+        }.compose(autoRefreshTokenOnce())
     }
 
     /*----------------------------------[ACCOUNT]-------------------------------------------------*/

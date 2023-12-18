@@ -15,9 +15,14 @@ import com.dotanphu.sipapp.utils.constant.KeyConstant.KEY_PHONE
 import com.dotanphu.sipapp.utils.core.CoreHelper
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.json.JSONObject
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -76,6 +81,26 @@ class OutgoingCallFragment : BaseFragment() {
     private fun initData() {
         binding.calleeName.text = phone
         binding.calleeAddress.text = "sip:$phone@192.168.14.209"
+
+//        val tokenFCM = "fGCOk4lwRWyHU7ZxrEoAeB:APA91bFTfbpwd-E5_JhNATMmxo3C_pM3oYF_Fstv5wya_eg9r7WpvG0EtC3mebrfNMC5Xb3F5UwMSVnqGcwZ_ARNF92lPFl0mKIqnd0Sq3gpAOLbTeFZ43DA36hHCUQEKSfY4H2RsGL3"
+//        val tokenFCM2 = "fgktZAsZTLOJBqf69qa1S9:APA91bELaa6KC4NCHmMGKhCrajYesPu-r3e5HszCrXC0sJNC4fnh23tCi8dchzm_Z5m021IvvhiJoW6dQQz284UdaRWlJ13Z3jKf74UGUYm_3T5wR8H4Q7dvb6SnW7EsWxqwiJvhH1Kn"
+//        dataManager.mApiHelper.sendNotificationFcmDirect(tokenFCM, "title", "body")
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(object : SingleObserver<JSONObject> {
+//                override fun onSuccess(response: JSONObject) {
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                        CoreHelper.getInstance(requireContext())?.start()
+//                        CoreHelper.getInstance(requireContext())?.outgoingCall(phone)
+//                    }, 10000)
+//                }
+//
+//                override fun onSubscribe(d: Disposable) {}
+//
+//                override fun onError(e: Throwable) {
+//                    e.printStackTrace()
+//                }
+//            })
 
         CoreHelper.getInstance(requireContext())?.start()
         CoreHelper.getInstance(requireContext())?.outgoingCall(phone)

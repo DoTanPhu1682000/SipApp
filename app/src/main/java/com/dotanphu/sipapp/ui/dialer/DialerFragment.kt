@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentDialerBinding
-import com.dotanphu.sipapp.ui.call.IncomingCallActivity
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
-import com.dotanphu.sipapp.ui.contact.ContactActivity
 import com.dotanphu.sipapp.utils.PermissionsHelper
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,40 +51,36 @@ class DialerFragment : BaseFragment() {
     }
 
     private fun listener() {
-        binding.numpad.number0.setOnClickListener { appendToEditText("0") }
-        binding.numpad.number1.setOnClickListener { appendToEditText("1") }
-        binding.numpad.number2.setOnClickListener { appendToEditText("2") }
-        binding.numpad.number3.setOnClickListener { appendToEditText("3") }
-        binding.numpad.number4.setOnClickListener { appendToEditText("4") }
-        binding.numpad.number5.setOnClickListener { appendToEditText("5") }
-        binding.numpad.number6.setOnClickListener { appendToEditText("6") }
-        binding.numpad.number7.setOnClickListener { appendToEditText("7") }
-        binding.numpad.number8.setOnClickListener { appendToEditText("8") }
-        binding.numpad.number9.setOnClickListener { appendToEditText("9") }
+        binding.number0.setOnClickListener { appendToEditText("0") }
+        binding.number1.setOnClickListener { appendToEditText("1") }
+        binding.number2.setOnClickListener { appendToEditText("2") }
+        binding.number3.setOnClickListener { appendToEditText("3") }
+        binding.number4.setOnClickListener { appendToEditText("4") }
+        binding.number5.setOnClickListener { appendToEditText("5") }
+        binding.number6.setOnClickListener { appendToEditText("6") }
+        binding.number7.setOnClickListener { appendToEditText("7") }
+        binding.number8.setOnClickListener { appendToEditText("8") }
+        binding.number9.setOnClickListener { appendToEditText("9") }
+        binding.numberStar.setOnClickListener { appendToEditText("*") }
+        binding.numberHash.setOnClickListener { appendToEditText("#") }
 
-        binding.bConnect.setOnClickListener {
-            requireActivity().startActivity(IncomingCallActivity.newIntent(requireContext()))
-        }
-        binding.bUsers.setOnClickListener {
-            requireActivity().startActivity(ContactActivity.newIntent(requireContext()))
-        }
         binding.bCall.setOnClickListener {
-            val phone = binding.sipUriInput.text.toString()
+            val phone = binding.edtSipUriInput.text.toString()
             requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), phone))
         }
         binding.imgDelete.setOnClickListener {
-            val currentText = binding.sipUriInput.text.toString()
+            val currentText = binding.edtSipUriInput.text.toString()
             if (currentText.isNotEmpty()) {
                 val newText = currentText.substring(0, currentText.length - 1)
-                binding.sipUriInput.setText(newText)
-                binding.sipUriInput.setSelection(newText.length) // Đặt con trỏ ở cuối văn bản
+                binding.edtSipUriInput.setText(newText)
+                binding.edtSipUriInput.setSelection(newText.length) // Đặt con trỏ ở cuối văn bản
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun appendToEditText(text: String) {
-        val currentText = binding.sipUriInput.text.toString()
-        binding.sipUriInput.setText(currentText + text)
+        val currentText = binding.edtSipUriInput.text.toString()
+        binding.edtSipUriInput.setText(currentText + text)
     }
 }

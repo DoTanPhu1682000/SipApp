@@ -4,109 +4,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.dialer.DialerFragment">
 
-    <RelativeLayout
+    <EditText
+        android:id="@+id/edtSipUriInput"
+        style="@style/H1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/_38"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:layout_marginVertical="@dimen/_80"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:inputType="phone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/number1"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_1" />
+
+        <ImageView
+            android:id="@+id/number2"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_2" />
+
+        <ImageView
+            android:id="@+id/number3"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:layout_marginTop="@dimen/_20"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/number4"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_4" />
+
+        <ImageView
+            android:id="@+id/number5"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_5" />
+
+        <ImageView
+            android:id="@+id/number6"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:layout_marginVertical="@dimen/_20"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/number7"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_7" />
+
+        <ImageView
+            android:id="@+id/number8"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_8" />
+
+        <ImageView
+            android:id="@+id/number9"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_9" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/numberStar"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_star" />
+
+        <ImageView
+            android:id="@+id/number0"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_0" />
+
+        <ImageView
+            android:id="@+id/numberHash"
+            android:layout_width="@dimen/_70"
+            android:layout_height="@dimen/_70"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:src="@drawable/numpad_hash" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_48"
+        android:layout_marginTop="@dimen/_30"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/address_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60"
-            android:layout_alignParentTop="true"
-            android:background="@color/grey">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bCall"
+                android:layout_width="@dimen/_70"
+                android:layout_height="@dimen/_70"
+                android:layout_centerInParent="true"
+                android:contentDescription="@null"
+                android:src="@drawable/img_dial_call" />
 
             <ImageView
                 android:id="@+id/imgDelete"
                 android:layout_width="@dimen/_60"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20"
                 android:focusableInTouchMode="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:src="@drawable/ic_backspace"
-                app:tint="@color/ink500" />
-
-            <EditText
-                style="@style/H5"
-                android:id="@+id/sip_uri_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/imgDelete"
-                android:background="@color/transparent"
-                android:backgroundTint="@color/transparent"
-                android:ellipsize="start"
-                android:hint="@string/dialer_address_bar_hint"
-                android:inputType="phone"
-                android:paddingStart="20dp"
-                android:paddingEnd="5dp"
-                android:textColorHint="@color/ink300" />
+                android:src="@drawable/ic_backspace" />
         </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/controls"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true">
-
-            <ImageView
-                android:id="@+id/bUsers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/grey"
-                android:padding="5dp"
-                android:src="@drawable/voip_conference" />
-
-            <ImageView
-                android:id="@+id/bConnect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/green500"
-                android:padding="15dp"
-                android:src="@drawable/call_transfer"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/bCall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:padding="12dp"
-                android:src="@drawable/call_audio_start" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:padding="12dp"
-                android:src="@drawable/call_add"
-                android:visibility="gone" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:padding="12dp"
-                android:src="@drawable/call_transfer"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <include
-            android:id="@+id/numpad"
-            layout="@layout/numpad"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/controls"
-            android:layout_below="@id/address_bar" />
-
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

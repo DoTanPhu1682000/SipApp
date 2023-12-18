@@ -2,7 +2,7 @@
     <string name="app_name">SipApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dialer_address_bar_hint">Enter a number or an address</string>
+    <string name="dialer_address_bar_hint">Enter a number</string>
     <string name="call_outgoing_title">Outgoing Call</string>
     <string name="call_incoming_title">Incoming Call</string>
     <string name="default_notification_channel_id">default_notification_channel_id</string>
