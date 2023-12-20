@@ -49,4 +49,7 @@ object KeyConstant {
     const val KEY_DATA = "KEY_DATA"
     const val KEY_SIZE = "KEY_SIZE"
     const val KEY_DISPLAY_SIZE = "KEY_DISPLAY_SIZE"
+    const val KEY_UUID = "uuid"
+    const val KEY_ACTION = "action"
+    const val KEY_OBJECT = "object"
 }

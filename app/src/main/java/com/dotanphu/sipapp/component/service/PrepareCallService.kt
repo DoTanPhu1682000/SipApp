@@ -84,9 +84,7 @@ class PrepareCallService : Service() {
         LogUtil.wtf("onDestroy")
         if (mCompositeDisposable != null) mCompositeDisposable!!.dispose()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            stopForeground(STOP_FOREGROUND_DETACH)
-        } else stopForeground(true)
+        stopForeground(true)
     }
 
     override fun onBind(intent: Intent): IBinder? {

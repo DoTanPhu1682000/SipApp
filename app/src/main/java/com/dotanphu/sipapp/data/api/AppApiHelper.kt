@@ -58,13 +58,13 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
 
     override fun sendNotificationFcmDirect(tokenFCM: String, title: String, body: String): Single<JSONObject> {
         return Single.defer {
-            val notification = JSONObject()
-            notification.put("title", title)
-            notification.put("body", body)
+            val data = JSONObject()
+            data.put("my_custom_key", title)
+            data.put("notification_type", body)
 
             val requestData = JSONObject()
             requestData.put("to", tokenFCM)
-            requestData.put("notification", notification)
+            requestData.put("data", data)
 
             Rx3AndroidNetworking.post("https://fcm.googleapis.com/fcm/send")
                 .addHeaders(KEY_CONTENT_TYPE, APPLICATION_JSON)

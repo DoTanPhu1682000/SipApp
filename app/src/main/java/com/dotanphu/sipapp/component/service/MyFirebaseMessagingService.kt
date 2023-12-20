@@ -34,11 +34,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.e("MyFirebaseMessagingService", "From: ${remoteMessage.from}")
+        LogUtil.wtf("onMessageReceived")
 
         var payload: Map<String, String>? = null
         // Check if message contains a data payload.
-        if (remoteMessage.data.size > 0) {
+        if (remoteMessage.data.isNotEmpty()) {
             payload = remoteMessage.data
             LogUtil.`object`(payload)
 
@@ -51,26 +51,25 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
+    private fun payLoadNotification(payload: Map<String, String>) {
+        startPrepareCallService()
+    }
+
     private fun startPrepareCallService() {
         if (dataManager.mPreferenceHelper.isLogin) {
             PrepareCallService.start(applicationContext)
         }
     }
 
-    private fun payLoadNotification(payload: Map<String, String>) {
-        startPrepareCallService()
-    }
-
     private fun sendNotification(messageBody: String) {
         val intent = Intent(this, IncomingCallActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val requestCode = 0
-        val pendingIntent = PendingIntent.getActivity(this, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val channelId = "fcm_default_channel"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_question_brown)
             .setContentTitle("FCM Message")
             .setContentText(messageBody)
             .setAutoCancel(true)
@@ -85,7 +84,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        val notificationId = 0
-        notificationManager.notify(notificationId, notificationBuilder.build())
+        notificationManager.notify(0, notificationBuilder.build())
     }
 }
