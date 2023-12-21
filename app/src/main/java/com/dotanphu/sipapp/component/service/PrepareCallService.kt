@@ -9,6 +9,8 @@ import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.data.model.response.Login
 import com.dotanphu.sipapp.utils.NotificationUtil
 import com.dotanphu.sipapp.utils.NotificationUtil.NOTIFY_ID_PREPARE_CALL
+import com.dotanphu.sipapp.utils.core.CoreHelper
+import com.dotanphu.sipapp.utils.core.CoreHelperListener
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -70,10 +72,18 @@ class PrepareCallService : Service() {
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribeWith(object : DisposableSingleObserver<Login>() {
-                override fun onSuccess(login: Login) {}
+            .subscribeWith(object : DisposableSingleObserver<Login>(), CoreHelperListener {
+                override fun onSuccess(login: Login) {
+                    CoreHelper.getInstance(applicationContext)?.login()
+                    CoreHelper.getInstance(applicationContext)?.listener = this
+                }
 
                 override fun onError(e: Throwable) {}
+                override fun onRegistrationStateChanged(isSuccessful: Boolean) {
+                    if (isSuccessful) {
+                        NotificationUtil.createIncomingCallNotification(applicationContext)
+                    }
+                }
             })
         mCompositeDisposable?.add(d)
     }
