@@ -90,7 +90,7 @@ class OutgoingCallFragment : BaseFragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 CoreHelper.getInstance(requireContext())?.start()
                 CoreHelper.getInstance(requireContext())?.outgoingCall(phone)
-            }, 5000)
+            }, 8000)
         }
     }
 
@@ -101,7 +101,7 @@ class OutgoingCallFragment : BaseFragment() {
     }
 
     private fun getData() {
-        val tokenFCMDevice1 = "fGCOk4lwRWyHU7ZxrEoAeB:APA91bFTfbpwd-E5_JhNATMmxo3C_pM3oYF_Fstv5wya_eg9r7WpvG0EtC3mebrfNMC5Xb3F5UwMSVnqGcwZ_ARNF92lPFl0mKIqnd0Sq3gpAOLbTeFZ43DA36hHCUQEKSfY4H2RsGL3"
+        val tokenFCMDevice1 = "fGCOk4lwRWyHU7ZxrEoAeB:APA91bGU9bRAsU0C_-vkcFgQVgxY4kMLCdhfVgyXTZuxNGbTi2_fHNuMYTe_vPVenadab1_lQgF5SOme0M5bLPWb5rXO9YV4JZvD2Qj_EQsFEdC4-Cy9qMy770HZs-xtdoab6r7rv8rK"
         val tokenFCMDevice2 = "fgktZAsZTLOJBqf69qa1S9:APA91bELaa6KC4NCHmMGKhCrajYesPu-r3e5HszCrXC0sJNC4fnh23tCi8dchzm_Z5m021IvvhiJoW6dQQz284UdaRWlJ13Z3jKf74UGUYm_3T5wR8H4Q7dvb6SnW7EsWxqwiJvhH1Kn"
 
         viewModel.sendNotificationFcmDirect(tokenFCMDevice1, "my_custom_value", "prepare_call")

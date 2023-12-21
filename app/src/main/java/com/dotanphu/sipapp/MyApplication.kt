@@ -2,10 +2,12 @@ package com.dotanphu.sipapp
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.app.NotificationManager
 import android.content.Context
 import android.util.Log
 import com.androidnetworking.AndroidNetworking
 import com.dotanphu.sipapp.utils.ActivityLifecycle
+import com.dotanphu.sipapp.utils.NotificationUtil
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
@@ -36,7 +38,6 @@ class MyApplication : Application() {
         super.onCreate()
         mInstance = this
         init()
-        initFirebase()
         test()
     }
 
@@ -44,26 +45,11 @@ class MyApplication : Application() {
         //code for test
     }
 
-    private fun initFirebase() {
-        //FireBase
-        FirebaseApp.initializeApp(this)
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.e("FirebaseMessaging", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            LogUtil.wtf(token)
-        })
-    }
-
     private fun init() {
         initFont()
         initOkHttpClient()
+        initFirebase()
+        initDefaultNotificationChannel()
 
         //Detector Foreground or Background
         ActivityLifecycle.init(this)
@@ -106,6 +92,33 @@ class MyApplication : Application() {
             .addInterceptor(CalligraphyInterceptor(CalligraphyConfig.Builder()
                 .setDefaultFontPath(getString(R.string.path_font_normal))
                 .setFontAttrId(io.github.inflationx.calligraphy3.R.attr.fontPath)
-                .build()))
+                .build()
+            )
+            )
+    }
+
+    private fun initFirebase() {
+        //FireBase
+        FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("FirebaseMessaging", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            LogUtil.wtf(token)
+        })
+    }
+
+    private fun initDefaultNotificationChannel() {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        NotificationUtil.createChannelTypeNotification(applicationContext, notificationManager)
+        NotificationUtil.createChannelPrepareIncomingCallNotification(applicationContext, notificationManager)
+        NotificationUtil.createChannelIncomingCallNotification(applicationContext, notificationManager)
+        NotificationUtil.createChannelReminderNotification(applicationContext, notificationManager)
     }
 }

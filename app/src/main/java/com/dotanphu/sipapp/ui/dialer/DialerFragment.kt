@@ -9,8 +9,6 @@ import com.dotanphu.sipapp.component.base.BaseFragment
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.databinding.FragmentDialerBinding
 import com.dotanphu.sipapp.ui.call.OutgoingCallActivity
-import com.dotanphu.sipapp.utils.PermissionsHelper
-import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -32,22 +30,8 @@ class DialerFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDialerBinding.inflate(inflater, container, false)
-        initData()
         listener()
         return binding.root
-    }
-
-    private fun initData() {
-        // We will need the RECORD_AUDIO permission for video call
-        val permissionsHelper = PermissionsHelper(this)
-
-        permissionsHelper.requestAllPermissions(onPermissionGranted = {
-            // Xử lý khi tất cả quyền đã được cấp
-            ToastColor.success(requireContext(), "tất cả quyền đã được cấp")
-        }, onPermissionDenied = {
-            // Xử lý khi một hoặc nhiều quyền đã bị từ chối
-            ToastColor.error(requireContext(), "một hoặc nhiều quyền đã bị từ chối")
-        })
     }
 
     private fun listener() {

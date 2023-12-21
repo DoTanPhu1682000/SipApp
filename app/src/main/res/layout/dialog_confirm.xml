@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/sizeShort">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/H3Strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/sizeShort"
+        android:gravity="center"
+        android:textColor="@color/ink500"
+        tools:text="Cập nhật thông tin" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        style="@style/H5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/sizeExtraShort"
+        android:autoLink="all"
+        android:gravity="center"
+        android:textColor="@color/colorTextSecondary"
+        tools:text="Bạn vui lòng cung cấp thông tin của bạn để chúng tôi phục vụ tốt hơn" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sizeLarge"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bNegative"
+            style="@style/Button"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/sizeShort"
+            android:layout_weight="1"
+            android:background="@drawable/btn_primary_100"
+            android:text="@string/cancel"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/bPositive"
+            style="@style/Button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_primary"
+            android:text="@string/agree"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

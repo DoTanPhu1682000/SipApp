@@ -2,10 +2,10 @@ package com.dotanphu.sipapp.utils
 
 import android.Manifest
 import android.os.Build
-import androidx.fragment.app.Fragment
+import com.dotanphu.sipapp.ui.home.MainActivity
 import com.permissionx.guolindev.PermissionX
 
-class PermissionsHelper(private val activity: Fragment) {
+class PermissionsHelper(private val activity: MainActivity) {
 
     companion object {
         val appPermissions: Array<String> by lazy {

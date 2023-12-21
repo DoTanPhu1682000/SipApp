@@ -1,17 +1,24 @@
 package com.dotanphu.sipapp.component.base
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.SystemClock
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.dotanphu.sipapp.AppConfig.MIN_CLICK_INTERVAL
+import com.dotanphu.sipapp.R
+import com.dotanphu.sipapp.utils.Helper
 import com.dotanphu.sipapp.utils.Tool
 
 open class BaseDialog : DialogFragment(), BaseContract.View {
     private var mActivity: BaseActivity? = null
 
     private var isCanceledOnTouchOutside = true
+    private val isFullScreenDialog = false
 
     fun isLiveDataReady(lifecycleOwner: LifecycleOwner): Boolean {
         return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
@@ -32,6 +39,27 @@ open class BaseDialog : DialogFragment(), BaseContract.View {
 
     open fun checkLiveDataState(lifecycleOwner: LifecycleOwner): Boolean {
         return lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null && dialog.window != null) {
+            val window = dialog.window
+            dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
+            if (isFullScreenDialog) {
+                window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            } else {
+                var width: Int = Tool.getScreenWidth(requireActivity(), 0)
+                if (width > 0) {
+                    window!!.setBackgroundDrawable(ContextCompat.getDrawable(getBaseContext()!!, R.drawable.bg_white_round))
+                    val padding = resources.getDimension(R.dimen.sizeStandard).toInt()
+                    width = if (Helper.isTablet(requireContext())) width / 3 * 2 else width - padding * 2
+                    window.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+                }
+            }
+        }
     }
 
     /*--------------------------------------[SINGLE CLICK]----------------------------------------*/

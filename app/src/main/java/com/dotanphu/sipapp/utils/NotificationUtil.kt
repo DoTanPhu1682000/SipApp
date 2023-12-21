@@ -40,7 +40,7 @@ object NotificationUtil {
     /*----------------------------------[CREATE CHANNEL]------------------------------------------*/
     fun createChannelTypeNotification(context: Context, notificationManager: NotificationManager): String {
         //Tạo kênh thông báo
-        val channelId = context.getString(R.string.default_notification_channel_id)
+        val channelId = context.getString(R.string.default_notification_channel_id_3)
         val channelName = context.getString(R.string.default_notification_channel_name)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)

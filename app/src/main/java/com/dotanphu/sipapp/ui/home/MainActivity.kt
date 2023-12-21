@@ -1,22 +1,31 @@
 package com.dotanphu.sipapp.ui.home
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.custom.ViewPager2Adapter
 import com.dotanphu.sipapp.R
+import com.dotanphu.sipapp.component.base.BaseActivity
+import com.dotanphu.sipapp.component.dialog.ConfirmDialog
+import com.dotanphu.sipapp.component.listener.OnDialogButtonClickListener
 import com.dotanphu.sipapp.databinding.ActivityMainBinding
 import com.dotanphu.sipapp.ui.contact.ContactFragment
 import com.dotanphu.sipapp.ui.dialer.DialerFragment
+import com.dotanphu.sipapp.utils.PermissionsHelper
+import com.dotanphu.sipapp.utils.Tool
+import com.dotanphu.sipapp.utils.constant.RequestCode.REQUEST_DRAW_OVERLAY_SETTING
+import com.dotanphu.sipapp.utils.constant.RequestCode.REQUEST_ENABLE_LOCATION
 import com.google.android.material.navigation.NavigationBarView
+import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     companion object {
         fun newIntent(context: Context?): Intent {
@@ -67,6 +76,18 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(DialerFragment.newInstance())
         adapter.addFragment(DialerFragment.newInstance())
         binding.viewPager.adapter = adapter
+
+        // We will need the RECORD_AUDIO permission for video call
+        val permissionsHelper = PermissionsHelper(this)
+
+        permissionsHelper.requestAllPermissions(onPermissionGranted = {
+            // Xử lý khi tất cả quyền đã được cấp
+            LogUtil.wtf("tất cả quyền đã được cấp")
+            showOverlayDialog()
+        }, onPermissionDenied = {
+            // Xử lý khi một hoặc nhiều quyền đã bị từ chối
+            LogUtil.wtf("một hoặc nhiều quyền đã bị từ chối")
+        })
     }
 
     private fun listener() {
@@ -80,5 +101,45 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun showOverlayDialog() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            val d: ConfirmDialog = ConfirmDialog.newInstance(R.string.notification, R.string.msg_permission_display_over_other_apps)
+            d.setCanceledOnTouchOutside(false)
+            d.isCancelable = false
+            d.setOnDialogButtonClickListener(object : OnDialogButtonClickListener {
+                override fun onPositiveButtonClick(dialog: Dialog?) {
+                    startActivityForResult(Tool.getSettingManageOverlayPermissionIntent(applicationContext), REQUEST_DRAW_OVERLAY_SETTING)
+                    dialog?.cancel()
+                }
+
+                override fun onNegativeButtonClick(dialog: Dialog?) {
+                    showLocationDialog()
+                    dialog?.cancel()
+                }
+            })
+            try {
+                d.show(supportFragmentManager, null)
+            } catch (e: Exception) {
+                LogUtil.e(e.message)
+            }
+        }
+    }
+
+    private fun showLocationDialog() {
+        val isLocationEnabled: Boolean = Tool.isLocationEnabled(baseContext)
+        if (isLocationEnabled) showXiaomiNotiSettingDialog() else Tool.displayLocationSettingsRequest(this, REQUEST_ENABLE_LOCATION)
+    }
+
+    private fun showXiaomiNotiSettingDialog() {
+        //
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_DRAW_OVERLAY_SETTING -> showLocationDialog()
+        }
     }
 }
