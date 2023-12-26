@@ -101,7 +101,7 @@ class OutgoingCallFragment : BaseFragment() {
     }
 
     private fun getData() {
-        val tokenFCMDevice1 = "fGCOk4lwRWyHU7ZxrEoAeB:APA91bGU9bRAsU0C_-vkcFgQVgxY4kMLCdhfVgyXTZuxNGbTi2_fHNuMYTe_vPVenadab1_lQgF5SOme0M5bLPWb5rXO9YV4JZvD2Qj_EQsFEdC4-Cy9qMy770HZs-xtdoab6r7rv8rK"
+        val tokenFCMDevice1 = "fGCOk4lwRWyHU7ZxrEoAeB:APA91bEg-n5l4mS7QU08CshACBTBE7Emmhkfjs24aaMQZD4WbR0MYjVF8Uq-fPcll9jXhyHpa1YsPhId-7yqaH0kdSpupAO0cYG796K4ncvg1A5ypqErXwLUMuugV6yQ8kejO9qAgnpW"
         val tokenFCMDevice2 = "fgktZAsZTLOJBqf69qa1S9:APA91bELaa6KC4NCHmMGKhCrajYesPu-r3e5HszCrXC0sJNC4fnh23tCi8dchzm_Z5m021IvvhiJoW6dQQz284UdaRWlJ13Z3jKf74UGUYm_3T5wR8H4Q7dvb6SnW7EsWxqwiJvhH1Kn"
 
         viewModel.sendNotificationFcmDirect(tokenFCMDevice1, "my_custom_value", "prepare_call")

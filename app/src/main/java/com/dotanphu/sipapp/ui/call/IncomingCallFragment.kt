@@ -89,10 +89,10 @@ class IncomingCallFragment : BaseFragment() {
     }
 
     private fun listener() {
-        binding.buttons.bHangup.setOnClickListener {
+        binding.bHangupIncomingCall.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpIncomingCall()
         }
-        binding.buttons.bAnswer.setOnClickListener {
+        binding.bAnswerIncomingCall.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.answer()
         }
     }

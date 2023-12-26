@@ -59,7 +59,12 @@ class PrepareCallService : Service() {
             stopSelf()
         }
 
-        login()
+        if (CoreHelper.getInstance(applicationContext)?.isCoreRunning() == true) {
+            stopSelf()
+        } else {
+            login()
+        }
+
         return START_NOT_STICKY
     }
 
@@ -74,7 +79,7 @@ class PrepareCallService : Service() {
             .subscribeOn(Schedulers.io())
             .subscribeWith(object : DisposableSingleObserver<Login>(), CoreHelperListener {
                 override fun onSuccess(login: Login) {
-                    CoreHelper.getInstance(applicationContext)?.login()
+                    CoreHelper.getInstance(applicationContext)?.start()
                     CoreHelper.getInstance(applicationContext)?.listener = this
                 }
 

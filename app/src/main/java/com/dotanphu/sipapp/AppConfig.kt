@@ -2,13 +2,16 @@ package com.dotanphu.sipapp
 
 object AppConfig {
     const val IS_PRODUCTION = false
+
+    const val REMOVE_USER_DATA_WHEN_APP_START = false
+
     const val CHECK_PHONE_NUMBER = "0392719775" //TEST: điền sẵn số điện thoại vào CheckPhoneFragment, PRODUCTION xóa trống =""
 
     /*----------------------------------[DEFINE]--------------------------------------------------*/
     var BASE_URL: String? = null
 
     init {
-//        BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "https://sandboxapi.365medihome.com.vn"
+        // BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "https://sandboxapi.365medihome.com.vn"
         BASE_URL = if (IS_PRODUCTION) "https://api.365medihome.com.vn" else "http://192.168.14.209:8080/admin/api/api"
     }
 
