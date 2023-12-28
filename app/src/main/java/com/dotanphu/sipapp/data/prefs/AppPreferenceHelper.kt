@@ -5,7 +5,10 @@ import android.content.SharedPreferences
 import android.text.TextUtils
 import com.dotanphu.sipapp.AppConfig
 import com.dotanphu.sipapp.data.model.response.Login
+import com.dotanphu.sipapp.data.model.response.User
 import com.dotanphu.sipapp.utils.constant.StringConstant
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.linphone.core.TransportType
 import javax.inject.Inject
 
@@ -24,6 +27,7 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
         private const val KEY_PASSWORD = "password"
         private const val KEY_DOMAIN = "domain"
         private const val KEY_TRANSPORT_TYPE = "transport_type"
+        private const val KEY_USER_LIST = "user_list"
     }
 
     private val mPref: SharedPreferences = mContext.getSharedPreferences(AppConfig.PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -53,9 +57,6 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
 
     override val refreshTokenExpiresTime: Long
         get() = mPref.getLong(KEY_REFRESH_TOKEN_EXPIRES_TIME, 0)
-
-//    override val isLogin: Boolean
-//        get() = !TextUtils.isEmpty(userKey) && !TextUtils.isEmpty(token) && !TextUtils.isEmpty(refreshToken)
 
     override val isLogin: Boolean
         get() = !TextUtils.isEmpty(token) && !TextUtils.isEmpty(refreshToken)
@@ -88,6 +89,22 @@ class AppPreferenceHelper @Inject constructor(private val mContext: Context) : P
         set(value) {
             mPref.edit().putString(KEY_LOGIN_PHONE, value).commit()
         }
+
+    /*----------------------------------[COMMON]--------------------------------------------------*/
+    override fun saveUserList(users: List<User>) {
+        val jsonString = Gson().toJson(users)
+        mPref.edit().putString(KEY_USER_LIST, jsonString).apply()
+    }
+
+    override fun getUserList(): List<User> {
+        val jsonString = mPref.getString(KEY_USER_LIST, "")
+        return if (jsonString.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            val type = object : TypeToken<List<User>>() {}.type
+            Gson().fromJson(jsonString, type)
+        }
+    }
 
     /*-----------------------------------[LOGIN]--------------------------------------------------*/
     override var username: String?

@@ -43,6 +43,7 @@ class CoreHelper(val context: Context) {
 
     val core: Core
     var listener: CoreHelperListener? = null
+    var callStateChangeListener: CallStateChangeListener? = null
 
     private val coreListener = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
@@ -74,6 +75,7 @@ class CoreHelper(val context: Context) {
 
                 Call.State.Connected -> {
                     // When the 200 OK has been received
+                    callStateChangeListener?.onCallStateChanged(true)
                 }
 
                 Call.State.StreamsRunning -> {
@@ -100,8 +102,6 @@ class CoreHelper(val context: Context) {
                 }
 
                 Call.State.IncomingReceived -> {
-                    val remoteAddress = call.remoteAddress.asStringUriOnly()
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ActivityLifecycle.instance!!.isBackground) {
                         LogUtil.wtf("start IncomingCallNotification")
                         NotificationUtil.createIncomingCallNotification(context)
@@ -175,6 +175,10 @@ class CoreHelper(val context: Context) {
 
     fun isCoreRunning(): Boolean {
         return core.globalState == GlobalState.On
+    }
+
+    fun getRemoteAddress(): String? {
+        return core.currentCall?.remoteAddress?.asStringUriOnly()
     }
 
     fun outgoingCall(phone: String) {

@@ -49,7 +49,7 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 if (!isClickable()) return
-                requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), mList.get(position).username.toString()))
+                requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), mList[position].username.toString(), mList[position].displayName.toString()))
             }
         })
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -63,8 +63,9 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         registerObserverBaseEvent(viewModel, viewLifecycleOwner)
         viewModel.loadingEvent.observe(viewLifecycleOwner) { loadingEvent ->
             if (loadingEvent.isShow) {
-                if (!binding.swipeRefreshLayout.isRefreshing)
+                if (!binding.swipeRefreshLayout.isRefreshing) {
                     binding.statusLayout.showLoading()
+                }
             } else {
                 binding.swipeRefreshLayout.isRefreshing = false
                 binding.statusLayout.showContent()

@@ -52,4 +52,5 @@ object KeyConstant {
     const val KEY_UUID = "uuid"
     const val KEY_ACTION = "action"
     const val KEY_OBJECT = "object"
+    const val KEY_FCM_TOKEN = "KEY_FCM_TOKEN"
 }

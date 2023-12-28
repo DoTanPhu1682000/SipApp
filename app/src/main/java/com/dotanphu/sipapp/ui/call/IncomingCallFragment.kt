@@ -12,6 +12,7 @@ import com.dotanphu.sipapp.data.model.event.NotifyEvent
 import com.dotanphu.sipapp.databinding.FragmentIncomingCallBinding
 import com.dotanphu.sipapp.utils.NotificationUtil
 import com.dotanphu.sipapp.utils.constant.KeyConstant.KEY_CALL
+import com.dotanphu.sipapp.utils.core.CallStateChangeListener
 import com.dotanphu.sipapp.utils.core.CoreHelper
 import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,7 @@ import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class IncomingCallFragment : BaseFragment() {
+class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
     companion object {
         fun newInstance(): IncomingCallFragment {
             val args = Bundle()
@@ -86,10 +87,17 @@ class IncomingCallFragment : BaseFragment() {
         NotificationUtil.cancelIncomingNotification(requireContext())
 
         CoreHelper.getInstance(requireContext())?.start()
+        CoreHelper.getInstance(requireContext())?.callStateChangeListener = this
+
+        val remoteAddress = CoreHelper.getInstance(requireContext())?.getRemoteAddress()
+        binding.calleeAddress.text = remoteAddress
     }
 
     private fun listener() {
         binding.bHangupIncomingCall.setOnClickListener {
+            CoreHelper.getInstance(requireContext())?.hangUpIncomingCall()
+        }
+        binding.bHangup.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpIncomingCall()
         }
         binding.bAnswerIncomingCall.setOnClickListener {
@@ -100,6 +108,16 @@ class IncomingCallFragment : BaseFragment() {
     private fun checkAcceptCall() {
         if (checkAcceptCall) {
             CoreHelper.getInstance(requireContext())?.answer()
+        }
+    }
+
+    override fun onCallStateChanged(isConnected: Boolean) {
+        if (isConnected) {
+            binding.llAcceptCall.visibility = View.VISIBLE
+            binding.llIncomingCall.visibility = View.GONE
+        } else {
+            binding.llAcceptCall.visibility = View.GONE
+            binding.llIncomingCall.visibility = View.VISIBLE
         }
     }
 }
