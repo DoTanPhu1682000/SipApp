@@ -15,6 +15,7 @@ import com.dotanphu.sipapp.utils.NotificationUtil
 import com.utils.LogUtil
 import org.greenrobot.eventbus.EventBus
 import org.linphone.core.Account
+import org.linphone.core.AudioDevice
 import org.linphone.core.Call
 import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
@@ -23,6 +24,7 @@ import org.linphone.core.GlobalState
 import org.linphone.core.MediaEncryption
 import org.linphone.core.RegistrationState
 import org.linphone.core.TransportType
+
 
 interface CoreHelperListener {
     fun onRegistrationStateChanged(isSuccessful: Boolean)
@@ -44,6 +46,7 @@ class CoreHelper(val context: Context) {
     val core: Core
     var listener: CoreHelperListener? = null
     var callStateChangeListener: CallStateChangeListener? = null
+    private var isMicrophoneMuted = false
 
     private val coreListener = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
@@ -55,6 +58,17 @@ class CoreHelper(val context: Context) {
                 // Thông báo rằng trạng thái đăng ký thành công
                 listener?.onRegistrationStateChanged(true)
             }
+        }
+
+        override fun onAudioDeviceChanged(core: Core, audioDevice: AudioDevice) {
+            // This callback will be triggered when a successful audio device has been changed
+            LogUtil.wtf("[Call Controls] Audio device changed: ${audioDevice.deviceName}")
+        }
+
+        override fun onAudioDevicesListUpdated(core: Core) {
+            // This callback will be triggered when the available devices list has changed,
+            // for example after a bluetooth headset has been connected/disconnected.
+            LogUtil.wtf("[Call Controls] Audio devices list updated")
         }
 
         override fun onCallStateChanged(core: Core, call: Call, state: Call.State?, message: String) {
@@ -224,5 +238,33 @@ class CoreHelper(val context: Context) {
     fun hangUpIncomingCall() {
         // Terminates the call, whether it is ringing or running
         core.currentCall?.terminate()
+    }
+
+    fun toggleSpeaker() {
+        // Get the currently used audio device
+        val currentAudioDevice = core.currentCall?.outputAudioDevice
+        val speakerEnabled = currentAudioDevice?.type == AudioDevice.Type.Speaker
+
+        // We can get a list of all available audio devices using
+        // Note that on tablets for example, there may be no Earpiece device
+        for (audioDevice in core.audioDevices) {
+            if (speakerEnabled && audioDevice.type == AudioDevice.Type.Earpiece) {
+                core.currentCall?.outputAudioDevice = audioDevice
+                return
+            } else if (!speakerEnabled && audioDevice.type == AudioDevice.Type.Speaker) {
+                core.currentCall?.outputAudioDevice = audioDevice
+                return
+            }/* If we wanted to route the audio to a bluetooth headset
+            else if (audioDevice.type == AudioDevice.Type.Bluetooth) {
+                core.currentCall?.outputAudioDevice = audioDevice
+            }*/
+        }
+    }
+
+    fun toogleMicrophone() {
+        core.currentCall?.let { currentCall ->
+            isMicrophoneMuted = !isMicrophoneMuted
+            currentCall.microphoneMuted = isMicrophoneMuted
+        }
     }
 }

@@ -102,6 +102,12 @@ class OutgoingCallFragment : BaseFragment() {
         binding.bHangup.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpOutgoingCall()
         }
+        binding.bSpeaker.setOnClickListener {
+            CoreHelper.getInstance(requireContext())?.toggleSpeaker()
+        }
+        binding.bMicrophone.setOnClickListener {
+            CoreHelper.getInstance(requireContext())?.toogleMicrophone()
+        }
     }
 
     private fun getData() {

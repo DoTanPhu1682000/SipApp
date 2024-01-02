@@ -103,6 +103,12 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         binding.bAnswerIncomingCall.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.answer()
         }
+        binding.bSpeaker.setOnClickListener {
+            CoreHelper.getInstance(requireContext())?.toggleSpeaker()
+        }
+        binding.bMicrophone.setOnClickListener {
+            CoreHelper.getInstance(requireContext())?.toogleMicrophone()
+        }
     }
 
     private fun checkAcceptCall() {

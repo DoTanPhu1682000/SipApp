@@ -3,7 +3,9 @@ package com.dotanphu.sipapp.component.service
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import androidx.core.content.ContextCompat
 import com.dotanphu.sipapp.data.DataManager
 import com.dotanphu.sipapp.data.model.response.Login
@@ -86,7 +88,9 @@ class PrepareCallService : Service() {
                 override fun onError(e: Throwable) {}
                 override fun onRegistrationStateChanged(isSuccessful: Boolean) {
                     if (isSuccessful) {
-                        NotificationUtil.createIncomingCallNotification(applicationContext)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            NotificationUtil.createIncomingCallNotification(applicationContext)
+                        }, 3000)
                     }
                 }
             })
