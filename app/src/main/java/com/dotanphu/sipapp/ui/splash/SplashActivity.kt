@@ -36,8 +36,10 @@ class SplashActivity : BaseActivity() {
                         CoreHelper.getInstance(applicationContext)?.login()
                     }
                     startActivity(MainActivity.newIntent(applicationContext))
+                    finish()
                 } else {
                     startActivity(AccountLoginActivity.newIntent(applicationContext))
+                    finish()
                 }
             }
         }, 1000)

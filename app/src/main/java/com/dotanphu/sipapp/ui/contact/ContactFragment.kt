@@ -1,6 +1,8 @@
 package com.dotanphu.sipapp.ui.contact
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,6 +83,16 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun listener() {
+        binding.etKeyword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(editable: Editable?) {
+                filterList(editable.toString().trim())
+            }
+        })
+
         binding.swipeRefreshLayout.setOnRefreshListener(this)
     }
 
@@ -92,6 +104,14 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         }
 
         viewModel.getListUsers()
+    }
+
+    private fun filterList(query: String) {
+        val filteredList = mList.filter { user ->
+            user.username!!.contains(query, ignoreCase = true) || user.description!!.contains(query, ignoreCase = true)
+        }
+
+        mAdapter.updateData(filteredList)
     }
 
     override fun onRefresh() {

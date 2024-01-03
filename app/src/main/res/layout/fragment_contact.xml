@@ -56,7 +56,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:lines="1"
-                android:textColor="@color/colorTextPrimary"
+                android:textColor="@color/white"
                 android:textColorHint="#8FD3FF" />
 
             <com.widget.ButtonImageView

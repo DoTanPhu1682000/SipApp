@@ -18,6 +18,7 @@ object AppConfig {
     /*----------------------------------[CONFIG]--------------------------------------------------*/
     const val TAG = "APP"
     const val IS_DEBUG = true //BuildConfig.DEBUG;
+    const val BACK_TO_EXIT_TIME = 2 * 1000L //Thời gian chờ thoát ứng dụng (Milliseconds)
     const val REQUEST_TIMEOUT = 12
 
     const val OTP_RESEND_WAIT_TIME = 120 * 1000 //Thời gian chờ gửi lại OTP (Milliseconds)

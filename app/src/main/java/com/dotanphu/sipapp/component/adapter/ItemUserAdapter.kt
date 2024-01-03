@@ -7,7 +7,7 @@ import com.dotanphu.sipapp.component.listener.OnItemClickListener
 import com.dotanphu.sipapp.data.model.response.User
 import com.dotanphu.sipapp.databinding.RowItemUsersBinding
 
-class ItemUserAdapter(private val mList: List<User>) : RecyclerView.Adapter<ItemUserAdapter.ItemViewHolder>() {
+class ItemUserAdapter(private var mList: List<User>) : RecyclerView.Adapter<ItemUserAdapter.ItemViewHolder>() {
     private var mOnItemClickListener: OnItemClickListener? = null
 
     fun setOnItemClickListener(mOnItemClickListener: OnItemClickListener) {
@@ -36,5 +36,10 @@ class ItemUserAdapter(private val mList: List<User>) : RecyclerView.Adapter<Item
                 mOnItemClickListener?.onItemClick(adapterPosition)
             }
         }
+    }
+
+    fun updateData(newList: List<User>) {
+        mList = newList
+        notifyDataSetChanged()
     }
 }

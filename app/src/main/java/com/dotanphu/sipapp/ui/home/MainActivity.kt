@@ -5,10 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.custom.ViewPager2Adapter
+import com.dotanphu.sipapp.AppConfig.BACK_TO_EXIT_TIME
 import com.dotanphu.sipapp.R
 import com.dotanphu.sipapp.component.base.BaseActivity
 import com.dotanphu.sipapp.component.dialog.ConfirmDialog
@@ -22,6 +25,7 @@ import com.dotanphu.sipapp.utils.constant.RequestCode.REQUEST_DRAW_OVERLAY_SETTI
 import com.dotanphu.sipapp.utils.constant.RequestCode.REQUEST_ENABLE_LOCATION
 import com.google.android.material.navigation.NavigationBarView
 import com.utils.LogUtil
+import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +39,8 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ViewPager2Adapter
+
+    private var doubleBackToExitPressedOnce = false
 
     private val mOnItemSelectedListener = NavigationBarView.OnItemSelectedListener { item: MenuItem ->
         val itemId = item.itemId
@@ -140,6 +146,17 @@ class MainActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_DRAW_OVERLAY_SETTING -> showLocationDialog()
+        }
+    }
+
+    override fun onBackPressed() {
+        //Checking for fragment count on backstack
+        if (supportFragmentManager.backStackEntryCount > 0) supportFragmentManager.popBackStack() else if (!doubleBackToExitPressedOnce) {
+            this.doubleBackToExitPressedOnce = true
+            ToastColor.info(applicationContext, getString(R.string.message_exit_app))
+            Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, BACK_TO_EXIT_TIME)
+        } else {
+            super.onBackPressed()
         }
     }
 }
