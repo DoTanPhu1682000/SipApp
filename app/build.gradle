@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.dotanphu.sipapp'
+    namespace 'com.vegastar.sipapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.dotanphu.sipapp"
+        applicationId "com.vegastar.sipapp"
         minSdk 24
         targetSdk 33
         versionCode 1
