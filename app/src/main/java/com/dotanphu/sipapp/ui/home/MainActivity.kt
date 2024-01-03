@@ -19,6 +19,7 @@ import com.dotanphu.sipapp.component.listener.OnDialogButtonClickListener
 import com.dotanphu.sipapp.databinding.ActivityMainBinding
 import com.dotanphu.sipapp.ui.contact.ContactFragment
 import com.dotanphu.sipapp.ui.dialer.DialerFragment
+import com.dotanphu.sipapp.ui.history.CallLogFragment
 import com.dotanphu.sipapp.utils.PermissionsHelper
 import com.dotanphu.sipapp.utils.Tool
 import com.dotanphu.sipapp.utils.constant.RequestCode.REQUEST_DRAW_OVERLAY_SETTING
@@ -77,7 +78,7 @@ class MainActivity : BaseActivity() {
         //Chú ý: Không sử dụng ButterKnife trong các Fragment của ViewPager
         adapter = ViewPager2Adapter(this)
 
-        adapter.addFragment(DialerFragment.newInstance())
+        adapter.addFragment(CallLogFragment.newInstance())
         adapter.addFragment(ContactFragment.newInstance())
         adapter.addFragment(DialerFragment.newInstance())
         adapter.addFragment(DialerFragment.newInstance())

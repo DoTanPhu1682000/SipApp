@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus
 import org.linphone.core.Account
 import org.linphone.core.AudioDevice
 import org.linphone.core.Call
+import org.linphone.core.CallLog
 import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
 import org.linphone.core.Factory
@@ -144,6 +145,11 @@ class CoreHelper(val context: Context) {
 
                 else -> {}
             }
+        }
+
+        override fun onCallLogUpdated(core: Core, callLog: CallLog) {
+            LogUtil.wtf("[History Detail] New call log for ${callLog.remoteAddress.asStringUriOnly()} with local address ${callLog.localAddress.asStringUriOnly()}")
+            LogUtil.wtf(callLog.startDate.toString())
         }
     }
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sBackground"
+    tools:context=".ui.history.CallLogFragment">
+
+    <ImageView
+        android:id="@+id/imgBannerTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_238"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_banner_bottom" />
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/_44"
+        android:layout_height="@dimen/_44"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_32"
+        android:layout_marginEnd="@dimen/_16"
+        android:contentDescription="@null"
+        android:src="@drawable/img_user" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgAvatar"
+        android:layout_marginTop="@dimen/_16"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_16">
+
+        <TextView
+            style="@style/H4Strong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XIN CHÀO BẠN"
+            android:textColor="@color/white" />
+
+        <TextView
+            style="@style/P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4"
+            android:text="Chào mừng bạn đến với"
+            android:textColor="@color/white" />
+
+        <TextView
+            style="@style/P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ứng dụng liên lạc nội bộ Vegastar"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgBannerTop"
+        android:layout_marginHorizontal="@dimen/_16"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/bg_white_border_8">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@drawable/tab_color_selector"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextAppearance="@style/tabNormal"
+            app:tabTextColor="@color/colorTextSecondary" />
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llTabs">
+
+        <com.widget.StatusProgressLayout
+            android:id="@+id/statusLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/_16"
+                android:paddingVertical="@dimen/_8"
+                tools:itemCount="6"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_item_call_log" />
+        </com.widget.StatusProgressLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
