@@ -1,6 +1,5 @@
 package com.dotanphu.sipapp.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +8,8 @@ import com.dotanphu.sipapp.component.base.BaseActivity
 import com.dotanphu.sipapp.databinding.ActivitySplashBinding
 import com.dotanphu.sipapp.ui.home.MainActivity
 import com.dotanphu.sipapp.ui.login.AccountLoginActivity
+import com.dotanphu.sipapp.utils.core.CoreHelper
+import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,12 +31,14 @@ class SplashActivity : BaseActivity() {
 
                 startActivity(AccountLoginActivity.newIntent(applicationContext))
             } else {
-//                if (isLogin) {
-//                    startActivity(MainActivity.newIntent(applicationContext))
-//                } else {
-//                    startActivity(AccountLoginActivity.newIntent(applicationContext))
-//                }
-                startActivity(AccountLoginActivity.newIntent(applicationContext))
+                if (isLogin) {
+                    if (CoreHelper.getInstance(applicationContext)?.isCoreRunning() == false) {
+                        CoreHelper.getInstance(applicationContext)?.login()
+                    }
+                    startActivity(MainActivity.newIntent(applicationContext))
+                } else {
+                    startActivity(AccountLoginActivity.newIntent(applicationContext))
+                }
             }
         }, 1000)
     }

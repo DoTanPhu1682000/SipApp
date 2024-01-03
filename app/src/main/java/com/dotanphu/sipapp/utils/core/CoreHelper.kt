@@ -191,6 +191,32 @@ class CoreHelper(val context: Context) {
         return core.globalState == GlobalState.On
     }
 
+    fun login() {
+        val appPreferenceHelper = AppPreferenceHelper(context)
+        val username = appPreferenceHelper.username.toString()
+        val password = appPreferenceHelper.password.toString()
+        val domain = "192.168.14.209"
+        val authInfo = Factory.instance()
+            .createAuthInfo(username, null, password, null, null, domain, null)
+
+        val accountParams = core.createAccountParams()
+        val identity = Factory.instance().createAddress("sip:$username@$domain")
+        accountParams.identityAddress = identity
+
+        val address = Factory.instance().createAddress("sip:$domain")
+        address?.transport = TransportType.Udp
+        accountParams.serverAddress = address
+        accountParams.isRegisterEnabled = true
+
+        val account = core.createAccount(accountParams)
+        core.addAuthInfo(authInfo)
+        core.addAccount(account)
+        core.defaultAccount = account
+
+        core.addListener(coreListener)
+        core.start()
+    }
+
     fun getRemoteAddress(): String? {
         return core.currentCall?.remoteAddress?.asStringUriOnly()
     }
