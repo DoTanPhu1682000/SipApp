@@ -28,4 +28,6 @@
     <string name="notification">Thông báo</string>
     <string name="msg_permission_display_over_other_apps">Bạn cần cho phép ứng dụng hiển thị trên các ứng dụng khác trong cài đặt</string>
     <string name="message_exit_app">Bấm Back lần nữa để thoát.</string>
+    <string name="today">Hôm nay</string>
+    <string name="yesterday">Hôm qua</string>
 </resources>

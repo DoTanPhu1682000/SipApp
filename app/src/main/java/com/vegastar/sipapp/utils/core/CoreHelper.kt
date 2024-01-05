@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import com.utils.LogUtil
 import com.vegastar.sipapp.AppConfig.TAG
 import com.vegastar.sipapp.component.service.PrepareCallService
 import com.vegastar.sipapp.data.model.event.NotifyEvent
@@ -12,7 +13,6 @@ import com.vegastar.sipapp.data.prefs.AppPreferenceHelper
 import com.vegastar.sipapp.ui.call.IncomingCallActivity
 import com.vegastar.sipapp.utils.ActivityLifecycle
 import com.vegastar.sipapp.utils.NotificationUtil
-import com.utils.LogUtil
 import org.greenrobot.eventbus.EventBus
 import org.linphone.core.Account
 import org.linphone.core.AudioDevice
@@ -25,7 +25,6 @@ import org.linphone.core.GlobalState
 import org.linphone.core.MediaEncryption
 import org.linphone.core.RegistrationState
 import org.linphone.core.TransportType
-
 
 interface CoreHelperListener {
     fun onRegistrationStateChanged(isSuccessful: Boolean)
@@ -147,9 +146,8 @@ class CoreHelper(val context: Context) {
             }
         }
 
-        override fun onCallLogUpdated(core: Core, callLog: CallLog) {
-            LogUtil.wtf("[History Detail] New call log for ${callLog.remoteAddress.asStringUriOnly()} with local address ${callLog.localAddress.asStringUriOnly()}")
-            LogUtil.wtf(callLog.startDate.toString())
+        override fun onCallLogUpdated(core: Core, log: CallLog) {
+            LogUtil.wtf("[History Detail] New call log for ${log.remoteAddress.asStringUriOnly()} with local address ${log.localAddress.asStringUriOnly()}")
         }
     }
 
@@ -298,5 +296,9 @@ class CoreHelper(val context: Context) {
             isMicrophoneMuted = !isMicrophoneMuted
             currentCall.microphoneMuted = isMicrophoneMuted
         }
+    }
+
+    fun isCallLogMissed(callLog: CallLog): Boolean {
+        return (callLog.dir == Call.Dir.Incoming && (callLog.status == Call.Status.Missed || callLog.status == Call.Status.Aborted || callLog.status == Call.Status.EarlyAborted))
     }
 }

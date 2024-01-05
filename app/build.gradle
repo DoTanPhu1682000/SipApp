@@ -70,6 +70,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-iid:21.1.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.4.0'
 
+    //Image
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
     // https://github.com/google/flexbox-layout/blob/main/LICENSE Apache v2.0
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
