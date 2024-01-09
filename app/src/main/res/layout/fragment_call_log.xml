@@ -63,20 +63,42 @@
         android:layout_below="@id/imgBannerTop"
         android:layout_marginHorizontal="@dimen/_16"
         android:layout_marginTop="-30dp"
-        android:background="@drawable/bg_white_border_8">
+        android:background="@drawable/bg_white_border_12">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
+        <!--        <com.google.android.material.tabs.TabLayout-->
+        <!--            android:id="@+id/tabs"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:tabBackground="@drawable/tab_color_selector"-->
+        <!--            app:tabGravity="fill"-->
+        <!--            app:tabIndicatorHeight="0dp"-->
+        <!--            app:tabMaxWidth="0dp"-->
+        <!--            app:tabMode="fixed"-->
+        <!--            app:tabSelectedTextColor="@color/colorAccent"-->
+        <!--            app:tabTextAppearance="@style/tabNormal"-->
+        <!--            app:tabTextColor="@color/colorTextSecondary" />-->
+
+        <Button
+            android:id="@+id/bAllCallLog"
+            style="@style/P1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabBackground="@drawable/tab_color_selector"
-            app:tabGravity="fill"
-            app:tabIndicatorHeight="0dp"
-            app:tabMaxWidth="0dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabTextAppearance="@style/tabNormal"
-            app:tabTextColor="@color/colorTextSecondary" />
+            android:layout_weight="1"
+            android:background="@drawable/bg_call_log_select"
+            android:text="Tất cả"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/bMissedCallLog"
+            style="@style/P1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_call_log_unselect"
+            android:text="Gọi nhỡ"
+            android:textAllCaps="false"
+            android:textColor="@color/ink300" />
     </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
