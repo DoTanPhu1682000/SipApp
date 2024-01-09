@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.utils.LogUtil
+import com.utils.ViewUtil
 import com.vegastar.sipapp.component.adapter.ItemUserAdapter
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.component.listener.OnItemClickListener
 import com.vegastar.sipapp.data.model.response.User
 import com.vegastar.sipapp.databinding.FragmentContactBinding
 import com.vegastar.sipapp.ui.call.OutgoingCallActivity
-import com.utils.ViewUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,7 +52,10 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 if (!isClickable()) return
-                requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), mList[position].username.toString(), mList[position].displayName.toString()))
+                LogUtil.wtf("fcmToken: ${mList[position].displayName}")
+                if (mList[position].displayName!!.isNotEmpty()) {
+                    requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), mList[position].username.toString(), mList[position].displayName.toString()))
+                }
             }
         })
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

@@ -36,12 +36,12 @@ class ItemCallLogAdapter(private val context: Context, private var mList: List<G
 
     inner class ItemViewHolder(val binding: RowItemCallLogBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(callLogGroup: GroupedCallLogData) {
-            binding.tvUserName.text = "${callLogGroup.callLogs[0].remoteAddress.displayName}"
-            binding.tvDescription.text = "${callLogGroup.callLogs[0].remoteAddress.username}"
+            binding.tvUserName.text = "${callLogGroup.lastCallLog.remoteAddress.displayName}"
+            binding.tvDescription.text = "${callLogGroup.lastCallLog.remoteAddress.username}"
             binding.tvTime.text = formatDate(context, callLogGroup.lastCallLogStartTimestamp)
 
-            if (callLogGroup.callLogs[0].dir == Call.Dir.Incoming) {
-                if (CoreHelper.getInstance(context)?.isCallLogMissed(callLogGroup.callLogs[0]) == true) {
+            if (callLogGroup.lastCallLog.dir == Call.Dir.Incoming) {
+                if (CoreHelper.getInstance(context)?.isCallLogMissed(callLogGroup.lastCallLog) == true) {
                     Glide.with(context)
                         .load(R.drawable.call_status_missed)
                         .transition(DrawableTransitionOptions.withCrossFade())

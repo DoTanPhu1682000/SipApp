@@ -3,17 +3,15 @@ package com.vegastar.sipapp.component.service
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import androidx.core.content.ContextCompat
+import com.utils.LogUtil
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.response.Login
 import com.vegastar.sipapp.utils.NotificationUtil
 import com.vegastar.sipapp.utils.NotificationUtil.NOTIFY_ID_PREPARE_CALL
 import com.vegastar.sipapp.utils.core.CoreHelper
 import com.vegastar.sipapp.utils.core.CoreHelperListener
-import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -88,9 +86,7 @@ class PrepareCallService : Service() {
                 override fun onError(e: Throwable) {}
                 override fun onRegistrationStateChanged(isSuccessful: Boolean) {
                     if (isSuccessful) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            NotificationUtil.createIncomingCallNotification(applicationContext)
-                        }, 3000)
+                        LogUtil.wtf("isSuccessful")
                     }
                 }
             })

@@ -94,7 +94,7 @@ class OutgoingCallFragment : BaseFragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 CoreHelper.getInstance(requireContext())?.start()
                 CoreHelper.getInstance(requireContext())?.outgoingCall(phone)
-            }, 8000)
+            }, 6000)
         }
     }
 
