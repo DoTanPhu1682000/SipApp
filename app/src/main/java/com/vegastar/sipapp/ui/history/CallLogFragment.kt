@@ -72,7 +72,6 @@ class CallLogFragment : BaseFragment() {
     }
 
     private fun showAllCallLogs() {
-        mList.clear()
         filter = CallLogsFilter.ALL
         type = 0
         checkCallLogAllOrMissed()
@@ -80,7 +79,6 @@ class CallLogFragment : BaseFragment() {
     }
 
     private fun showOnlyMissedCallLogs() {
-        mList.clear()
         filter = CallLogsFilter.MISSED
         type = 1
         checkCallLogAllOrMissed()
@@ -91,26 +89,24 @@ class CallLogFragment : BaseFragment() {
         val allCallLogs = CoreHelper.getInstance(requireContext())?.core?.callLogs
         LogUtil.wtf("${allCallLogs?.size} call logs found")
 
+        mList.clear()
+
         mList = when (filter) {
-            CallLogsFilter.MISSED -> computeCallLogs(allCallLogs!!, missed = true, conference = false)
-            CallLogsFilter.CONFERENCE -> computeCallLogs(allCallLogs!!, missed = false, conference = true)
-            else -> computeCallLogs(allCallLogs!!, missed = false, conference = false)
+            CallLogsFilter.MISSED -> computeCallLogs(allCallLogs!!, missed = true)
+            else -> computeCallLogs(allCallLogs!!, missed = false)
         }
 
         mAdapter.notifyDataSetChanged()
     }
 
-    private fun computeCallLogs(callLogs: Array<CallLog>, missed: Boolean, conference: Boolean): ArrayList<GroupedCallLogData> {
+    private fun computeCallLogs(callLogs: Array<CallLog>, missed: Boolean): ArrayList<GroupedCallLogData> {
         var previousCallLogGroup: GroupedCallLogData? = null
 
         for (callLog in callLogs) {
-            if ((!missed && !conference) || (missed && CoreHelper.getInstance(requireContext())?.isCallLogMissed(callLog) == true) || (conference && callLog.wasConference())) {
+            if ((!missed) || (missed && CoreHelper.getInstance(requireContext())?.isCallLogMissed(callLog) == true)) {
                 if (previousCallLogGroup == null) {
                     previousCallLogGroup = GroupedCallLogData(callLog)
-                } else if (!callLog.wasConference() && // Do not group conference call logs
-                    callLog.wasConference() == previousCallLogGroup.lastCallLog.wasConference() && // Check that both are of the same type, if one has a conf-id and not the other the equal method will return true !
-                    previousCallLogGroup.lastCallLog.localAddress.weakEqual(callLog.localAddress) && previousCallLogGroup.lastCallLog.remoteAddress.equal(callLog.remoteAddress)
-                ) {
+                } else if (previousCallLogGroup.lastCallLog.localAddress.weakEqual(callLog.localAddress) && previousCallLogGroup.lastCallLog.remoteAddress.equal(callLog.remoteAddress)) {
                     if (TimestampUtils.isSameDay(previousCallLogGroup.lastCallLogStartTimestamp, callLog.startDate)) {
                         previousCallLogGroup.callLogs.add(callLog)
                         previousCallLogGroup.updateLastCallLog(callLog)
@@ -150,5 +146,5 @@ class CallLogFragment : BaseFragment() {
 }
 
 enum class CallLogsFilter {
-    ALL, MISSED, CONFERENCE
+    ALL, MISSED
 }
