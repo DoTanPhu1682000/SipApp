@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.contact
+package com.vegastar.sipapp.ui.home.contact
 
 import android.os.Bundle
 import android.text.Editable

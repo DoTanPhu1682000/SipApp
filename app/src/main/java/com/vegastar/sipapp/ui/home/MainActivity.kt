@@ -17,9 +17,9 @@ import com.vegastar.sipapp.component.base.BaseActivity
 import com.vegastar.sipapp.component.dialog.ConfirmDialog
 import com.vegastar.sipapp.component.listener.OnDialogButtonClickListener
 import com.vegastar.sipapp.databinding.ActivityMainBinding
-import com.vegastar.sipapp.ui.contact.ContactFragment
-import com.vegastar.sipapp.ui.dialer.DialerFragment
-import com.vegastar.sipapp.ui.history.CallLogFragment
+import com.vegastar.sipapp.ui.home.contact.ContactFragment
+import com.vegastar.sipapp.ui.home.dialer.DialerFragment
+import com.vegastar.sipapp.ui.home.history.list.CallLogFragment
 import com.vegastar.sipapp.utils.PermissionsHelper
 import com.vegastar.sipapp.utils.Tool
 import com.vegastar.sipapp.utils.constant.RequestCode.REQUEST_DRAW_OVERLAY_SETTING

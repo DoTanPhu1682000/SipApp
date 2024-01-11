@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.history
+package com.vegastar.sipapp.ui.home.history.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.adapter.ItemCallLogAdapter
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.databinding.FragmentCallLogBinding
-import com.vegastar.sipapp.ui.history.data.GroupedCallLogData
+import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -97,6 +97,12 @@ class CallLogFragment : BaseFragment() {
         }
 
         mAdapter.notifyDataSetChanged()
+
+        if (mList.isEmpty()) {
+            binding.statusLayout.showEmpty()
+        } else {
+            binding.statusLayout.showContent()
+        }
     }
 
     private fun computeCallLogs(callLogs: Array<CallLog>, missed: Boolean): ArrayList<GroupedCallLogData> {

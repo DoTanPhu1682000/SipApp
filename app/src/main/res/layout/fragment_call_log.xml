@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sBackground"
-    tools:context=".ui.history.CallLogFragment">
+    tools:context=".ui.home.history.list.CallLogFragment">
 
     <ImageView
         android:id="@+id/imgBannerTop"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4"
-            android:text="Chào mừng bạn đến với"
+            android:text="Chào mừng đến với"
             android:textColor="@color/white" />
 
         <TextView
@@ -83,6 +83,7 @@
             style="@style/P1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4"
             android:layout_weight="1"
             android:background="@drawable/bg_call_log_select"
             android:text="Tất cả"
@@ -94,6 +95,7 @@
             style="@style/P1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4"
             android:layout_weight="1"
             android:background="@drawable/bg_call_log_unselect"
             android:text="Gọi nhỡ"
@@ -105,12 +107,14 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/llTabs">
+        android:layout_below="@id/llTabs"
+        android:layout_marginTop="@dimen/_10">
 
         <com.widget.StatusProgressLayout
             android:id="@+id/statusLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:sl_background="@color/background">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvContent"

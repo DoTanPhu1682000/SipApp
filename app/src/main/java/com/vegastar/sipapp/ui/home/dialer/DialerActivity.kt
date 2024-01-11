@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.contact
+package com.vegastar.sipapp.ui.home.dialer
 
 import android.content.Context
 import android.content.Intent
@@ -8,17 +8,17 @@ import com.vegastar.sipapp.component.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ContactActivity : BaseActivity() {
+class DialerActivity : BaseActivity() {
 
     companion object {
         fun newIntent(context: Context?): Intent {
-            return Intent(context, ContactActivity::class.java)
+            return Intent(context, DialerActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_main)
-        replace(supportFragmentManager, R.id.content, ContactFragment.newInstance(), false)
+        replace(supportFragmentManager, R.id.content, DialerFragment.newInstance(), false)
     }
 }

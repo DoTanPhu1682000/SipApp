@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.dialer
+package com.vegastar.sipapp.ui.home.dialer
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.response.User
 import com.vegastar.sipapp.databinding.FragmentDialerBinding
 import com.vegastar.sipapp.ui.call.OutgoingCallActivity
-import com.vegastar.sipapp.ui.contact.ContactViewModel
+import com.vegastar.sipapp.ui.home.contact.ContactViewModel
 import com.utils.LogUtil
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint

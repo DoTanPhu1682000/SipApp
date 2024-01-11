@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.contact
+package com.vegastar.sipapp.ui.home.contact
 
 import androidx.lifecycle.MutableLiveData
 import com.vegastar.sipapp.component.base.BaseViewModel

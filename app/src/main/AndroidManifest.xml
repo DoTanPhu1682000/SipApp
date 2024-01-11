@@ -141,7 +141,7 @@
             android:name=".ui.TestActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.contact.ContactActivity"
+            android:name=".ui.home.contact.ContactActivity"
             android:exported="false" />
         <activity
             android:name=".ui.call.OutgoingCallActivity"
@@ -150,7 +150,7 @@
             android:name=".ui.call.IncomingCallActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.dialer.DialerActivity"
+            android:name=".ui.home.dialer.DialerActivity"
             android:exported="true" />
         <activity
             android:name=".ui.home.MainActivity"

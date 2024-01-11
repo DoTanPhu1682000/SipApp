@@ -9,7 +9,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.listener.OnItemClickListener
 import com.vegastar.sipapp.databinding.RowItemCallLogBinding
-import com.vegastar.sipapp.ui.history.data.GroupedCallLogData
+import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
 import org.linphone.core.Call
@@ -36,8 +36,11 @@ class ItemCallLogAdapter(private val context: Context, private var mList: List<G
 
     inner class ItemViewHolder(val binding: RowItemCallLogBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(callLogGroup: GroupedCallLogData) {
-            binding.tvUserName.text = "${callLogGroup.lastCallLog.remoteAddress.displayName}"
-            binding.tvDescription.text = "${callLogGroup.lastCallLog.remoteAddress.username}"
+            if (callLogGroup.lastCallLog.remoteAddress.displayName == null) {
+                binding.tvUserName.text = "${callLogGroup.lastCallLog.remoteAddress.username}"
+            } else {
+                binding.tvUserName.text = "${callLogGroup.lastCallLog.remoteAddress.displayName}"
+            }
             binding.tvTime.text = formatDate(context, callLogGroup.lastCallLogStartTimestamp)
 
             if (callLogGroup.lastCallLog.dir == Call.Dir.Incoming) {

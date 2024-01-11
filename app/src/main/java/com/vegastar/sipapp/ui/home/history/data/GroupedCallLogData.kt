@@ -1,4 +1,4 @@
-package com.vegastar.sipapp.ui.history.data
+package com.vegastar.sipapp.ui.home.history.data
 
 import org.linphone.core.CallLog
 
