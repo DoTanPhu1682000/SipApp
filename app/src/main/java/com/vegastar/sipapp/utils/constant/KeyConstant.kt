@@ -53,4 +53,7 @@ object KeyConstant {
     const val KEY_ACTION = "action"
     const val KEY_OBJECT = "object"
     const val KEY_FCM_TOKEN = "KEY_FCM_TOKEN"
+    const val KEY_USER_NAME = "KEY_USER_NAME"
+    const val KEY_DISPLAY_NAME = "KEY_DISPLAY_NAME"
+    const val KEY_LAST_CALL_LOG_START_TIME = "KEY_LAST_CALL_LOG_START_TIME"
 }

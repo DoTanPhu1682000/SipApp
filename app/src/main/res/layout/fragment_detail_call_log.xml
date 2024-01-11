@@ -1,10 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".ui.home.history.detail.DetailCallLogFragment">
 
+    <com.widget.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toolbar_background="@color/colorAccent"
+        app:toolbar_iconLeft="@drawable/ic_back"
+        app:toolbar_iconLeftColor="@color/white"
+        app:toolbar_iconLeftSize="@dimen/_18" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_140">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_white_round_top_20" />
+
+        <View
+            android:layout_width="@dimen/_114"
+            android:layout_height="@dimen/_114"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_white" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/_90"
+            android:layout_height="@dimen/_90"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_profile_user_blue"
+            android:transitionName="@string/transition_1"
+            app:civ_border="false" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvUserName"
+            style="@style/H3Strong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/ink500"
+            tools:text="Đỗ Tấn Phú" />
+
+        <TextView
+            style="@style/H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/ink400"
+            tools:text="0356709236" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1"
+            android:layout_marginHorizontal="@dimen/_16"
+            android:layout_marginTop="@dimen/_20"
+            android:background="@color/sLine" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_16">
+
+            <com.widget.StatusProgressLayout
+                android:id="@+id/statusLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:sl_background="@color/white">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="@dimen/_16"
+                    android:paddingVertical="@dimen/_8"
+                    tools:itemCount="6"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_item_call_log" />
+            </com.widget.StatusProgressLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </LinearLayout>

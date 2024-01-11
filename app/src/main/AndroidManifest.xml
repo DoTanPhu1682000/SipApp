@@ -153,6 +153,9 @@
             android:name=".ui.home.dialer.DialerActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.home.history.detail.DetailCallLogActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.home.MainActivity"
             android:exported="true" />
         <activity

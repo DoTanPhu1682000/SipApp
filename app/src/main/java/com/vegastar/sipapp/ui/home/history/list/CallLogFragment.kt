@@ -10,8 +10,10 @@ import com.utils.LogUtil
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.adapter.ItemCallLogAdapter
 import com.vegastar.sipapp.component.base.BaseFragment
+import com.vegastar.sipapp.component.listener.OnItemClickListener
 import com.vegastar.sipapp.databinding.FragmentCallLogBinding
 import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
+import com.vegastar.sipapp.ui.home.history.detail.DetailCallLogActivity
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +48,16 @@ class CallLogFragment : BaseFragment() {
 
     private fun initData() {
         mAdapter = ItemCallLogAdapter(requireContext(), mList)
+        mAdapter.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+//                requireActivity().startActivity(DetailCallLogActivity.newIntent(
+//                    requireContext(),
+//                    mList[position].lastCallLog.remoteAddress.username.toString(),
+//                    mList[position].lastCallLog.remoteAddress.displayName.toString(),
+//                    mList[position].lastCallLogStartTimestamp.toString()
+//                ))
+            }
+        })
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvContent.adapter = mAdapter
 
