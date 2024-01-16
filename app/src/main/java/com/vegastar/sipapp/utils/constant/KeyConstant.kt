@@ -56,4 +56,5 @@ object KeyConstant {
     const val KEY_USER_NAME = "KEY_USER_NAME"
     const val KEY_DISPLAY_NAME = "KEY_DISPLAY_NAME"
     const val KEY_LAST_CALL_LOG_START_TIME = "KEY_LAST_CALL_LOG_START_TIME"
+    const val KEY_LIST_CALL_LOG = "KEY_LIST_CALL_LOG"
 }

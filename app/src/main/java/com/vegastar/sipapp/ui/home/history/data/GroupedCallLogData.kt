@@ -1,8 +1,9 @@
 package com.vegastar.sipapp.ui.home.history.data
 
 import org.linphone.core.CallLog
+import java.io.Serializable
 
-class GroupedCallLogData(callLog: CallLog) {
+class GroupedCallLogData(callLog: CallLog) : Serializable {
     val callLogs = arrayListOf(callLog)
 
     var lastCallLog: CallLog = callLog

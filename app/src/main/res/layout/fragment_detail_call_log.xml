@@ -59,6 +59,7 @@
             tools:text="Đỗ Tấn Phú" />
 
         <TextView
+            android:id="@+id/tvPhone"
             style="@style/H5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,6 +73,16 @@
             android:layout_marginHorizontal="@dimen/_16"
             android:layout_marginTop="@dimen/_20"
             android:background="@color/sLine" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/H4Strong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16"
+            android:layout_marginTop="@dimen/_16"
+            android:textColor="@color/ink500"
+            tools:text="Ngày 6 tháng 12, 2023" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
@@ -90,11 +101,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingHorizontal="@dimen/_16"
-                    android:paddingVertical="@dimen/_8"
                     tools:itemCount="6"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/row_item_call_log" />
+                    tools:listitem="@layout/row_item_detail_call_log" />
             </com.widget.StatusProgressLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>

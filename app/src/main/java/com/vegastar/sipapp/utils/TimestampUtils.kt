@@ -85,5 +85,11 @@ class TimestampUtils {
         private fun isSameYear(cal1: Calendar, cal2: Calendar): Boolean {
             return cal1[Calendar.ERA] == cal2[Calendar.ERA] && cal1[Calendar.YEAR] == cal2[Calendar.YEAR]
         }
+
+        fun formatTimestamp(timestamp: Long): String {
+            val dateFormat = SimpleDateFormat("dd MMMM, yyyy", Locale.getDefault())
+            val millis = timestamp * 1000 // Chuyển đổi sang milliseconds nếu timestamp được cung cấp dưới dạng giây
+            return dateFormat.format(Date(millis)).capitalize(Locale.getDefault())
+        }
     }
 }

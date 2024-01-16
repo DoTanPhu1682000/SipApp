@@ -3,12 +3,12 @@ package com.vegastar.sipapp.data.prefs
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.TextUtils
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.vegastar.sipapp.AppConfig
 import com.vegastar.sipapp.data.model.response.Login
 import com.vegastar.sipapp.data.model.response.User
 import com.vegastar.sipapp.utils.constant.StringConstant
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import org.linphone.core.TransportType
 import javax.inject.Inject
 

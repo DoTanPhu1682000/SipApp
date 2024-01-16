@@ -12,6 +12,7 @@ import com.vegastar.sipapp.component.adapter.ItemCallLogAdapter
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.component.listener.OnItemClickListener
 import com.vegastar.sipapp.databinding.FragmentCallLogBinding
+import com.vegastar.sipapp.ui.home.history.singleton.ShareItem
 import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.ui.home.history.detail.DetailCallLogActivity
 import com.vegastar.sipapp.utils.TimestampUtils
@@ -50,12 +51,14 @@ class CallLogFragment : BaseFragment() {
         mAdapter = ItemCallLogAdapter(requireContext(), mList)
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-//                requireActivity().startActivity(DetailCallLogActivity.newIntent(
-//                    requireContext(),
-//                    mList[position].lastCallLog.remoteAddress.username.toString(),
-//                    mList[position].lastCallLog.remoteAddress.displayName.toString(),
-//                    mList[position].lastCallLogStartTimestamp.toString()
-//                ))
+                ShareItem.callLogs = mList[position].callLogs
+
+                requireActivity().startActivity(DetailCallLogActivity.newIntent(
+                    requireContext(),
+                    mList[position].lastCallLog.remoteAddress.username,
+                    mList[position].lastCallLog.remoteAddress.displayName,
+                    mList[position].lastCallLogStartTimestamp,
+                ))
             }
         })
         binding.rvContent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
