@@ -1,12 +1,12 @@
 package com.vegastar.sipapp.data.api
 
 import com.androidnetworking.error.ANError
-import com.vegastar.sipapp.data.model.response.Login
-import com.vegastar.sipapp.data.model.response.User
-import com.vegastar.sipapp.data.prefs.AppPreferenceHelper
 import com.exception.TokenRefreshException
 import com.rx3androidnetworking.Rx3AndroidNetworking
 import com.utils.LogUtil
+import com.vegastar.sipapp.data.model.response.Login
+import com.vegastar.sipapp.data.model.response.User
+import com.vegastar.sipapp.data.prefs.AppPreferenceHelper
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.CompletableSource
 import io.reactivex.rxjava3.core.CompletableTransformer
@@ -33,7 +33,8 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
     private fun getKeyAuthorization(): String {
         //for test with password
         //return "Basic bWVkaWhvbWU6bWVkaWhvbWVAMTIzNEAjJA==" //Medihome
-        return "Basic ZmY1NmI3Yzg3YzRiOGY1Nzk0ZjhjZmU4NjYwYzcxM2ZjMWY1YWVlZjQzNWIxZTAzNzZhYjMxYzBkM2RkZjQ4MjphODMzZGU1MmIzNjIzM2ZkMDAxODkzMjQxNzJlMTYyOQ=="
+        //return "Basic ZmY1NmI3Yzg3YzRiOGY1Nzk0ZjhjZmU4NjYwYzcxM2ZjMWY1YWVlZjQzNWIxZTAzNzZhYjMxYzBkM2RkZjQ4MjphODMzZGU1MmIzNjIzM2ZkMDAxODkzMjQxNzJlMTYyOQ==" // Phu
+        return "Basic ZGZhYzc0ZDkyMzQ4Y2U4OTlkN2NjODNkOGUzODdiYjc2NmFiMDA4ODZiMDRjMWU0MjAwZTFkODI0N2M5NWYwYTo0ZmJjMWE4NzIzZGJmZTZjM2MwMDE3NzU2NDk2NTVhNw=="
     }
 
     override fun getUserInfo(): Single<Login> {
@@ -95,7 +96,8 @@ class AppApiHelper @Inject constructor(val appPreferenceHelper: AppPreferenceHel
                 if (throwable is ANError) {
                     LogUtil.wtf("doRefreshToken: %s", throwable.errorCode)
                     when (throwable.errorCode) {
-                        HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_UNAUTHORIZED ->                                     //case HTTP_FORBIDDEN:
+                        HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_UNAUTHORIZED ->
+                            //case HTTP_FORBIDDEN:
                             return@Function Single.error<Login>(TokenRefreshException())
 
                         else -> {}

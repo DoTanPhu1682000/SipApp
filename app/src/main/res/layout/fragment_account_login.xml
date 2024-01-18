@@ -84,12 +84,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/transparent"
-                    android:hint="Đỗ Tấn Phú"
+                    android:hint="Nhập số điện thoại"
                     android:inputType="textEmailAddress"
                     android:lines="1"
                     android:minHeight="0dp"
                     android:padding="0dp"
-                    android:text="104"
+                    android:text="610"
                     android:textColor="@color/ink500"
                     android:textColorHint="@color/ink400" />
             </LinearLayout>
@@ -157,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/transparent"
-                        android:hint="Password"
+                        android:hint="Nhập mật khẩu"
                         android:inputType="textPassword"
                         android:lines="1"
                         android:minHeight="0dp"

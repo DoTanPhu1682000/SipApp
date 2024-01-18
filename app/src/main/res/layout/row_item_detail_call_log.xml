@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/_16"
-        android:paddingVertical="@dimen/_12">
+        android:paddingVertical="@dimen/_6">
 
         <ImageView
             android:id="@+id/imgCall"

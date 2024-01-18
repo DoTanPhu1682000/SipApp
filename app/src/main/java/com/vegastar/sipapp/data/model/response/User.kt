@@ -50,6 +50,10 @@ class User : Serializable {
     val displayName: String? = null
 
     @Expose
+    @SerializedName("email")
+    val email: String? = null
+
+    @Expose
     @SerializedName("assigned")
     val assigned: List<String>? = null
 }

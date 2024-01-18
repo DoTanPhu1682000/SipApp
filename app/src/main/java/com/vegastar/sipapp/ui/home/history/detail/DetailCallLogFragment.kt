@@ -79,6 +79,11 @@ class DetailCallLogFragment : BaseFragment() {
         binding.toolbar.setOnClickSingleButtonListener {
             requireActivity().onBackPressed()
         }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            getData()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun getData() {

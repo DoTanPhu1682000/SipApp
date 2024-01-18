@@ -42,4 +42,8 @@ class ItemUserAdapter(private var mList: List<User>) : RecyclerView.Adapter<Item
         mList = newList
         notifyDataSetChanged()
     }
+
+    fun getItem(position: Int): User {
+        return mList[position]
+    }
 }

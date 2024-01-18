@@ -164,7 +164,7 @@ class CoreHelper(val context: Context) {
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()
         val password = appPreferenceHelper.password.toString()
-        val domain = "192.168.14.209"
+        val domain = "10.10.216.202"
         val authInfo = Factory.instance()
             .createAuthInfo(username, null, password, null, null, domain, null)
 
@@ -199,7 +199,7 @@ class CoreHelper(val context: Context) {
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()
         val password = appPreferenceHelper.password.toString()
-        val domain = "192.168.14.209"
+        val domain = "10.10.216.202"
         val authInfo = Factory.instance()
             .createAuthInfo(username, null, password, null, null, domain, null)
 
@@ -227,7 +227,7 @@ class CoreHelper(val context: Context) {
 
     fun outgoingCall(phone: String) {
         // As for everything we need to get the SIP URI of the remote and convert it to an Address
-        val remoteSipUri = "sip:$phone@192.168.14.209"
+        val remoteSipUri = "sip:$phone@10.10.216.202"
         val remoteAddress = Factory.instance().createAddress(remoteSipUri)
         remoteAddress ?: return // If address parsing fails, we can't continue with outgoing call process
 

@@ -52,9 +52,10 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 if (!isClickable()) return
-                LogUtil.wtf("fcmToken: ${mList[position].displayName}")
-                if (mList[position].displayName!!.isNotEmpty()) {
-                    requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), mList[position].username.toString(), mList[position].displayName.toString()))
+                val selectedUser = mAdapter.getItem(position)
+                LogUtil.wtf("fcmToken: ${selectedUser.displayName}")
+                if (selectedUser.displayName!!.isNotEmpty()) {
+                    requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), selectedUser.username.toString(), selectedUser.displayName.toString()))
                 }
             }
         })

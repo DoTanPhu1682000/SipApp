@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:hint="Domain"
             android:inputType="textUri"
-            android:text="192.168.14.209" />
+            android:text="10.10.216.202" />
 
         <RadioGroup
             android:id="@+id/transport"
@@ -104,7 +104,7 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@id/call"
             android:hint="Remote SIP address"
-            android:text="sip:101@192.168.14.209" />
+            android:text="sip:610@10.10.216.202" />
 
         <TextView
             android:id="@+id/call_status"

@@ -76,7 +76,7 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             it.isEnabled = true
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
-            val domain = "192.168.14.209"
+            val domain = "10.10.216.202"
             val transportType = TransportType.Udp
             LogUtil.wtf("%s - %s - %s - %s", username, password, domain, transportType)
 

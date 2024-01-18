@@ -85,7 +85,7 @@ class OutgoingCallFragment : BaseFragment() {
         viewModel = ViewModelProvider(this)[OutgoingCallViewModel::class.java]
 
         binding.calleeName.text = phone
-        binding.calleeAddress.text = "sip:$phone@192.168.14.209"
+        binding.calleeAddress.text = "sip:$phone@10.10.216.202"
     }
 
     private fun observe() {
