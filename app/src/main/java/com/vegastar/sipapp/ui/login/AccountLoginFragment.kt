@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.utils.LogUtil
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
@@ -14,7 +15,6 @@ import com.vegastar.sipapp.databinding.FragmentAccountLoginBinding
 import com.vegastar.sipapp.ui.home.MainActivity
 import com.vegastar.sipapp.utils.core.CoreHelper
 import com.vegastar.sipapp.utils.core.CoreHelperListener
-import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import org.linphone.core.TransportType
 import javax.inject.Inject
@@ -73,6 +73,7 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
         }
 
         binding.connect.setOnClickListener {
+            showProgress()
             it.isEnabled = true
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
@@ -86,6 +87,7 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
 
     override fun onRegistrationStateChanged(isSuccessful: Boolean) {
         if (isSuccessful) {
+            hideProgress()
             requireActivity().startActivity(MainActivity.newIntent(requireContext()))
         }
     }

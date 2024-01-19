@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.utils.LogUtil
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.response.User
 import com.vegastar.sipapp.databinding.FragmentDialerBinding
 import com.vegastar.sipapp.ui.call.OutgoingCallActivity
 import com.vegastar.sipapp.ui.home.contact.ContactViewModel
-import com.utils.LogUtil
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -79,9 +79,9 @@ class DialerFragment : BaseFragment() {
             val filterUsers = filterUsersByPhoneNumber(storedUserList, phone)
             if (filterUsers.isNotEmpty()) {
                 for (user in filterUsers) {
-                    LogUtil.wtf("fcmToken: ${user.displayName}")
-                    if (user.displayName!!.isNotEmpty()) {
-                        requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), phone, user.displayName.toString()))
+                    LogUtil.wtf("fcmToken: ${user.description}")
+                    if (user.description!!.isNotEmpty()) {
+                        requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), phone, user.displayName, user.description))
                     }
                 }
             } else {
@@ -114,7 +114,7 @@ class DialerFragment : BaseFragment() {
     }
 
     // Hàm để lọc danh sách người dùng theo số điện thoại
-    fun filterUsersByPhoneNumber(users: List<User>, phoneNumber: String): List<User> {
+    private fun filterUsersByPhoneNumber(users: List<User>, phoneNumber: String): List<User> {
         return users.filter { it.username == phoneNumber }
     }
 }

@@ -221,10 +221,6 @@ class CoreHelper(val context: Context) {
         core.start()
     }
 
-    fun getRemoteAddress(): String? {
-        return core.currentCall?.remoteAddress?.asStringUriOnly()
-    }
-
     fun outgoingCall(phone: String) {
         // As for everything we need to get the SIP URI of the remote and convert it to an Address
         val remoteSipUri = "sip:$phone@10.10.216.202"

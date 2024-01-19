@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.utils.LogUtil
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.event.NotifyEvent
@@ -14,7 +15,6 @@ import com.vegastar.sipapp.utils.NotificationUtil
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_CALL
 import com.vegastar.sipapp.utils.core.CallStateChangeListener
 import com.vegastar.sipapp.utils.core.CoreHelper
-import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -89,8 +89,13 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         CoreHelper.getInstance(requireContext())?.start()
         CoreHelper.getInstance(requireContext())?.callStateChangeListener = this
 
-        val remoteAddress = CoreHelper.getInstance(requireContext())?.getRemoteAddress()
-        binding.calleeAddress.text = remoteAddress
+        val displayNameAddress = CoreHelper.getInstance(requireContext())?.core?.currentCall?.remoteAddress?.displayName
+        val remoteAddress = CoreHelper.getInstance(requireContext())?.core?.currentCall?.remoteAddress?.asStringUriOnly()
+        if (displayNameAddress != null) {
+            binding.calleeName.text = displayNameAddress
+        } else {
+            binding.calleeName.text = remoteAddress
+        }
     }
 
     private fun listener() {

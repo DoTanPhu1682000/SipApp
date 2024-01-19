@@ -30,7 +30,7 @@ class ItemUserAdapter(private var mList: List<User>) : RecyclerView.Adapter<Item
     inner class ItemViewHolder(val binding: RowItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(user: User) {
             binding.tvUserName.text = "${user.username}"
-            binding.tvDescription.text = "${user.description}"
+            binding.tvDescription.text = "${user.displayName}"
 
             binding.root.setOnClickListener {
                 mOnItemClickListener?.onItemClick(adapterPosition)

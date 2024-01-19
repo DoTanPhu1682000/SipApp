@@ -8,14 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.utils.LogUtil
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.event.NotifyEvent
 import com.vegastar.sipapp.databinding.FragmentOutgoingCallBinding
+import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_DISPLAY_NAME
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_FCM_TOKEN
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_PHONE
 import com.vegastar.sipapp.utils.core.CoreHelper
-import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -25,9 +26,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class OutgoingCallFragment : BaseFragment() {
     companion object {
-        fun newInstance(phone: String?, fcmToken: String?): OutgoingCallFragment {
+        fun newInstance(phone: String?, displayName: String?, fcmToken: String?): OutgoingCallFragment {
             val args = Bundle()
             args.putString(KEY_PHONE, phone)
+            args.putString(KEY_DISPLAY_NAME, displayName)
             args.putString(KEY_FCM_TOKEN, fcmToken)
             val fragment = OutgoingCallFragment()
             fragment.arguments = args
@@ -42,6 +44,7 @@ class OutgoingCallFragment : BaseFragment() {
     private lateinit var viewModel: OutgoingCallViewModel
 
     private var phone: String = ""
+    private var displayName: String? = null
     private var fcmToken: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -76,6 +79,7 @@ class OutgoingCallFragment : BaseFragment() {
         val bundle = arguments
         if (bundle != null) {
             phone = bundle.getString(KEY_PHONE).toString()
+            displayName = bundle.getString(KEY_DISPLAY_NAME)
             fcmToken = bundle.getString(KEY_FCM_TOKEN).toString()
         }
     }
@@ -84,8 +88,11 @@ class OutgoingCallFragment : BaseFragment() {
     private fun initData() {
         viewModel = ViewModelProvider(this)[OutgoingCallViewModel::class.java]
 
-        binding.calleeName.text = phone
-        binding.calleeAddress.text = "sip:$phone@10.10.216.202"
+        if (displayName != null) {
+            binding.calleeName.text = displayName
+        } else {
+            binding.calleeName.text = phone
+        }
     }
 
     private fun observe() {

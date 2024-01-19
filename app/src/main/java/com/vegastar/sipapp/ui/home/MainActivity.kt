@@ -11,6 +11,8 @@ import android.provider.Settings
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.custom.ViewPager2Adapter
+import com.google.android.material.navigation.NavigationBarView
+import com.utils.LogUtil
 import com.vegastar.sipapp.AppConfig.BACK_TO_EXIT_TIME
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseActivity
@@ -24,8 +26,6 @@ import com.vegastar.sipapp.utils.PermissionsHelper
 import com.vegastar.sipapp.utils.Tool
 import com.vegastar.sipapp.utils.constant.RequestCode.REQUEST_DRAW_OVERLAY_SETTING
 import com.vegastar.sipapp.utils.constant.RequestCode.REQUEST_ENABLE_LOCATION
-import com.google.android.material.navigation.NavigationBarView
-import com.utils.LogUtil
 import com.widget.ToastColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,10 +54,10 @@ class MainActivity : BaseActivity() {
         } else if (itemId == R.id.navKeyboard) {
             binding.viewPager.setCurrentItem(2, false)
             return@OnItemSelectedListener true
-        } else if (itemId == R.id.navFavourite) {
+        } /*else if (itemId == R.id.navFavourite) {
             binding.viewPager.setCurrentItem(3, false)
             return@OnItemSelectedListener true
-        }
+        }*/
         false
     }
 
@@ -104,7 +104,7 @@ class MainActivity : BaseActivity() {
                     0 -> binding.navigation.selectedItemId = R.id.navRecently
                     1 -> binding.navigation.selectedItemId = R.id.navPhonebook
                     2 -> binding.navigation.selectedItemId = R.id.navKeyboard
-                    3 -> binding.navigation.selectedItemId = R.id.navFavourite
+                    // 3 -> binding.navigation.selectedItemId = R.id.navFavourite
                 }
             }
         })

@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_16"
+        android:layout_marginBottom="@dimen/_16"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/white"
@@ -41,7 +42,9 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textIsSelectable="true"
-        tools:text="sip:dotanphu@sip.linphone.org" />
+        android:visibility="gone"
+        tools:text="sip:dotanphu@sip.linphone.org"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progress"

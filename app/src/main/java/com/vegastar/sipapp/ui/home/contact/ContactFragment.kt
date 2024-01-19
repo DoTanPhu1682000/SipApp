@@ -53,9 +53,9 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
             override fun onItemClick(position: Int) {
                 if (!isClickable()) return
                 val selectedUser = mAdapter.getItem(position)
-                LogUtil.wtf("fcmToken: ${selectedUser.displayName}")
-                if (selectedUser.displayName!!.isNotEmpty()) {
-                    requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), selectedUser.username.toString(), selectedUser.displayName.toString()))
+                LogUtil.wtf("fcmToken: ${selectedUser.description}")
+                if (selectedUser.description!!.isNotEmpty()) {
+                    requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), selectedUser.username, selectedUser.displayName, selectedUser.description))
                 }
             }
         })
@@ -113,7 +113,7 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun filterList(query: String) {
         val filteredList = mList.filter { user ->
-            user.username!!.contains(query, ignoreCase = true) || user.description!!.contains(query, ignoreCase = true)
+            user.username!!.contains(query, ignoreCase = true) || user.displayName!!.contains(query, ignoreCase = true)
         }
 
         mAdapter.updateData(filteredList)

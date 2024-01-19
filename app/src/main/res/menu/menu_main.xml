@@ -20,10 +20,10 @@
         android:title="@string/keyboard"
         app:showAsAction="ifRoom|withText" />
 
-    <item
-        android:id="@+id/navFavourite"
-        android:icon="@drawable/state_star"
-        android:title="@string/favourite"
-        app:showAsAction="ifRoom|withText" />
+<!--    <item-->
+<!--        android:id="@+id/navFavourite"-->
+<!--        android:icon="@drawable/state_star"-->
+<!--        android:title="@string/favourite"-->
+<!--        app:showAsAction="ifRoom|withText" />-->
 
 </menu>
