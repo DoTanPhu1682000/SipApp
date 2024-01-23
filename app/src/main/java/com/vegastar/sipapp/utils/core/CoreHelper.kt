@@ -221,6 +221,35 @@ class CoreHelper(val context: Context) {
         core.start()
     }
 
+    fun unregister() {
+        // Here we will disable the registration of our Account
+        val account = core.defaultAccount
+        account ?: return
+
+        val params = account.params
+        // Returned params object is const, so to make changes we first need to clone it
+        val clonedParams = params.clone()
+
+        // Now let's make our changes
+        clonedParams.isRegisterEnabled = false
+
+        // And apply them
+        account.params = clonedParams
+    }
+
+    fun delete() {
+        // To completely remove an Account
+        val account = core.defaultAccount
+        account ?: return
+        core.removeAccount(account)
+
+        // To remove all accounts use
+        core.clearAccounts()
+
+        // Same for auth info
+        core.clearAllAuthInfo()
+    }
+
     fun outgoingCall(phone: String) {
         // As for everything we need to get the SIP URI of the remote and convert it to an Address
         val remoteSipUri = "sip:$phone@10.10.216.202"

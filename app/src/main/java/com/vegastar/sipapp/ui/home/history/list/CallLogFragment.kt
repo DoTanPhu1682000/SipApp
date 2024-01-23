@@ -1,5 +1,6 @@
 package com.vegastar.sipapp.ui.home.history.list
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,13 @@ import com.utils.LogUtil
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.adapter.ItemCallLogAdapter
 import com.vegastar.sipapp.component.base.BaseFragment
+import com.vegastar.sipapp.component.dialog.ConfirmDialog
+import com.vegastar.sipapp.component.listener.OnDialogButtonClickListener
 import com.vegastar.sipapp.component.listener.OnItemClickListener
 import com.vegastar.sipapp.databinding.FragmentCallLogBinding
-import com.vegastar.sipapp.ui.home.history.singleton.ShareItem
 import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.ui.home.history.detail.DetailCallLogActivity
+import com.vegastar.sipapp.ui.home.history.singleton.ShareItem
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,6 +83,27 @@ class CallLogFragment : BaseFragment() {
         binding.bMissedCallLog.setOnClickListener {
             showOnlyMissedCallLogs()
         }
+
+//        binding.imgAvatar.setOnClickListener {
+//            val d: ConfirmDialog = ConfirmDialog.newInstance(R.string.notification, R.string.confirm_logout)
+//            d.setCanceledOnTouchOutside(false)
+//            d.isCancelable = false
+//            d.setOnDialogButtonClickListener(object : OnDialogButtonClickListener {
+//                override fun onPositiveButtonClick(dialog: Dialog?) {
+//                    logout()
+//                    dialog?.cancel()
+//                }
+//
+//                override fun onNegativeButtonClick(dialog: Dialog?) {
+//                    dialog?.cancel()
+//                }
+//            })
+//            try {
+//                d.show(childFragmentManager, null)
+//            } catch (e: Exception) {
+//                LogUtil.e(e.message)
+//            }
+//        }
     }
 
     private fun getData() {
@@ -163,6 +187,10 @@ class CallLogFragment : BaseFragment() {
             binding.bAllCallLog.setTextColor(ContextCompat.getColor(requireContext(), R.color.ink300))
             binding.bMissedCallLog.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
+    }
+
+    private fun logout() {
+        //ignore
     }
 }
 

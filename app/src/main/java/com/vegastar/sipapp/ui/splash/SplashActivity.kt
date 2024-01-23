@@ -9,7 +9,6 @@ import com.vegastar.sipapp.databinding.ActivitySplashBinding
 import com.vegastar.sipapp.ui.home.MainActivity
 import com.vegastar.sipapp.ui.login.AccountLoginActivity
 import com.vegastar.sipapp.utils.core.CoreHelper
-import com.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +32,7 @@ class SplashActivity : BaseActivity() {
             } else {
                 if (isLogin) {
                     if (CoreHelper.getInstance(applicationContext)?.isCoreRunning() == false) {
-                        CoreHelper.getInstance(applicationContext)?.login()
+                        CoreHelper.getInstance(applicationContext)?.start()
                     }
                     startActivity(MainActivity.newIntent(applicationContext))
                     finish()
