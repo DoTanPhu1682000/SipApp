@@ -80,7 +80,7 @@ class DialerFragment : BaseFragment() {
             if (filterUsers.isNotEmpty()) {
                 for (user in filterUsers) {
                     LogUtil.wtf("fcmToken: ${user.description}")
-                    if (user.description!!.isNotEmpty()) {
+                    if (user.description != null) {
                         requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), phone, user.displayName, user.description))
                     }
                 }

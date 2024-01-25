@@ -1,12 +1,16 @@
 package com.vegastar.sipapp.ui.call
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import com.utils.LogUtil
+import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.event.NotifyEvent
@@ -80,6 +84,7 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initData() {
         //Dừng dịch vụ PrepareCallService
         //PrepareCallService.stop(getApplicationContext())
@@ -89,6 +94,7 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         CoreHelper.getInstance(requireContext())?.start()
         CoreHelper.getInstance(requireContext())?.callStateChangeListener = this
 
+        val username = CoreHelper.getInstance(requireContext())?.core?.currentCall?.remoteAddress?.username
         val displayNameAddress = CoreHelper.getInstance(requireContext())?.core?.currentCall?.remoteAddress?.displayName
         val remoteAddress = CoreHelper.getInstance(requireContext())?.core?.currentCall?.remoteAddress?.asStringUriOnly()
         if (displayNameAddress != null) {
@@ -96,6 +102,8 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         } else {
             binding.calleeName.text = remoteAddress
         }
+
+        binding.tvPhone.text = "(${username})"
     }
 
     private fun listener() {
@@ -122,10 +130,22 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         }
     }
 
+    private fun startTimer() {
+        val timer = binding.root.findViewById<Chronometer>(R.id.active_call_timer)
+        timer.format = "%s"
+
+        // Bắt đầu đếm thời gian từ 00:00
+        timer.base = SystemClock.elapsedRealtime()
+        timer.start()
+    }
+
     override fun onCallStateChanged(isConnected: Boolean) {
         if (isConnected) {
             binding.llAcceptCall.visibility = View.VISIBLE
             binding.llIncomingCall.visibility = View.GONE
+            binding.activeCallTimer.visibility = View.VISIBLE
+            binding.calleeRinging.visibility = View.GONE
+            startTimer()
         } else {
             binding.llAcceptCall.visibility = View.GONE
             binding.llIncomingCall.visibility = View.VISIBLE

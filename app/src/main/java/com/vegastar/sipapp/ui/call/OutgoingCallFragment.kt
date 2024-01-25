@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import androidx.lifecycle.ViewModelProvider
 import com.utils.LogUtil
+import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.data.model.event.NotifyEvent
@@ -16,6 +19,7 @@ import com.vegastar.sipapp.databinding.FragmentOutgoingCallBinding
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_DISPLAY_NAME
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_FCM_TOKEN
 import com.vegastar.sipapp.utils.constant.KeyConstant.KEY_PHONE
+import com.vegastar.sipapp.utils.core.CallStateChangeListener
 import com.vegastar.sipapp.utils.core.CoreHelper
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
@@ -24,7 +28,7 @@ import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class OutgoingCallFragment : BaseFragment() {
+class OutgoingCallFragment : BaseFragment(), CallStateChangeListener {
     companion object {
         fun newInstance(phone: String?, displayName: String?, fcmToken: String?): OutgoingCallFragment {
             val args = Bundle()
@@ -88,11 +92,15 @@ class OutgoingCallFragment : BaseFragment() {
     private fun initData() {
         viewModel = ViewModelProvider(this)[OutgoingCallViewModel::class.java]
 
+        CoreHelper.getInstance(requireContext())?.callStateChangeListener = this
+
         if (displayName != null) {
             binding.calleeName.text = displayName
         } else {
             binding.calleeName.text = phone
         }
+
+        binding.tvPhone.text = "(${phone})"
     }
 
     private fun observe() {
@@ -119,5 +127,22 @@ class OutgoingCallFragment : BaseFragment() {
 
     private fun getData() {
         viewModel.sendNotificationFcmDirect(fcmToken, "my_custom_value", "prepare_call")
+    }
+
+    private fun startTimer() {
+        val timer = binding.root.findViewById<Chronometer>(R.id.active_call_timer)
+        timer.format = "%s"
+
+        // Bắt đầu đếm thời gian từ 00:00
+        timer.base = SystemClock.elapsedRealtime()
+        timer.start()
+    }
+
+    override fun onCallStateChanged(isConnected: Boolean) {
+        if (isConnected) {
+            binding.activeCallTimer.visibility = View.VISIBLE
+            binding.calleeRinging.visibility = View.GONE
+            startTimer()
+        }
     }
 }

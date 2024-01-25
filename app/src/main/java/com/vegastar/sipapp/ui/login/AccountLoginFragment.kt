@@ -56,7 +56,8 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             dataManager.mPreferenceHelper.username = username
             dataManager.mPreferenceHelper.password = password
 
-            CoreHelper.getInstance(requireContext())?.start()
+            //CoreHelper.getInstance(requireContext())?.start()
+            CoreHelper.getInstance(requireContext())?.login()
             CoreHelper.getInstance(requireContext())?.listener = this
         }
     }

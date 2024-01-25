@@ -106,6 +106,11 @@ class MainActivity : BaseActivity() {
                     2 -> binding.navigation.selectedItemId = R.id.navKeyboard
                     // 3 -> binding.navigation.selectedItemId = R.id.navFavourite
                 }
+                // Load lại CallLogFragment khi chuyển sang
+                if (position == 0) {
+                    val callLogFragment = adapter.getFragment(position) as CallLogFragment
+                    callLogFragment.reloadData()
+                }
             }
         })
     }

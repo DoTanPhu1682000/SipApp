@@ -54,7 +54,7 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 if (!isClickable()) return
                 val selectedUser = mAdapter.getItem(position)
                 LogUtil.wtf("fcmToken: ${selectedUser.description}")
-                if (selectedUser.description!!.isNotEmpty()) {
+                if (selectedUser.description != null) {
                     requireActivity().startActivity(OutgoingCallActivity.newIntent(requireContext(), selectedUser.username, selectedUser.displayName, selectedUser.description))
                 }
             }

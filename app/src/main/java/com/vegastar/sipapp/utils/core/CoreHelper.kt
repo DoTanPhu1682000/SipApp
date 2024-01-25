@@ -326,4 +326,38 @@ class CoreHelper(val context: Context) {
     fun isCallLogMissed(callLog: CallLog): Boolean {
         return (callLog.dir == Call.Dir.Incoming && (callLog.status == Call.Status.Missed || callLog.status == Call.Status.Aborted || callLog.status == Call.Status.EarlyAborted))
     }
+
+    fun startDeleteAccount() {
+        val account = core.defaultAccount
+        Log.e("[Account Settings]", "Starting to delete account [${account?.params?.identityAddress?.asStringUriOnly()}]")
+
+        val registered = account?.state == RegistrationState.Ok
+
+        val params = account?.params?.clone()
+        params?.isRegisterEnabled = false
+        if (params != null) {
+            account.params = params
+        }
+
+        if (!registered) {
+            Log.e("[Account Settings]", "Account isn't registered, don't unregister before removing it")
+            if (account != null) {
+                deleteAccount(account)
+            }
+        } else {
+            Log.e("[Account Settings]", "Waiting for account registration to be cleared before removing it")
+        }
+    }
+
+    private fun deleteAccount(account: Account) {
+        val authInfo = account.findAuthInfo()
+        if (authInfo != null) {
+            Log.e("[Account Settings]", "Found auth info $authInfo, removing it.")
+            core.removeAuthInfo(authInfo)
+        } else {
+            Log.e("[Account Settings]", "Couldn't find matching auth info...")
+        }
+
+        core.removeAccount(account)
+    }
 }

@@ -190,7 +190,14 @@ class CallLogFragment : BaseFragment() {
     }
 
     private fun logout() {
-        //ignore
+//        CoreHelper.getInstance(requireContext())?.delete()
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            startActivity(AccountLoginActivity.newIntent(requireContext()))
+//        }, 2000)
+    }
+
+    fun reloadData() {
+        getData()
     }
 }
 
