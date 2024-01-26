@@ -10,8 +10,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/_8"
         android:layout_marginVertical="@dimen/_8"
+        android:elevation="@dimen/_8"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_12"
         app:cardPreventCornerOverlap="false"
@@ -74,6 +74,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/imgMore"
                     android:layout_width="@dimen/_20"
                     android:layout_height="@dimen/_20"
                     android:layout_gravity="center"

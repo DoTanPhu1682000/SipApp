@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.utils.LogUtil
 import com.vegastar.sipapp.R
@@ -50,6 +51,9 @@ class OutgoingCallFragment : BaseFragment(), CallStateChangeListener {
     private var phone: String = ""
     private var displayName: String? = null
     private var fcmToken: String = ""
+
+    private var isSpeakerOn = false
+    private var isMicrophoneOn = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentOutgoingCallBinding.inflate(inflater, container, false)
@@ -117,10 +121,24 @@ class OutgoingCallFragment : BaseFragment(), CallStateChangeListener {
         binding.bHangup.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpOutgoingCall()
         }
+
         binding.bSpeaker.setOnClickListener {
+            isSpeakerOn = !isSpeakerOn
+
+            val speakerImageView = binding.root.findViewById<ImageView>(R.id.bSpeaker)
+            val speakerIconResId = if (isSpeakerOn) R.drawable.ic_toggle_speaker_on else R.drawable.ic_toggle_speaker
+            speakerImageView.setImageResource(speakerIconResId)
+
             CoreHelper.getInstance(requireContext())?.toggleSpeaker()
         }
+
         binding.bMicrophone.setOnClickListener {
+            isMicrophoneOn = !isMicrophoneOn
+
+            val microphoneImageView = binding.root.findViewById<ImageView>(R.id.bMicrophone)
+            val microphoneIconResId = if (isMicrophoneOn) R.drawable.ic_toggle_mic_on else R.drawable.ic_toggle_mic
+            microphoneImageView.setImageResource(microphoneIconResId)
+
             CoreHelper.getInstance(requireContext())?.toogleMicrophone()
         }
     }

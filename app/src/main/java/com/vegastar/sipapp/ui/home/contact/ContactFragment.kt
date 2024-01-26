@@ -99,6 +99,10 @@ class ContactFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         })
 
         binding.swipeRefreshLayout.setOnRefreshListener(this)
+
+        binding.biClear.setOnClickListener {
+            binding.etKeyword.setText("")
+        }
     }
 
     private fun getData() {

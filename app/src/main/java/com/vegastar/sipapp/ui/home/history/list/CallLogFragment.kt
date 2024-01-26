@@ -2,6 +2,8 @@ package com.vegastar.sipapp.ui.home.history.list
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import com.vegastar.sipapp.databinding.FragmentCallLogBinding
 import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.ui.home.history.detail.DetailCallLogActivity
 import com.vegastar.sipapp.ui.home.history.singleton.ShareItem
+import com.vegastar.sipapp.ui.login.AccountLoginActivity
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
 import dagger.hilt.android.AndroidEntryPoint

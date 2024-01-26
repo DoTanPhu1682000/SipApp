@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
+import android.widget.ImageView
 import com.utils.LogUtil
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
@@ -49,6 +50,8 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
 
     private lateinit var binding: FragmentIncomingCallBinding
     private var checkAcceptCall: Boolean = false
+    private var isSpeakerOn = false
+    private var isMicrophoneOn = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentIncomingCallBinding.inflate(inflater, container, false)
@@ -110,16 +113,32 @@ class IncomingCallFragment : BaseFragment(), CallStateChangeListener {
         binding.bHangupIncomingCall.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpIncomingCall()
         }
+
         binding.bHangup.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.hangUpIncomingCall()
         }
+
         binding.bAnswerIncomingCall.setOnClickListener {
             CoreHelper.getInstance(requireContext())?.answer()
         }
+
         binding.bSpeaker.setOnClickListener {
+            isSpeakerOn = !isSpeakerOn
+
+            val speakerImageView = binding.root.findViewById<ImageView>(R.id.bSpeaker)
+            val speakerIconResId = if (isSpeakerOn) R.drawable.ic_toggle_speaker_on else R.drawable.ic_toggle_speaker
+            speakerImageView.setImageResource(speakerIconResId)
+
             CoreHelper.getInstance(requireContext())?.toggleSpeaker()
         }
+
         binding.bMicrophone.setOnClickListener {
+            isMicrophoneOn = !isMicrophoneOn
+
+            val microphoneImageView = binding.root.findViewById<ImageView>(R.id.bMicrophone)
+            val microphoneIconResId = if (isMicrophoneOn) R.drawable.ic_toggle_mic_on else R.drawable.ic_toggle_mic
+            microphoneImageView.setImageResource(microphoneIconResId)
+
             CoreHelper.getInstance(requireContext())?.toogleMicrophone()
         }
     }

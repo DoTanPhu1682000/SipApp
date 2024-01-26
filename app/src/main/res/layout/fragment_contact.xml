@@ -65,7 +65,7 @@
                 android:layout_height="@dimen/_30"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_effect_transparent"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:bi_icon="@drawable/ic_remove_circle"
                 app:bi_iconSize="@dimen/_20"
                 tools:visibility="visible" />
