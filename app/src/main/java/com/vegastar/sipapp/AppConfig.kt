@@ -6,6 +6,7 @@ object AppConfig {
     const val REMOVE_USER_DATA_WHEN_APP_START = false
 
     const val CHECK_PHONE_NUMBER = "0392719775" //TEST: điền sẵn số điện thoại vào CheckPhoneFragment, PRODUCTION xóa trống =""
+    const val ADDRESS_SIP = "10.10.216.202"
 
     /*----------------------------------[DEFINE]--------------------------------------------------*/
     var BASE_URL: String? = null

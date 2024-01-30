@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import com.utils.LogUtil
+import com.vegastar.sipapp.AppConfig.ADDRESS_SIP
 import com.vegastar.sipapp.AppConfig.TAG
 import com.vegastar.sipapp.component.service.PrepareCallService
 import com.vegastar.sipapp.data.model.event.NotifyEvent
@@ -164,7 +165,7 @@ class CoreHelper(val context: Context) {
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()
         val password = appPreferenceHelper.password.toString()
-        val domain = "10.10.216.202"
+        val domain = ADDRESS_SIP
         val authInfo = Factory.instance()
             .createAuthInfo(username, null, password, null, null, domain, null)
 
@@ -199,7 +200,7 @@ class CoreHelper(val context: Context) {
         val appPreferenceHelper = AppPreferenceHelper(context)
         val username = appPreferenceHelper.username.toString()
         val password = appPreferenceHelper.password.toString()
-        val domain = "10.10.216.202"
+        val domain = ADDRESS_SIP
         val authInfo = Factory.instance()
             .createAuthInfo(username, null, password, null, null, domain, null)
 
@@ -252,7 +253,7 @@ class CoreHelper(val context: Context) {
 
     fun outgoingCall(phone: String) {
         // As for everything we need to get the SIP URI of the remote and convert it to an Address
-        val remoteSipUri = "sip:$phone@10.10.216.202"
+        val remoteSipUri = "sip:$phone@${ADDRESS_SIP}"
         val remoteAddress = Factory.instance().createAddress(remoteSipUri)
         remoteAddress ?: return // If address parsing fails, we can't continue with outgoing call process
 

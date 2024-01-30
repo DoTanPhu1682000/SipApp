@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.utils.LogUtil
+import com.vegastar.sipapp.AppConfig.ADDRESS_SIP
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.data.DataManager
@@ -78,7 +79,7 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             it.isEnabled = true
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
-            val domain = "10.10.216.202"
+            val domain = ADDRESS_SIP
             val transportType = TransportType.Udp
             LogUtil.wtf("%s - %s - %s - %s", username, password, domain, transportType)
 
