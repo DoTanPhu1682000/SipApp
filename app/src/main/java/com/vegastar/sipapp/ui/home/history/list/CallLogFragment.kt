@@ -2,8 +2,6 @@ package com.vegastar.sipapp.ui.home.history.list
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +14,7 @@ import com.vegastar.sipapp.component.base.BaseFragment
 import com.vegastar.sipapp.component.dialog.ConfirmDialog
 import com.vegastar.sipapp.component.listener.OnDialogButtonClickListener
 import com.vegastar.sipapp.component.listener.OnItemClickListener
+import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.databinding.FragmentCallLogBinding
 import com.vegastar.sipapp.ui.home.history.data.GroupedCallLogData
 import com.vegastar.sipapp.ui.home.history.detail.DetailCallLogActivity
@@ -23,11 +22,13 @@ import com.vegastar.sipapp.ui.home.history.singleton.ShareItem
 import com.vegastar.sipapp.ui.login.AccountLoginActivity
 import com.vegastar.sipapp.utils.TimestampUtils
 import com.vegastar.sipapp.utils.core.CoreHelper
+import com.vegastar.sipapp.utils.core.CoreHelperListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.linphone.core.CallLog
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class CallLogFragment : BaseFragment() {
+class CallLogFragment : BaseFragment(), CoreHelperListener {
 
     companion object {
         fun newInstance(): CallLogFragment {
@@ -37,6 +38,9 @@ class CallLogFragment : BaseFragment() {
             return fragment
         }
     }
+
+    @Inject
+    lateinit var dataManager: DataManager
 
     private lateinit var binding: FragmentCallLogBinding
     private lateinit var mAdapter: ItemCallLogAdapter
@@ -54,6 +58,8 @@ class CallLogFragment : BaseFragment() {
     }
 
     private fun initData() {
+        CoreHelper.getInstance(requireContext())?.listener = this
+
         mAdapter = ItemCallLogAdapter(requireContext(), mList)
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -87,26 +93,26 @@ class CallLogFragment : BaseFragment() {
             showOnlyMissedCallLogs()
         }
 
-//        binding.imgAvatar.setOnClickListener {
-//            val d: ConfirmDialog = ConfirmDialog.newInstance(R.string.notification, R.string.confirm_logout)
-//            d.setCanceledOnTouchOutside(false)
-//            d.isCancelable = false
-//            d.setOnDialogButtonClickListener(object : OnDialogButtonClickListener {
-//                override fun onPositiveButtonClick(dialog: Dialog?) {
-//                    logout()
-//                    dialog?.cancel()
-//                }
-//
-//                override fun onNegativeButtonClick(dialog: Dialog?) {
-//                    dialog?.cancel()
-//                }
-//            })
-//            try {
-//                d.show(childFragmentManager, null)
-//            } catch (e: Exception) {
-//                LogUtil.e(e.message)
-//            }
-//        }
+        binding.imgAvatar.setOnClickListener {
+            val d: ConfirmDialog = ConfirmDialog.newInstance(R.string.notification, R.string.confirm_logout)
+            d.setCanceledOnTouchOutside(false)
+            d.isCancelable = false
+            d.setOnDialogButtonClickListener(object : OnDialogButtonClickListener {
+                override fun onPositiveButtonClick(dialog: Dialog?) {
+                    logout()
+                    dialog?.cancel()
+                }
+
+                override fun onNegativeButtonClick(dialog: Dialog?) {
+                    dialog?.cancel()
+                }
+            })
+            try {
+                d.show(childFragmentManager, null)
+            } catch (e: Exception) {
+                LogUtil.e(e.message)
+            }
+        }
     }
 
     private fun getData() {
@@ -193,14 +199,18 @@ class CallLogFragment : BaseFragment() {
     }
 
     private fun logout() {
-//        CoreHelper.getInstance(requireContext())?.delete()
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            startActivity(AccountLoginActivity.newIntent(requireContext()))
-//        }, 2000)
+        CoreHelper.getInstance(requireContext())?.startDeleteAccount()
     }
 
     fun reloadData() {
         getData()
+    }
+
+    override fun onRegistrationStateChanged(isSuccessful: Boolean) {
+        if (!isSuccessful) {
+            dataManager.mPreferenceHelper.logout()
+            startActivity(AccountLoginActivity.newIntent(requireContext()))
+        }
     }
 }
 

@@ -45,19 +45,23 @@ class CoreHelper(val context: Context) {
     }
 
     val core: Core
+    private var accountToCheck: Account? = null
+
     var listener: CoreHelperListener? = null
     var callStateChangeListener: CallStateChangeListener? = null
     private var isMicrophoneMuted = false
 
     private val coreListener = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(core: Core, account: Account, state: RegistrationState?, message: String) {
-            Log.e(TAG, "Account [${account.params.identityAddress?.asStringUriOnly()}] registration state changed [$state]")
-            // Xử lý sự kiện khi trạng thái đăng ký thay đổi
-            if (state == RegistrationState.Failed || state == RegistrationState.Cleared) {
-                LogUtil.wtf("Failed")
-            } else if (state == RegistrationState.Ok) {
-                // Thông báo rằng trạng thái đăng ký thành công
-                listener?.onRegistrationStateChanged(true)
+            if (account == accountToCheck) {
+                Log.e(TAG, "Account [${account.params.identityAddress?.asStringUriOnly()}] registration state changed [$state]")
+                if (state == RegistrationState.Failed || state == RegistrationState.Cleared) {
+                    LogUtil.wtf("Cleared")
+                    deleteAccount(account)
+                    listener?.onRegistrationStateChanged(false)
+                } else if (state == RegistrationState.Ok) {
+                    listener?.onRegistrationStateChanged(true)
+                }
             }
         }
 
@@ -156,6 +160,7 @@ class CoreHelper(val context: Context) {
         val factory = Factory.instance()
         factory.setDebugMode(true, "Hello Linphone")
         core = factory.createCore(null, null, context)
+        core.addListener(coreListener)
     }
 
     fun start() {
@@ -183,7 +188,8 @@ class CoreHelper(val context: Context) {
         core.addAccount(account)
         core.defaultAccount = account
 
-        core.addListener(coreListener)
+        accountToCheck = account
+
         core.start()
     }
 
@@ -218,37 +224,9 @@ class CoreHelper(val context: Context) {
         core.addAccount(account)
         core.defaultAccount = account
 
-        core.addListener(coreListener)
+        accountToCheck = account
+
         core.start()
-    }
-
-    fun unregister() {
-        // Here we will disable the registration of our Account
-        val account = core.defaultAccount
-        account ?: return
-
-        val params = account.params
-        // Returned params object is const, so to make changes we first need to clone it
-        val clonedParams = params.clone()
-
-        // Now let's make our changes
-        clonedParams.isRegisterEnabled = false
-
-        // And apply them
-        account.params = clonedParams
-    }
-
-    fun delete() {
-        // To completely remove an Account
-        val account = core.defaultAccount
-        account ?: return
-        core.removeAccount(account)
-
-        // To remove all accounts use
-        core.clearAccounts()
-
-        // Same for auth info
-        core.clearAllAuthInfo()
     }
 
     fun outgoingCall(phone: String) {
