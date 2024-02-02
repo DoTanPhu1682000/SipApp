@@ -1,16 +1,23 @@
 package com.vegastar.sipapp.ui.login
 
+import android.app.Dialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.utils.LogUtil
 import com.vegastar.sipapp.AppConfig.ADDRESS_SIP
 import com.vegastar.sipapp.R
 import com.vegastar.sipapp.component.base.BaseFragment
+import com.vegastar.sipapp.component.dialog.ConfirmDialog
+import com.vegastar.sipapp.component.listener.OnDialogButtonClickListener
 import com.vegastar.sipapp.data.DataManager
 import com.vegastar.sipapp.databinding.FragmentAccountLoginBinding
 import com.vegastar.sipapp.ui.home.MainActivity
@@ -61,6 +68,10 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
             CoreHelper.getInstance(requireContext())?.login()
             CoreHelper.getInstance(requireContext())?.listener = this
         }
+
+        viewModel.onLoginFailed.observe(viewLifecycleOwner) {
+            hideProgress()
+        }
     }
 
     private fun listener() {
@@ -72,6 +83,36 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
                 binding.password.transformationMethod = PasswordTransformationMethod()
                 binding.imgShowPassword.setImageDrawable(ContextCompat.getDrawable(getBaseContext()!!, R.drawable.ic_pw_eye_block))
             }
+        }
+
+        binding.imgAvatar.setOnClickListener {
+//            val fcmToken = dataManager.mPreferenceHelper.fcmToken
+//            val d: ConfirmDialog = ConfirmDialog.newInstance("Thông báo", fcmToken)
+//            d.setCanceledOnTouchOutside(false)
+//            d.isCancelable = false
+//            d.setOnDialogButtonClickListener(object : OnDialogButtonClickListener {
+//                override fun onPositiveButtonClick(dialog: Dialog?) {
+//                    val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+//
+//                    clipboard?.let {
+//                        val clip = ClipData.newPlainText("FCM Token", fcmToken)
+//                        it.setPrimaryClip(clip)
+//
+//                        Toast.makeText(context, "FCM Token đã được sao chép", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//                    dialog?.cancel()
+//                }
+//
+//                override fun onNegativeButtonClick(dialog: Dialog?) {
+//                    dialog?.cancel()
+//                }
+//            })
+//            try {
+//                d.show(childFragmentManager, null)
+//            } catch (e: Exception) {
+//                LogUtil.e(e.message)
+//            }
         }
 
         binding.connect.setOnClickListener {
@@ -91,6 +132,9 @@ class AccountLoginFragment : BaseFragment(), CoreHelperListener {
         if (isSuccessful) {
             hideProgress()
             requireActivity().startActivity(MainActivity.newIntent(requireContext()))
+        } else {
+            hideProgress()
+            toastError(R.string.status_notice)
         }
     }
 }

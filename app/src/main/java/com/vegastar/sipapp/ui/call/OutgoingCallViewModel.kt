@@ -21,7 +21,7 @@ class OutgoingCallViewModel @Inject constructor() : BaseViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    handleTokenRefreshException(e)
+                    handleError(e)
                 }
             })
         compositeDisposable.add(d)

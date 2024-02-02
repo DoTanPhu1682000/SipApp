@@ -23,7 +23,7 @@ class ConfirmDialog : BaseDialog(), View.OnClickListener {
         private const val KEY_NEGATIVE = "KEY_NEGATIVE"
         private const val KEY_POSITIVE = "KEY_POSITIVE"
 
-        fun newInstance(title: String, content: String): ConfirmDialog {
+        fun newInstance(title: String?, content: String?): ConfirmDialog {
             val args = Bundle()
             val dialog = ConfirmDialog()
             dialog.setCanceledOnTouchOutside(false)

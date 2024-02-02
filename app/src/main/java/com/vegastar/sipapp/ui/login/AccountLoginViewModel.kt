@@ -12,6 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AccountLoginViewModel @Inject constructor() : BaseViewModel() {
     var onLoginSuccess: MutableLiveData<Login> = MutableLiveData()
+    var onLoginFailed: MutableLiveData<Throwable> = MutableLiveData()
 
     fun doLogin(context: Context, phone: String, password: String) {
         val d: Disposable = dataManager.mApiHelper.login(phone, password)
@@ -25,7 +26,8 @@ class AccountLoginViewModel @Inject constructor() : BaseViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    handleTokenRefreshException(e)
+                    onLoginFailed.postValue(e)
+                    handleError(e)
                 }
             })
         compositeDisposable.add(d)
